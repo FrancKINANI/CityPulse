@@ -6,14 +6,22 @@ class AppConfig {
   static const String appVersion = '1.0.0';
 
   // Colors
-  static const Color primaryColor = Color(0xFF112116);
-  static const Color secondaryColor = Color(0xFF4CAF50);
-  static const Color accentColor = Color(0xFF00BCD4);
+  static const Color primaryColor = Colors.white;
+  static const Color secondaryColor = Color(0xFFFF9800); // Orange
+  static const Color accentColor = Color(0xFFFFB74D); // Light Orange
   static const Color backgroundColor = Colors.white;
   static const Color textColor = Color(0xFF333333);
   static const Color errorColor = Color(0xFFE53935);
   static const Color successColor = Color(0xFF4CAF50);
   static const Color warningColor = Color(0xFFFFC107);
+  
+  // Dark Theme Colors
+  static const Color darkPrimaryColor = Color(0xFF121212);
+  static const Color darkSecondaryColor = Color(0xFFFF9800); // Orange
+  static const Color darkAccentColor = Color(0xFFFFB74D); // Light Orange
+  static const Color darkBackgroundColor = Color(0xFF121212);
+  static const Color darkTextColor = Colors.white;
+  static const Color darkCardColor = Color(0xFF1E1E1E);
 
   // Text Styles
   static const TextStyle headingStyle = TextStyle(

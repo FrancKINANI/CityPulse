@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../services/theme_service.dart';
 
 class SettingsPreferences extends StatelessWidget {
   final String language;
@@ -45,6 +47,7 @@ class SettingsPreferences extends StatelessWidget {
             language,
             ['Français', 'English', 'Español', 'Deutsch'],
             onLanguageChanged,
+            context,
           ),
           const Divider(),
           _buildDropdownSetting(
@@ -53,6 +56,7 @@ class SettingsPreferences extends StatelessWidget {
             theme,
             ['Système', 'Clair', 'Sombre'],
             onThemeChanged,
+            context,
           ),
           const Divider(),
           _buildSwitchSetting(
@@ -79,6 +83,7 @@ class SettingsPreferences extends StatelessWidget {
     String value,
     List<String> options,
     Function(String) onChanged,
+    [BuildContext? parentContext]
   ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -112,6 +117,22 @@ class SettingsPreferences extends StatelessWidget {
             onChanged: (newValue) {
               if (newValue != null) {
                 onChanged(newValue);
+                
+                // Si c'est le thème, on applique le changement
+                if (title == 'Thème' && parentContext != null) {
+                  final themeService = Provider.of<ThemeService>(parentContext, listen: false);
+                  switch (newValue) {
+                    case 'Clair':
+                      themeService.setThemeMode(ThemeMode.light);
+                      break;
+                    case 'Sombre':
+                      themeService.setThemeMode(ThemeMode.dark);
+                      break;
+                    case 'Système':
+                      themeService.setThemeMode(ThemeMode.system);
+                      break;
+                  }
+                }
               }
             },
             items: options.map<DropdownMenuItem<String>>((String value) {

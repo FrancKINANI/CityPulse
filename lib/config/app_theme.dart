@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'app_config.dart';
 
 class AppTheme {
-  // Couleurs principales
+  // Mode clair - Couleurs principales
   static const Color primaryColor = AppConfig.primaryColor;
   static const Color secondaryColor = AppConfig.secondaryColor;
-  static const Color backgroundColor = Color(0xFF141E16);
-  static const Color cardColor = Color(0xFF283F33);
-  static const Color textPrimaryColor = Colors.white;
-  static const Color textSecondaryColor = Color(0xFF9BBFAA);
+  static const Color backgroundColor = Colors.white;
+  static const Color cardColor = Colors.white;
+  static const Color textPrimaryColor = Color(0xFF333333);
+  static const Color textSecondaryColor = Color(0xFF757575);
   static const Color buttonColor = AppConfig.secondaryColor;
   static const Color errorColor = AppConfig.errorColor;
   static const Color successColor = AppConfig.successColor;
+  
+  // Mode sombre - Couleurs principales
+  static const Color darkPrimaryColor = AppConfig.darkPrimaryColor;
+  static const Color darkSecondaryColor = AppConfig.darkSecondaryColor;
+  static const Color darkBackgroundColor = AppConfig.darkBackgroundColor;
+  static const Color darkCardColor = AppConfig.darkCardColor;
+  static const Color darkTextPrimaryColor = AppConfig.darkTextColor;
+  static const Color darkTextSecondaryColor = Color(0xFFBDBDBD);
+  static const Color darkButtonColor = AppConfig.darkSecondaryColor;
 
   // Styles de texte
   static const TextStyle headingStyle = TextStyle(

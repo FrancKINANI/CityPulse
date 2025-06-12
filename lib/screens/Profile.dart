@@ -205,7 +205,7 @@ class ProfileState extends State<Profile> {
                                               children: [
                                                 InkWell(
                                                   onTap: () {
-                                                    print('Pressed');
+                                                    Navigator.pushNamed(context, '/edit-profile');
                                                   },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(
@@ -289,9 +289,9 @@ class ProfileState extends State<Profile> {
                                             child: Row(
                                               children: [
                                                 InkWell(
-                                                  onTap: () {
-                                                    print('Pressed');
-                                                  },
+                                            onTap: () {
+                                              Navigator.pushNamed(context, '/settings');
+                                            },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(
                                                       child: Container(
@@ -375,8 +375,93 @@ class ProfileState extends State<Profile> {
                                               children: [
                                                 InkWell(
                                                   onTap: () {
-                                                    print('Pressed');
+                                                    Navigator.pushNamed(context, '/settings');
                                                   },
+                                                  child: IntrinsicWidth(
+                                                    child: IntrinsicHeight(
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                8,
+                                                              ),
+                                                          color: Color(
+                                                            0xFF283F33,
+                                                          ),
+                                                        ),
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                              8,
+                                                            ),
+                                                        margin:
+                                                            const EdgeInsets.only(
+                                                              right: 16,
+                                                            ),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                          8,
+                                                                        ),
+                                                                  ),
+                                                              width: 24,
+                                                              height: 24,
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                      8,
+                                                                    ),
+                                                                child: Icon(
+                                                                  Icons.notifications,
+                                                                  color: Colors.white,
+                                                                  size: 20,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                    bottom: 1,
+                                                  ),
+                                                  child: Text(
+                                                    "Notifications",
+                                                    style: TextStyle(
+                                                      color: Color(0xFFFFFFFF),
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        IntrinsicHeight(
+                                          child: Container(
+                                            color: Color(0xFF141E16),
+                                            padding: const EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 16,
+                                              right: 16,
+                                            ),
+                                            width: double.infinity,
+                                            child: Row(
+                                              children: [
+                                                InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(context, '/help');
+                                            },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(
                                                       child: Container(
@@ -435,7 +520,7 @@ class ProfileState extends State<Profile> {
                                                     bottom: 1,
                                                   ),
                                                   child: Text(
-                                                    "Notifications",
+                                                    "Contact Us",
                                                     style: TextStyle(
                                                       color: Color(0xFFFFFFFF),
                                                       fontSize: 16,
@@ -474,9 +559,9 @@ class ProfileState extends State<Profile> {
                                             child: Row(
                                               children: [
                                                 InkWell(
-                                                  onTap: () {
-                                                    print('Pressed');
-                                                  },
+                                            onTap: () {
+                                              Navigator.pushNamed(context, '/contact');
+                                            },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(
                                                       child: Container(
@@ -559,9 +644,13 @@ class ProfileState extends State<Profile> {
                                             child: Row(
                                               children: [
                                                 InkWell(
-                                                  onTap: () {
-                                                    print('Pressed');
-                                                  },
+                                            onTap: () {
+                                              // Ici, on pourrait ajouter une logique de déconnexion
+                                              // Par exemple, avec un service d'authentification
+                                              // AuthService.logout();
+                                              // Puis rediriger vers la page de connexion
+                                              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+                                            },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(
                                                       child: Container(

@@ -14,6 +14,7 @@ import 'services/tour_service.dart';
 import 'services/navigation_service.dart';
 import 'services/calendar_service.dart';
 import 'services/notification_service.dart';
+import 'services/theme_service.dart';
 
 // Screens
 import 'screens/Welcome.dart';
@@ -50,6 +51,7 @@ void main() async {
   final tourService = TourService();
   final calendarService = CalendarService();
   final notificationService = NotificationService();
+  final themeService = ThemeService();
 
   await notificationService.initNotification();
 
@@ -59,6 +61,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => authService),
         ChangeNotifierProvider(create: (_) => tourService),
         ChangeNotifierProvider(create: (_) => calendarService),
+        ChangeNotifierProvider(create: (_) => themeService),
         Provider.value(value: navigationService),
         Provider.value(value: notificationService),
       ],
@@ -75,29 +78,15 @@ class MyApp extends StatelessWidget {
       context,
       listen: false,
     );
+    final themeService = Provider.of<ThemeService>(context);
 
     return MaterialApp(
       title: 'CityPulse',
       debugShowCheckedModeBanner: false,
       navigatorKey: navigationService.navigatorKey,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppConfig.primaryColor,
-          primary: AppConfig.primaryColor,
-          secondary: AppConfig.secondaryColor,
-        ),
-        textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-          headlineLarge: AppConfig.headingStyle,
-          headlineMedium: AppConfig.subheadingStyle,
-          bodyLarge: AppConfig.bodyStyle,
-        ),
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppConfig.primaryColor,
-          foregroundColor: AppConfig.backgroundColor,
-          elevation: 0,
-        ),
-      ),
+      themeMode: themeService.themeMode,
+      theme: themeService.getLightTheme(),
+      darkTheme: themeService.getDarkTheme(),
       initialRoute: Routes.createTourStart,
       routes: {
         Routes.welcome: (context) => const Welcome(),
