@@ -7,7 +7,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import '../../config/styles.dart';
+import '../../config/app_theme.dart';
 
 class YourTourStep {
   final String imageUrl;
@@ -38,7 +38,7 @@ class YourTourDaySection extends StatelessWidget {
           margin: const EdgeInsets.only(top: 20, bottom: 20, left: 16),
           child: Text(
             dayTitle,
-            style: AppStyles.headline2.copyWith(color: AppStyles.textColor),
+            style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
           ),
         ),
         for (final step in steps) _YourTourStepCard(step: step),
@@ -54,7 +54,7 @@ class _YourTourStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppStyles.cardColor,
+      color: AppTheme.cardColor,
       padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 8),
@@ -73,7 +73,7 @@ class _YourTourStepCard extends StatelessWidget {
                 children: [
                   Text(
                     step.title,
-                    style: AppStyles.body1.copyWith(
+                    style: AppTheme.bodyStyle.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -81,8 +81,8 @@ class _YourTourStepCard extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 11),
                     child: Text(
                       step.time,
-                      style: AppStyles.body2.copyWith(
-                        color: AppStyles.textLightColor,
+                      style: AppTheme.captionStyle.copyWith(
+                        color: AppTheme.textSecondaryColor,
                       ),
                     ),
                   ),

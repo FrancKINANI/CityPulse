@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/styles.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class EditTourScheduleScreen extends StatefulWidget {
   final List<Map<String, String>> selectedLocations;
@@ -39,17 +39,17 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppStyles.textColor),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.textPrimaryColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Edit Tour Schedule',
-          style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+          style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
         ),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: AppTheme.primaryColor,
       ),
       body: Container(
-        color: AppStyles.primaryColor,
+        color: AppTheme.primaryColor,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -57,7 +57,7 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
             children: [
               Text(
                 'Drag and drop to reorder, tap to set time:',
-                style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
               ),
               const SizedBox(height: 16),
               Expanded(
@@ -69,7 +69,7 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                       key: ValueKey(
                         location['name'],
                       ), // Unique key for reordering
-                      color: AppStyles.cardColor,
+                      color: AppTheme.cardColor,
                       margin: const EdgeInsets.only(bottom: 8),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -81,19 +81,19 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                                 children: [
                                   Text(
                                     location['name']!,
-                                    style: AppStyles.body1.copyWith(
-                                      color: AppStyles.textColor,
+                                    style: AppTheme.bodyStyle.copyWith(
+                                      color: AppTheme.textPrimaryColor,
                                     ),
                                   ),
                                   TextFormField(
                                     initialValue: location['time'],
-                                    style: AppStyles.body2.copyWith(
-                                      color: AppStyles.textColor,
+                                    style: AppTheme.captionStyle.copyWith(
+                                      color: AppTheme.textPrimaryColor,
                                     ),
                                     decoration: InputDecoration(
                                       hintText: 'HH:MM',
-                                      hintStyle: AppStyles.body2.copyWith(
-                                        color: AppStyles.textLightColor,
+                                      hintStyle: AppTheme.captionStyle.copyWith(
+                                        color: AppTheme.textSecondaryColor,
                                       ),
                                       isDense: true,
                                       contentPadding: EdgeInsets.zero,
@@ -108,7 +108,7 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                             ),
                             const Icon(
                               Icons.drag_handle,
-                              color: AppStyles.textLightColor,
+                              color: AppTheme.textSecondaryColor,
                             ), // Drag handle
                           ],
                         ),
@@ -123,7 +123,7 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                 height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppStyles.accentColor,
+                    backgroundColor: AppTheme.accentColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -135,8 +135,9 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                   },
                   child: Text(
                     'Save Schedule',
-                    style: AppStyles.buttonText.copyWith(
-                      color: AppStyles.primaryColor,
+                    style: AppTheme.bodyStyle.copyWith(
+                      color: AppTheme.primaryColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

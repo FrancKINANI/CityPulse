@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/styles.dart';
+import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import '../services/tour_service.dart';
@@ -226,12 +226,12 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
       child: ChoiceChip(
         label: Text(category),
         selected: isSelected,
-        selectedColor: AppStyles.accentColor,
+        selectedColor: AppTheme.accentColor,
         labelStyle: TextStyle(
-          color: isSelected ? AppStyles.primaryColor : AppStyles.textLightColor,
+          color: isSelected ? AppTheme.primaryColor : AppTheme.textSecondaryColor,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
-        backgroundColor: AppStyles.cardColor,
+        backgroundColor: AppTheme.cardColor,
         onSelected: (selected) {
           setState(() {
             _selectedCategory = category;
@@ -246,7 +246,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
     final isSelected = _selectedPlaces.any((p) => p.id == place['id']);
     
     return Card(
-      color: isSelected ? AppStyles.cardColorSelected : AppStyles.cardColor,
+      color: isSelected ? AppTheme.accentColor.withOpacity(0.2) : AppTheme.cardColor,
       margin: const EdgeInsets.only(bottom: 16.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
@@ -275,16 +275,16 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 children: [
                   Text(
                     place['name'],
-                    style: AppStyles.body1.copyWith(
+                    style: AppTheme.bodyStyle.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppStyles.textColor,
+                      color: AppTheme.textPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     place['description'],
-                    style: AppStyles.body2.copyWith(
-                      color: AppStyles.textLightColor,
+                    style: AppTheme.captionStyle.copyWith(
+                      color: AppTheme.textSecondaryColor,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -292,8 +292,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   const SizedBox(height: 4),
                   Text(
                     (place['categories'] as List<dynamic>).join(' • '),
-                    style: AppStyles.caption.copyWith(
-                      color: AppStyles.textLightColor,
+                    style: AppTheme.captionStyle.copyWith(
+                      color: AppTheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -301,7 +301,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: isSelected ? Colors.red : AppStyles.accentColor,
+                backgroundColor: isSelected ? Colors.red : AppTheme.accentColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
@@ -318,8 +318,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
               },
               child: Text(
                 isSelected ? 'Remove' : 'Add to tour',
-                style: AppStyles.caption.copyWith(
-                  color: AppStyles.primaryColor,
+                style: AppTheme.captionStyle.copyWith(
+                  color: AppTheme.primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -335,17 +335,17 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppStyles.backgroundColor),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.backgroundColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Create Tour',
-          style: TextStyle(color: AppStyles.backgroundColor),
+          style: TextStyle(color: AppTheme.backgroundColor),
         ),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: AppTheme.primaryColor,
       ),
       body: Container(
-        color: AppStyles.primaryColor,
+        color: AppTheme.primaryColor,
         child: Column(
           children: [
             // Tour progress indicator
@@ -361,7 +361,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   children: [
                     Text(
                       'Tour Description',
-                      style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                      style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
                     ),
                     const SizedBox(height: 8),
                     TextFormField(
@@ -369,16 +369,16 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       decoration: InputDecoration(
                         hintText: 'Enter a detailed description of your tour...',
                         filled: true,
-                        fillColor: AppStyles.cardColor,
+                        fillColor: AppTheme.cardColor,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
                         ),
-                        hintStyle: AppStyles.body1.copyWith(
-                          color: AppStyles.textLightColor,
+                        hintStyle: AppTheme.bodyStyle.copyWith(
+                          color: AppTheme.textSecondaryColor,
                         ),
                       ),
-                      style: AppStyles.body1.copyWith(color: AppStyles.textColor),
+                      style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
                       maxLines: 4,
                     ),
                   ],
@@ -394,14 +394,14 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 children: [
                   Text(
                     'Tour Locations',
-                    style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                    style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
                   ),
                   const SizedBox(height: 8),
                   if (_selectedPlaces.isNotEmpty) ...[                    
                     Container(
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                        color: AppStyles.cardColor,
+                        color: AppTheme.cardColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -409,8 +409,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                         children: [
                           Text(
                             'Selected Places (${_selectedPlaces.length})',
-                            style: AppStyles.body1.copyWith(
-                              color: AppStyles.textColor,
+                            style: AppTheme.bodyStyle.copyWith(
+                              color: AppTheme.textPrimaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -422,10 +422,10 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                               return Chip(
                                 label: Text(
                                   place.name,
-                                  style: TextStyle(color: AppStyles.primaryColor),
+                                  style: TextStyle(color: AppTheme.primaryColor),
                                 ),
-                                backgroundColor: AppStyles.accentColor,
-                                deleteIconColor: AppStyles.primaryColor,
+                                backgroundColor: AppTheme.accentColor,
+                                deleteIconColor: AppTheme.primaryColor,
                                 onDeleted: () => _removePlaceFromTour(place),
                               );
                             }).toList(),
@@ -449,19 +449,19 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   hintText: 'Search places, restaurants, attractions...',
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: AppStyles.textLightColor,
+                    color: AppTheme.textSecondaryColor,
                   ),
                   filled: true,
-                  fillColor: AppStyles.cardColor,
+                  fillColor: AppTheme.cardColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
                   ),
-                  hintStyle: AppStyles.body1.copyWith(
-                    color: AppStyles.textLightColor,
+                  hintStyle: AppTheme.bodyStyle.copyWith(
+                    color: AppTheme.textSecondaryColor,
                   ),
                 ),
-                style: AppStyles.body1.copyWith(color: AppStyles.textColor),
+                style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
               ),
             ),
             
@@ -490,8 +490,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       children: [
                         Text(
                           'Popular Places',
-                          style: AppStyles.headline3.copyWith(
-                            color: AppStyles.textColor,
+                          style: AppTheme.subheadingStyle.copyWith(
+                            color: AppTheme.textPrimaryColor,
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -504,7 +504,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       ? Center(
                           child: Text(
                             'No places found',
-                            style: AppStyles.body1.copyWith(color: AppStyles.textColor),
+                            style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
                           ),
                         )
                       : ListView(
@@ -512,8 +512,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                           children: [
                             Text(
                               'Search Results',
-                              style: AppStyles.headline3.copyWith(
-                                color: AppStyles.textColor,
+                              style: AppTheme.subheadingStyle.copyWith(
+                                color: AppTheme.textPrimaryColor,
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -527,13 +527,13 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: AppStyles.primaryColor,
+        color: AppTheme.primaryColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppStyles.accentColor,
-              foregroundColor: AppStyles.primaryColor,
+              backgroundColor: AppTheme.accentColor,
+              foregroundColor: AppTheme.primaryColor,
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
@@ -542,8 +542,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 ? const CircularProgressIndicator()
                 : Text(
                     'Create Tour',
-                    style: AppStyles.buttonText.copyWith(
-                      color: AppStyles.primaryColor,
+                    style: AppTheme.bodyStyle.copyWith(
+                      color: AppTheme.primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/styles.dart';
+import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import 'package:citypulse/services/tour_service.dart';
@@ -168,17 +168,17 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen> w
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppStyles.backgroundColor),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.backgroundColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Creating Tour',
-          style: TextStyle(color: AppStyles.backgroundColor),
+          style: TextStyle(color: AppTheme.backgroundColor),
         ),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: AppTheme.primaryColor,
       ),
       body: Container(
-        color: AppStyles.primaryColor,
+        color: AppTheme.primaryColor,
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
@@ -186,28 +186,28 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen> w
             children: [
               LinearProgressIndicator(
                 value: _progressValue,
-                backgroundColor: AppStyles.cardColor,
+                backgroundColor: AppTheme.cardColor,
                 valueColor: const AlwaysStoppedAnimation<Color>(
-                  AppStyles.accentColor,
+                  AppTheme.accentColor,
                 ),
               ),
               const SizedBox(height: 20),
               Text(
                 '${(_progressValue * 100).toInt()}% complete',
-                style: AppStyles.body1.copyWith(
-                  color: AppStyles.textLightColor,
+                style: AppTheme.bodyStyle.copyWith(
+                  color: AppTheme.textSecondaryColor,
                 ),
               ),
               const SizedBox(height: 10),
               Text(
                 _statusText,
-                style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 'Your personalized tour is being crafted based on popular places, your interests, and optimal routes.',
-                style: AppStyles.body2.copyWith(color: AppStyles.textLightColor),
+                style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
@@ -242,9 +242,9 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen> w
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: 1, // 'My Tours' is selected as per image
-        selectedItemColor: AppStyles.accentColor,
-        unselectedItemColor: AppStyles.textLightColor,
-        backgroundColor: AppStyles.primaryColor,
+        selectedItemColor: AppTheme.accentColor,
+        unselectedItemColor: AppTheme.textSecondaryColor,
+        backgroundColor: AppTheme.primaryColor,
         onTap: (index) {
           // Handle navigation
           if (index == 0) {

@@ -4,12 +4,16 @@ class AppTheme {
   // ======== COULEURS PRINCIPALES ========
   // Mode clair - Couleurs principales
   static const Color primaryColor = Colors.white;
+  static const Color primaryLightColor = Color(0xFF264433); // Ajouté depuis styles.dart
   static const Color secondaryColor = Color(0xFF2196F3); // Bleu
   static const Color accentColor = Color(0xFF64B5F6); // Bleu clair
   static const Color backgroundColor = Colors.white;
   static const Color cardColor = Colors.white;
+  static const Color cardColorSelected = Color(0xFF3A5F48); // Ajouté depuis styles.dart
   static const Color textPrimaryColor = Color(0xFF333333);
   static const Color textSecondaryColor = Color(0xFF757575);
+  static const Color textColor = Color(0xFFFFFFFF); // Ajouté depuis styles.dart
+  static const Color textLightColor = Color(0xFF96C4A8); // Ajouté depuis styles.dart
   static const Color dividerColor = Color(0xFFEEEEEE);
   
   // Couleurs fonctionnelles
@@ -56,6 +60,34 @@ class AppTheme {
     color: textSecondaryColor,
     fontSize: 14,
   );
+  
+  // Styles ajoutés depuis styles.dart
+  static const TextStyle headline1 = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: textColor,
+  );
+
+  static const TextStyle headline2 = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    color: textColor,
+  );
+
+  static const TextStyle headline3 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: textColor,
+  );
+
+  static const TextStyle body1 = TextStyle(fontSize: 16, color: textColor);
+
+  static const TextStyle body2 = TextStyle(fontSize: 14, color: textLightColor);
+
+  static const TextStyle buttonText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 
   // Mode sombre
   static TextStyle get darkHeadingStyle => headingStyle.copyWith(color: darkTextPrimaryColor);
@@ -84,6 +116,21 @@ class AppTheme {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
   );
+  
+  // Styles de bouton ajoutés depuis styles.dart
+  static final ButtonStyle primaryButton = ElevatedButton.styleFrom(
+    backgroundColor: accentColor,
+    foregroundColor: primaryColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+  );
+
+  static final ButtonStyle outlinedButton = OutlinedButton.styleFrom(
+    foregroundColor: textColor,
+    side: const BorderSide(color: dividerColor),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+  );
 
   // ======== STYLES D'INPUT ========
   static InputDecoration inputDecoration({
@@ -108,11 +155,30 @@ class AppTheme {
       suffixIcon: suffixIcon,
     );
   }
+  
+  // Style d'input ajouté depuis styles.dart
+  static const InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+    filled: true,
+    fillColor: cardColor,
+    border: OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
+    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+  );
 
   // ======== STYLES DE CARTE ========
   static BoxDecoration cardDecoration = BoxDecoration(
     color: cardColor,
     borderRadius: BorderRadius.circular(12),
+  );
+  
+  // Style de carte ajouté depuis styles.dart
+  static final CardTheme cardTheme = CardTheme(
+    color: cardColor,
+    elevation: 0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
   );
 
   // ======== STYLES D'APPBAR ========

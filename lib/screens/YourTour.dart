@@ -5,7 +5,7 @@ import 'your_tour/YourTourActionsSection.dart';
 import 'explore/ExploreBottomNav.dart';
 import '../services/navigation_service.dart';
 import '../config/routes.dart';
-import '../config/styles.dart';
+import '../config/app_theme.dart';
 import '../models/tour.dart';
 
 /// Écran YourTour réécrit pour utiliser des widgets extraits et documentés.
@@ -100,14 +100,14 @@ class YourTourState extends State<YourTour> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppStyles.backgroundColor),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.backgroundColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           activeTour?.title ?? 'Your Tour',
-          style: const TextStyle(color: AppStyles.backgroundColor),
+          style: const TextStyle(color: AppTheme.backgroundColor),
         ),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: AppTheme.primaryColor,
       ),
       body: SafeArea(
         child: Container(
@@ -126,7 +126,7 @@ class YourTourState extends State<YourTour> {
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
                             activeTour!.description,
-                            style: AppStyles.body1,
+                            style: AppTheme.bodyStyle,
                           ),
                         ),
                         

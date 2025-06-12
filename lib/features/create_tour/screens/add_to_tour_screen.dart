@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/styles.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class AddToTourScreen extends StatefulWidget {
   const AddToTourScreen({super.key});
@@ -49,17 +49,17 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.close, color: AppStyles.backgroundColor),
+          icon: const Icon(Icons.close, color: AppTheme.backgroundColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Add to tour',
-          style: TextStyle(color: AppStyles.backgroundColor),
+          style: TextStyle(color: AppTheme.backgroundColor),
         ),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: AppTheme.primaryColor,
       ),
       body: Container(
-        color: AppStyles.primaryColor,
+        color: AppTheme.primaryColor,
         child: Column(
           children: [
             Padding(
@@ -74,19 +74,19 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   hintText: 'Search',
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: AppStyles.textLightColor,
+                    color: AppTheme.textSecondaryColor,
                   ),
                   filled: true,
-                  fillColor: AppStyles.cardColor,
+                  fillColor: AppTheme.cardColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
                   ),
-                  hintStyle: AppStyles.body1.copyWith(
-                    color: AppStyles.textLightColor,
+                  hintStyle: AppTheme.bodyStyle.copyWith(
+                    color: AppTheme.textSecondaryColor,
                   ),
                 ),
-                style: AppStyles.body1.copyWith(color: AppStyles.textColor),
+                style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
               ),
             ),
             SingleChildScrollView(
@@ -108,8 +108,8 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                 children: [
                   Text(
                     'Popular',
-                    style: AppStyles.headline3.copyWith(
-                      color: AppStyles.textColor,
+                    style: AppTheme.headingStyle.copyWith(
+                      color: AppTheme.textPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -133,7 +133,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                 height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppStyles.accentColor,
+                    backgroundColor: AppTheme.accentColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -143,8 +143,9 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   },
                   child: Text(
                     'Add to tour',
-                    style: AppStyles.buttonText.copyWith(
-                      color: AppStyles.primaryColor,
+                    style: AppTheme.bodyStyle.copyWith(
+                      color: AppTheme.primaryColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -163,12 +164,12 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
       child: ChoiceChip(
         label: Text(category),
         selected: isSelected,
-        selectedColor: AppStyles.accentColor,
-        labelStyle: AppStyles.caption.copyWith(
-          color: isSelected ? AppStyles.primaryColor : AppStyles.textLightColor,
+        selectedColor: AppTheme.accentColor,
+        labelStyle: AppTheme.captionStyle.copyWith(
+          color: isSelected ? AppTheme.primaryColor : AppTheme.textSecondaryColor,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
-        backgroundColor: AppStyles.cardColor,
+        backgroundColor: AppTheme.cardColor,
         onSelected: (selected) {
           setState(() {
             _selectedCategory = category;
@@ -181,7 +182,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
   Widget _buildPlaceCard(Map<String, String> place) {
     final isSelected = _selectedPlaces.contains(place);
     return Card(
-      color: isSelected ? AppStyles.cardColorSelected : AppStyles.cardColor,
+      color: isSelected ? AppTheme.cardColorSelected : AppTheme.cardColor,
       margin: const EdgeInsets.only(bottom: 16.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
@@ -214,25 +215,25 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   children: [
                     Text(
                       place['name']!,
-                      style: AppStyles.body1.copyWith(
+                      style: AppTheme.bodyStyle.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${place['rating']} \u2022 ${place['reviews']}',
-                      style: AppStyles.body2,
+                      style: AppTheme.captionStyle,
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${place['type']} \u2022 ${place['distance']}',
-                      style: AppStyles.body2,
+                      style: AppTheme.captionStyle,
                     ),
                   ],
                 ),
               ),
               if (isSelected)
-                const Icon(Icons.check_circle, color: AppStyles.accentColor),
+                const Icon(Icons.check_circle, color: AppTheme.accentColor),
             ],
           ),
         ),

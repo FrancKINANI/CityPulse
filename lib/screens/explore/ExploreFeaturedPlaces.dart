@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../config/styles.dart';
+import '../../config/app_theme.dart';
 
 class FeaturedPlace {
   final String imageUrl;
@@ -29,7 +29,7 @@ class ExploreFeaturedPlaces extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(16),
-          child: Text('Featured Places', style: AppStyles.headline3),
+          child: Text('Featured Places', style: AppTheme.headingStyle),
         ),
         SizedBox(
           height: 280,
@@ -62,7 +62,7 @@ class ExploreFeaturedPlaces extends StatelessWidget {
                             children: [
                               Text(
                                 place.title,
-                                style: AppStyles.body1.copyWith(
+                                style: AppTheme.bodyStyle.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -70,7 +70,7 @@ class ExploreFeaturedPlaces extends StatelessWidget {
                                 const SizedBox(height: 4),
                                 Text(
                                   place.description!,
-                                  style: AppStyles.body2,
+                                  style: AppTheme.captionStyle,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),

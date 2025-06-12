@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../config/styles.dart';
+import '../../config/app_theme.dart';
 
 class ExploreBottomNav extends StatelessWidget {
   final int selectedIndex;
@@ -16,17 +16,17 @@ class ExploreBottomNav extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: AppStyles.dividerColor, width: 1),
+          top: BorderSide(color: AppTheme.dividerColor, width: 1),
         ),
-        color: AppStyles.backgroundColor,
+        color: AppTheme.backgroundColor,
       ),
       child: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onIndexChanged,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        selectedItemColor: AppStyles.accentColor,
-        unselectedItemColor: AppStyles.textLightColor,
+        selectedItemColor: AppTheme.accentColor,
+        unselectedItemColor: AppTheme.textSecondaryColor,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),

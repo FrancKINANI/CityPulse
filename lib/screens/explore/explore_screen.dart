@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../config/styles.dart';
+import '../../config/app_theme.dart';
 import 'ExploreHeader.dart';
 import 'ExploreFilters.dart';
 import 'ExploreHeroSection.dart';
@@ -89,7 +89,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppStyles.backgroundColor,
+      backgroundColor: AppTheme.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [
