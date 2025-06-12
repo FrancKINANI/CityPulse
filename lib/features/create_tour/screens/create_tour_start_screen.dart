@@ -37,56 +37,131 @@ class CreateTourStartScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
-              SizedBox(
-                width: double.infinity,
-                height: 60,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppStyles.accentColor, // Adjusted color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {
-                    // TODO: Implement 'Surprise Me' logic
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                color: AppStyles.backgroundColor,
+                child: InkWell(
+                  onTap: () {
                     Navigator.pushNamed(
                       context,
                       Routes.creatingTourLoading,
-                    ); // Navigate to a loading screen for 'Surprise Me'
+                    );
                   },
-                  child: Text(
-                    'Surprise Me',
-                    style: AppStyles.buttonText.copyWith(
-                      color: AppStyles.primaryColor,
-                    ), // Adjusted color
+                  borderRadius: BorderRadius.circular(16),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.auto_awesome,
+                          size: 50,
+                          color: AppStyles.accentColor,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Surprise Me',
+                          style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Let us create a personalized tour for you based on popular places and your preferences.',
+                          style: AppStyles.body2.copyWith(color: AppStyles.textLightColor),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        Container(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppStyles.accentColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.creatingTourLoading,
+                              );
+                            },
+                            child: Text(
+                              'Select',
+                              style: AppStyles.buttonText.copyWith(
+                                color: AppStyles.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: 60,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      color: AppStyles.accentColor,
-                      width: 2,
-                    ), // Adjusted color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                color: AppStyles.backgroundColor,
+                child: InkWell(
+                  onTap: () {
                     Navigator.pushNamed(
                       context,
                       Routes.createTour,
-                    ); // Navigate to the manual creation screen
+                    );
                   },
-                  child: Text(
-                    'Create Your Own',
-                    style: AppStyles.buttonText.copyWith(
-                      color: AppStyles.accentColor,
-                    ), // Adjusted color
+                  borderRadius: BorderRadius.circular(16),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.edit,
+                          size: 50,
+                          color: AppStyles.accentColor,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Create Your Own',
+                          style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Create your own tour by selecting places, setting schedules, and customizing details.',
+                          style: AppStyles.body2.copyWith(color: AppStyles.textLightColor),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        Container(
+                          width: double.infinity,
+                          height: 50,
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(
+                                color: AppStyles.accentColor,
+                                width: 2,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.createTour,
+                              );
+                            },
+                            child: Text(
+                              'Select',
+                              style: AppStyles.buttonText.copyWith(
+                                color: AppStyles.accentColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
