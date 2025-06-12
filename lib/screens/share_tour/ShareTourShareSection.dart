@@ -4,16 +4,17 @@
 /// Props :
 ///   - String link : le lien à partager
 ///   - String qrImageUrl : l'URL de l'image du QR code
+library;
 import 'package:flutter/material.dart';
 
 class ShareTourShareSection extends StatelessWidget {
   final String link;
   final String qrImageUrl;
   const ShareTourShareSection({
-    Key? key,
+    super.key,
     required this.link,
     required this.qrImageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

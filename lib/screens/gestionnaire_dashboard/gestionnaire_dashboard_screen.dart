@@ -12,13 +12,13 @@ class GestionnaireDashboardScreen extends StatelessWidget {
   final List<ModificationItem> itemsToModerate;
 
   const GestionnaireDashboardScreen({
-    Key? key,
+    super.key,
     required this.userName,
     required this.userRole,
     required this.userAvatar,
     required this.pendingItems,
     required this.itemsToModerate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

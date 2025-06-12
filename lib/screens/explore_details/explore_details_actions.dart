@@ -6,11 +6,11 @@ class ExploreDetailsActions extends StatelessWidget {
   final VoidCallback onCalendar;
 
   const ExploreDetailsActions({
-    Key? key,
+    super.key,
     required this.onAddToTour,
     required this.onShare,
     required this.onCalendar,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

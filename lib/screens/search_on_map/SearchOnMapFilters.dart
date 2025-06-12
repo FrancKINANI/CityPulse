@@ -6,6 +6,7 @@
 ///   - String selected : le filtre actuellement sélectionné
 ///   - ValueChanged<String> onSelect : callback lors de la sélection
 ///   - List<String> filters : liste des filtres à afficher
+library;
 import 'package:flutter/material.dart';
 
 class SearchOnMapFilters extends StatelessWidget {
@@ -13,11 +14,11 @@ class SearchOnMapFilters extends StatelessWidget {
   final ValueChanged<String> onSelect;
   final List<String> filters;
   const SearchOnMapFilters({
-    Key? key,
+    super.key,
     required this.selected,
     required this.onSelect,
     required this.filters,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

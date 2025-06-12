@@ -29,11 +29,9 @@ class ExploreFeaturedPlaces extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(16),
-          child: Text(
-            'Featured Places',
-            style: AppStyles.headline3,
-          ),
-        ),        SizedBox(
+          child: Text('Featured Places', style: AppStyles.headline3),
+        ),
+        SizedBox(
           height: 280,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -86,8 +84,6 @@ class ExploreFeaturedPlaces extends StatelessWidget {
                 ),
               );
             },
-          ),
-            ],
           ),
         ),
       ],

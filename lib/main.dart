@@ -19,9 +19,11 @@ import 'services/notification_service.dart';
 import 'screens/Welcome.dart';
 import 'screens/SignIn.dart';
 import 'screens/SignUp.dart';
-import 'screens/Explore.dart';
+import 'screens/explore/explore_screen.dart';
 import 'screens/ExploreDetails.dart';
-import 'screens/CreatingATour.dart';
+import 'features/create_tour/screens/create_tour_screen.dart';
+import 'features/create_tour/screens/create_tour_start_screen.dart';
+import 'features/create_tour/screens/creating_tour_loading_screen.dart';
 import 'screens/YourTour.dart';
 import 'screens/ShareTour.dart';
 import 'screens/Profile.dart';
@@ -96,15 +98,17 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      initialRoute: Routes
-          .explore, // Changed from Routes.welcome for testing without auth
+      initialRoute: Routes.createTourStart,
       routes: {
         Routes.welcome: (context) => const Welcome(),
         Routes.signin: (context) => const SignIn(),
         Routes.signup: (context) => SignUp(),
-        Routes.explore: (context) => const Explore(),
+        Routes.explore: (context) => const ExploreScreen(),
         Routes.exploreDetails: (context) => const ExploreDetails(),
-        Routes.createTour: (context) => const CreatingATour(),
+        Routes.createTourStart: (context) => const CreateTourStartScreen(),
+        Routes.createTour: (context) => const CreateTourScreen(),
+        Routes.creatingTourLoading: (context) =>
+            const CreatingTourLoadingScreen(),
         Routes.yourTours: (context) => const YourTour(),
         Routes.shareTour: (context) => const ShareTour(),
         Routes.profile: (context) => const Profile(),

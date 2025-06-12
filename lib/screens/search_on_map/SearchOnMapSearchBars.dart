@@ -6,6 +6,7 @@
 ///   - String distance : valeur du champ distance
 ///   - ValueChanged<String> onCategoryChanged : callback lors de la saisie catégorie
 ///   - ValueChanged<String> onDistanceChanged : callback lors de la saisie distance
+library;
 import 'package:flutter/material.dart';
 
 class SearchOnMapSearchBars extends StatelessWidget {
@@ -14,12 +15,12 @@ class SearchOnMapSearchBars extends StatelessWidget {
   final ValueChanged<String> onCategoryChanged;
   final ValueChanged<String> onDistanceChanged;
   const SearchOnMapSearchBars({
-    Key? key,
+    super.key,
     required this.category,
     required this.distance,
     required this.onCategoryChanged,
     required this.onDistanceChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

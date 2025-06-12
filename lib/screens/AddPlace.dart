@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobkit_dashed_border/mobkit_dashed_border.dart'; //Install: https://pub.dev/packages/mobkit_dashed_border
+//Install: https://pub.dev/packages/mobkit_dashed_border
 import 'add_place/AddPlaceHeader.dart';
 import 'add_place/AddPlaceFormSection.dart';
 import 'add_place/AddPlaceBusinessHoursSection.dart';
@@ -380,16 +380,12 @@ class AddPlaceState extends State<AddPlace> {
                                           onUpload: _pickImageFromGallery,
                                           onCamera: _pickImageFromCamera,
                                           onRemove: _removeImage,
-                                          imageUrl: _selectedImage != null
-                                              ? _selectedImage!.path
-                                              : null,
+                                          imageUrl: _selectedImage?.path,
                                         ),
                                         AddPlacePreviewSection(
                                           name: textField1,
                                           description: textField2,
-                                          imageUrl: _selectedImage != null
-                                              ? _selectedImage!.path
-                                              : null,
+                                          imageUrl: _selectedImage?.path,
                                         ),
                                         AddPlaceActionsSection(
                                           onSave: _onSave,

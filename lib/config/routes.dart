@@ -8,7 +8,9 @@ class Routes {
   // Main App Routes
   static const String explore = '/explore';
   static const String exploreDetails = '/explore-details';
+  static const String createTourStart = '/create-tour-start';
   static const String createTour = '/create-tour';
+  static const String creatingTourLoading = '/creating-tour-loading';
   static const String yourTours = '/your-tours';
   static const String shareTour = '/share-tour';
   static const String profile = '/profile';
@@ -23,6 +25,7 @@ class Routes {
   static const String notifications = '/notifications';
   static const String addPlace = '/add-place';
   static const String addToTour = '/add-to-tour';
+  static const String editTourSchedule = '/edit-tour-schedule';
 
   // Admin Routes
   static const String adminDashboard = '/admin-dashboard';

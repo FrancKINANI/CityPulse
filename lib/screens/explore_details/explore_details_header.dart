@@ -7,12 +7,12 @@ class ExploreDetailsHeader extends StatelessWidget {
   final String rating;
 
   const ExploreDetailsHeader({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.location,
     required this.rating,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

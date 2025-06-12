@@ -8,12 +8,12 @@ class AddPlaceMediaSection extends StatelessWidget {
   final String? imageUrl;
 
   const AddPlaceMediaSection({
-    Key? key,
+    super.key,
     this.onUpload,
     this.onCamera,
     this.onRemove,
     this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

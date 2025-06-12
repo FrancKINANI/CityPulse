@@ -6,11 +6,11 @@ class ExploreDetailsMap extends StatelessWidget {
   final String address;
 
   const ExploreDetailsMap({
-    Key? key,
+    super.key,
     required this.latitude,
     required this.longitude,
     required this.address,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

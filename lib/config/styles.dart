@@ -7,6 +7,7 @@ class AppStyles {
   static const Color accentColor = Color(0xFF38E07A);
   static const Color backgroundColor = Color(0xFF1E2D26);
   static const Color cardColor = Color(0xFF283F33);
+  static const Color cardColorSelected = Color(0xFF3A5F48);
   static const Color textColor = Color(0xFFFFFFFF);
   static const Color textLightColor = Color(0xFF96C4A8);
   static const Color dividerColor = Color(0xFF283F33);
@@ -38,6 +39,11 @@ class AppStyles {
     fontSize: 12,
     fontWeight: FontWeight.bold,
     color: textLightColor,
+  );
+
+  static const TextStyle buttonText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
   );
 
   // Card Styles

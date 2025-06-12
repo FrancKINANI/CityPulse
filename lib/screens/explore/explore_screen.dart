@@ -108,7 +108,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       onSelect: _handleFilterChanged,
                       filters: const ['All', 'Featured', 'New'],
                     ),
-                    const ExploreHeroSection(),
+                    ExploreHeroSection(
+                      imageUrl:
+                          "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5159c3db-0018-425c-80ce-6ac1cf473856", // Placeholder image URL
+                      title: "Discover Amazing Tours",
+                      description:
+                          "Explore unique experiences around the city.",
+                      duration: "5 min read",
+                    ),
                     ExploreFeaturedPlaces(
                       places: featuredPlaces,
                       onPlaceSelected: _handlePlaceSelected,

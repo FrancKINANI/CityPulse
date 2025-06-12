@@ -4,16 +4,17 @@
 /// Props :
 ///   - String title : le titre du header
 ///   - String imageUrl : l'URL de l'image à afficher à droite
+library;
 import 'package:flutter/material.dart';
 
 class SearchOnMapHeader extends StatelessWidget {
   final String title;
   final String imageUrl;
   const SearchOnMapHeader({
-    Key? key,
+    super.key,
     required this.title,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -6,19 +6,19 @@
 ///   - String selected : le filtre actuellement sélectionné
 ///   - ValueChanged<String> onSelect : callback lors de la sélection
 ///   - List<String> filters : liste des filtres à afficher
+library;
 import 'package:flutter/material.dart';
-import '../../config/styles.dart';
 
 class ExploreFilters extends StatelessWidget {
   final String selected;
   final ValueChanged<String> onSelect;
   final List<String> filters;
   const ExploreFilters({
-    Key? key,
+    super.key,
     required this.selected,
     required this.onSelect,
     required this.filters,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -3,12 +3,12 @@
 ///
 /// Props :
 ///   - String imageUrl : l'URL de l'image de la carte à afficher
+library;
 import 'package:flutter/material.dart';
 
 class SearchOnMapMapSection extends StatelessWidget {
   final String imageUrl;
-  const SearchOnMapMapSection({Key? key, required this.imageUrl})
-    : super(key: key);
+  const SearchOnMapMapSection({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

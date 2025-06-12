@@ -3,12 +3,12 @@
 ///
 /// Props :
 ///   - VoidCallback onEdit : callback appelé lors du clic sur Edit Tour
+library;
 import 'package:flutter/material.dart';
 
 class YourTourActionsSection extends StatelessWidget {
   final VoidCallback onEdit;
-  const YourTourActionsSection({Key? key, required this.onEdit})
-    : super(key: key);
+  const YourTourActionsSection({super.key, required this.onEdit});
 
   @override
   Widget build(BuildContext context) {

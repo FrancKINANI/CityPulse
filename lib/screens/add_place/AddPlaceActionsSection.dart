@@ -4,8 +4,7 @@ class AddPlaceActionsSection extends StatelessWidget {
   final VoidCallback? onSave;
   final VoidCallback? onCancel;
 
-  const AddPlaceActionsSection({Key? key, this.onSave, this.onCancel})
-    : super(key: key);
+  const AddPlaceActionsSection({super.key, this.onSave, this.onCancel});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,10 @@
 /// Props :
 ///   - String dayTitle : le titre de la journée (ex : 'Day 1')
 ///   - List<YourTourStep> steps : liste des étapes de la journée
+library;
+
 import 'package:flutter/material.dart';
+import '../../config/styles.dart';
 
 class YourTourStep {
   final String imageUrl;
@@ -21,10 +24,10 @@ class YourTourDaySection extends StatelessWidget {
   final String dayTitle;
   final List<YourTourStep> steps;
   const YourTourDaySection({
-    Key? key,
+    super.key,
     required this.dayTitle,
     required this.steps,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +38,7 @@ class YourTourDaySection extends StatelessWidget {
           margin: const EdgeInsets.only(top: 20, bottom: 20, left: 16),
           child: Text(
             dayTitle,
-            style: const TextStyle(
-              color: Color(0xFFFFFFFF),
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppStyles.headline2.copyWith(color: AppStyles.textColor),
           ),
         ),
         for (final step in steps) _YourTourStepCard(step: step),
@@ -55,7 +54,7 @@ class _YourTourStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: AppStyles.cardColor,
       padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 8),
@@ -74,9 +73,7 @@ class _YourTourStepCard extends StatelessWidget {
                 children: [
                   Text(
                     step.title,
-                    style: const TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 16,
+                    style: AppStyles.body1.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -84,9 +81,8 @@ class _YourTourStepCard extends StatelessWidget {
                     margin: const EdgeInsets.only(right: 11),
                     child: Text(
                       step.time,
-                      style: const TextStyle(
-                        color: Color(0xFF9BBFAA),
-                        fontSize: 14,
+                      style: AppStyles.body2.copyWith(
+                        color: AppStyles.textLightColor,
                       ),
                     ),
                   ),

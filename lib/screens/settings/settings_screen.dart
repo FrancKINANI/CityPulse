@@ -10,11 +10,11 @@ class SettingsScreen extends StatelessWidget {
   final String userAvatar;
 
   const SettingsScreen({
-    Key? key,
+    super.key,
     required this.userName,
     required this.userEmail,
     required this.userAvatar,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

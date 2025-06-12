@@ -7,12 +7,12 @@ class GestionnaireDashboardStats extends StatelessWidget {
   final int pendingReviews;
 
   const GestionnaireDashboardStats({
-    Key? key,
+    super.key,
     required this.totalPlaces,
     required this.totalTours,
     required this.totalUsers,
     required this.pendingReviews,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

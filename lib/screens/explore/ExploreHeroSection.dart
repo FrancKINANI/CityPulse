@@ -6,6 +6,7 @@
 ///   - String title : titre de la section
 ///   - String description : description courte
 ///   - String duration : durée de lecture ou info complémentaire
+library;
 import 'package:flutter/material.dart';
 
 class ExploreHeroSection extends StatelessWidget {
@@ -14,12 +15,12 @@ class ExploreHeroSection extends StatelessWidget {
   final String description;
   final String duration;
   const ExploreHeroSection({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
     required this.duration,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

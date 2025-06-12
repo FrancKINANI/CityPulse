@@ -11,7 +11,7 @@ class SettingsNotifications extends StatelessWidget {
   final Function(bool) onEventRemindersChanged;
 
   const SettingsNotifications({
-    Key? key,
+    super.key,
     required this.pushEnabled,
     required this.emailEnabled,
     required this.tourUpdatesEnabled,
@@ -20,7 +20,7 @@ class SettingsNotifications extends StatelessWidget {
     required this.onEmailChanged,
     required this.onTourUpdatesChanged,
     required this.onEventRemindersChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

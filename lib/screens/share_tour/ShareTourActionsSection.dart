@@ -3,12 +3,12 @@
 ///
 /// Props :
 ///   - VoidCallback onDone : callback appelé lors du clic sur Done
+library;
 import 'package:flutter/material.dart';
 
 class ShareTourActionsSection extends StatelessWidget {
   final VoidCallback onDone;
-  const ShareTourActionsSection({Key? key, required this.onDone})
-    : super(key: key);
+  const ShareTourActionsSection({super.key, required this.onDone});
 
   @override
   Widget build(BuildContext context) {

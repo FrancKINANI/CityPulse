@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/navigation_service.dart';
 import '../config/routes.dart';
-import 'explore/explore_bottom_nav.dart';
+import 'explore/ExploreBottomNav.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

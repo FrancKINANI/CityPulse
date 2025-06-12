@@ -8,13 +8,13 @@ class SettingsAbout extends StatelessWidget {
   final VoidCallback onHelp;
 
   const SettingsAbout({
-    Key? key,
+    super.key,
     required this.appVersion,
     required this.onPrivacyPolicy,
     required this.onTermsOfService,
     required this.onLicenses,
     required this.onHelp,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

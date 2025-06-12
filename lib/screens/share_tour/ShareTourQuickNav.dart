@@ -4,16 +4,17 @@
 /// Props :
 ///   - int selectedIndex : index sélectionné
 ///   - ValueChanged<int> onNav : callback lors de la sélection
+library;
 import 'package:flutter/material.dart';
 
 class ShareTourQuickNav extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onNav;
   const ShareTourQuickNav({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onNav,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

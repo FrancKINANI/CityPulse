@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'your_tour/YourTourHeader.dart';
+// import 'your_tour/YourTourHeader.dart'; // Removed import
 import 'your_tour/YourTourDaySection.dart';
 import 'your_tour/YourTourActionsSection.dart';
 import 'explore/ExploreBottomNav.dart';
 import '../services/navigation_service.dart';
 import '../config/routes.dart';
+import '../config/styles.dart'; // Added import for AppStyles
 
 /// Écran YourTour réécrit pour utiliser des widgets extraits et documentés.
 class YourTour extends StatefulWidget {
@@ -75,6 +76,17 @@ class YourTourState extends State<YourTour> {
       ),
     ];
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AppStyles.backgroundColor),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Your Tour',
+          style: TextStyle(color: AppStyles.backgroundColor),
+        ),
+        backgroundColor: AppStyles.primaryColor,
+      ),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
@@ -86,12 +98,7 @@ class YourTourState extends State<YourTour> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Header section
-                      const YourTourHeader(
-                        title: "Your Tour",
-                        imageUrl:
-                            "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/73f33957-b3c7-479c-bd44-cb99af5dffba",
-                      ),
+                      // YourTourHeader removed as it's not in the screenshot's AppBar
 
                       // Day 1 section
                       YourTourDaySection(dayTitle: "Day 1", steps: day1Steps),
@@ -106,11 +113,6 @@ class YourTourState extends State<YourTour> {
                     ],
                   ),
                 ),
-              ),
-              // Bottom navigation
-              ExploreBottomNav(
-                selectedIndex: selectedNavIndex,
-                onIndexChanged: _handleNavIndexChanged,
               ),
               // Bottom navigation
               ExploreBottomNav(

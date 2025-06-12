@@ -5,13 +5,13 @@
 /// Props:
 ///   - String value: texte du champ de recherche
 ///   - ValueChanged<String> onChanged: callback lors de la saisie
+library;
 import 'package:flutter/material.dart';
 
 class ExploreHeader extends StatelessWidget {
   final String value;
   final ValueChanged<String> onChanged;
-  const ExploreHeader({Key? key, required this.value, required this.onChanged})
-    : super(key: key);
+  const ExploreHeader({super.key, required this.value, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

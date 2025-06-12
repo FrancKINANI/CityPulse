@@ -25,10 +25,10 @@ class GestionnaireDashboardList extends StatelessWidget {
   final Function(String) onItemTap;
 
   const GestionnaireDashboardList({
-    Key? key,
+    super.key,
     required this.items,
     required this.onItemTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

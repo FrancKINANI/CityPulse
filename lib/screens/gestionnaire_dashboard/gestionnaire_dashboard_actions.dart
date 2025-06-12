@@ -7,12 +7,12 @@ class GestionnaireDashboardActions extends StatelessWidget {
   final VoidCallback onSettings;
 
   const GestionnaireDashboardActions({
-    Key? key,
+    super.key,
     required this.onAddPlace,
     required this.onModerate,
     required this.onViewReports,
     required this.onSettings,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

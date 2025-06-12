@@ -11,7 +11,7 @@ class SettingsPreferences extends StatelessWidget {
   final Function(bool) onAutoPlayVideosChanged;
 
   const SettingsPreferences({
-    Key? key,
+    super.key,
     required this.language,
     required this.theme,
     required this.locationEnabled,
@@ -20,7 +20,7 @@ class SettingsPreferences extends StatelessWidget {
     required this.onThemeChanged,
     required this.onLocationChanged,
     required this.onAutoPlayVideosChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

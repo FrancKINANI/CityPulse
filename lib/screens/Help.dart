@@ -675,6 +675,6 @@ class HelpState extends State<Help> {
 					),
 				),
 			),
-		);
+		)
 	}
 }

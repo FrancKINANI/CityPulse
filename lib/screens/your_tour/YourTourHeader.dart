@@ -4,13 +4,13 @@
 /// Props :
 ///   - String title : le titre du header
 ///   - String imageUrl : l'URL de l'image à afficher
+library;
 import 'package:flutter/material.dart';
 
 class YourTourHeader extends StatelessWidget {
   final String title;
   final String imageUrl;
-  const YourTourHeader({Key? key, required this.title, required this.imageUrl})
-    : super(key: key);
+  const YourTourHeader({super.key, required this.title, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

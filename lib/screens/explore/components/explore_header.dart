@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ExploreHeader extends StatelessWidget {
-  const ExploreHeader({Key? key}) : super(key: key);
+  const ExploreHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

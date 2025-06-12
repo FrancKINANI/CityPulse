@@ -6,11 +6,11 @@ class AddPlacePreviewSection extends StatelessWidget {
   final String? imageUrl;
 
   const AddPlacePreviewSection({
-    Key? key,
+    super.key,
     required this.name,
     required this.description,
     this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

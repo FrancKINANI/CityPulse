@@ -7,12 +7,12 @@ class SettingsHeader extends StatelessWidget {
   final VoidCallback onEditProfile;
 
   const SettingsHeader({
-    Key? key,
+    super.key,
     required this.userName,
     required this.userEmail,
     required this.userAvatar,
     required this.onEditProfile,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

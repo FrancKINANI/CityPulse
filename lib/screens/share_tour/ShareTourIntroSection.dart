@@ -4,16 +4,17 @@
 /// Props :
 ///   - String title : le titre d'intro
 ///   - String description : le texte de description
+library;
 import 'package:flutter/material.dart';
 
 class ShareTourIntroSection extends StatelessWidget {
   final String title;
   final String description;
   const ShareTourIntroSection({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

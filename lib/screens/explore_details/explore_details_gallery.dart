@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class ExploreDetailsGallery extends StatelessWidget {
   final List<String> images;
 
-  const ExploreDetailsGallery({Key? key, required this.images})
-    : super(key: key);
+  const ExploreDetailsGallery({super.key, required this.images});
 
   @override
   Widget build(BuildContext context) {

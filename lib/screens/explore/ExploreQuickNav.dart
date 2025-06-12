@@ -3,16 +3,17 @@
 ///
 /// Props :
 ///   - ValueChanged<int> onNav : callback appelé avec l'index de la section sélectionnée
+library;
 import 'package:flutter/material.dart';
 
 class ExploreQuickNav extends StatelessWidget {
   final ValueChanged<int> onNav;
   final int selectedIndex;
   const ExploreQuickNav({
-    Key? key,
+    super.key,
     required this.onNav,
     required this.selectedIndex,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

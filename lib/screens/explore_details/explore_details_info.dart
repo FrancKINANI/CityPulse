@@ -7,12 +7,12 @@ class ExploreDetailsInfo extends StatelessWidget {
   final String website;
 
   const ExploreDetailsInfo({
-    Key? key,
+    super.key,
     required this.description,
     required this.hours,
     required this.phone,
     required this.website,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
