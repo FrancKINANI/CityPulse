@@ -1,94 +1,120 @@
 # CityPulse
 
-CityPulse is a Flutter application designed to help users discover and explore local places, track visits, and interact based on user roles (Visitor, User, Owner, Administrator). The project aims to provide a comprehensive experience for tourists and locals to find, review, and manage establishments with map integration, reviews, and personalized circuits.
+CityPulse est une application Flutter multiplateforme dédiée à la découverte, l’exploration et la gestion des lieux touristiques et urbains. Elle offre une expérience personnalisée selon différents rôles utilisateurs (visiteur, utilisateur, propriétaire, administrateur) et intègre des fonctionnalités avancées de navigation, planification de circuits, gestion d’événements, et plus encore.
 
-## Features
+## Fonctionnalités principales
 
-### Authentication and Role Management
+### Authentification et gestion des rôles
+- Navigation post-authentification selon le rôle : visiteur, utilisateur, propriétaire, administrateur.
+- Interfaces dédiées pour chaque rôle.
+- Authentification via Firebase Auth (email/mot de passe, extensible à Google/Apple).
 
-- Post-authentication navigation based on user role (Visitor, User, Owner, Administrator)
-- Role-specific interfaces after login
+### Fonctionnalités visiteur (non connecté)
+- Recherche de lieux avec filtres avancés.
+- Intégration carte (flutter_map, geolocalisation).
+- Accès aux pages de lieux détaillées (photos, horaires, contacts, avis).
+- Navigation GPS jusqu’aux lieux.
 
-### Visitor Features (Not Logged In)
+### Fonctionnalités utilisateur (connecté)
+- Gestion du profil utilisateur.
+- Système de favoris, historique de visites.
+- Création et notation d’avis/commentaires.
+- Création et partage de circuits touristiques personnalisés.
+- Notifications personnalisées.
 
-- Search for places
-- Map integration with geolocation to view places
-- Detailed place pages (photos, hours, contact, reviews)
-- GPS navigation to places
+### Fonctionnalités propriétaire
+- Tableau de bord propriétaire.
+- Ajout/édition d’établissements (images, descriptions, horaires, tarifs).
+- Gestion des événements et abonnements premium.
+- Réponse aux avis clients, consultation de statistiques.
 
-### User Features (Logged In)
+### Fonctionnalités administrateur
+- Dashboard administration.
+- Validation et modération des lieux.
+- Gestion et modération des utilisateurs, commentaires et signalements.
+- Gestion des catégories de lieux.
+- Statistiques globales, outils de maintenance technique.
 
-- User profile management
-- Favorites system (add/remove)
-- Create and rate reviews/comments
-- Personalized tourist circuit creation (select places, optimize itinerary)
-- Share circuits
-- Visit history
-- Personalized notifications
+### Fonctionnalités transversales
+- Système de notifications (Firebase Cloud Messaging, notifications locales).
+- Système de QR code (création, scan pour partage de circuits/tours).
+- Gestion des préférences utilisateur (thème, langue).
+- Support multilingue (intl).
+- Gestion des permissions et de l’état de l’application (Provider).
+- Tests unitaires, widgets et d’intégration.
 
-### Owner Features
+## Architecture logicielle
 
-- Owner dashboard
-- Add/edit establishments
-- Image upload and description management
-- Manage opening hours and pricing
-- Respond to customer reviews
-- Event management
-- Premium subscription management
-- View statistics
+- **Clean Architecture** et organisation *feature-first* : chaque fonctionnalité a son propre dossier, avec séparation claire des modèles, services, vues et tests.
+- Modèles de données générés avec Freezed et sérialisation JSON.
+- Gestion d’état via Provider.
+- Intégration Firebase (auth, firestore, storage, messaging).
 
-### Administrator Features
+## Stack & dépendances principales
 
-- Admin dashboard
-- Place validation and moderation
-- User management (suspension, validation)
-- Comment and report moderation
-- Manage place categories
-- View global app statistics
-- Technical maintenance and system configuration tools
+- **Flutter** (Dart)
+- **Firebase** (auth, firebase_core, firestore, storage, messaging)
+- **Provider**, **shared_preferences**, **google_fonts**, **http**
+- **flutter_map**, **latlong2** (cartographie)
+- **qr_flutter**, **qr_code_scanner** (QR codes)
+- **camera**, **image_picker**
+- **intl** (internationalisation)
+- **flutter_local_notifications**, **timezone**
+- Voir `pubspec.yaml` pour la liste complète.
 
-### General Improvements & Testing
+## Structure du projet
 
-- Error handling and user feedback
-- Performance optimization
-- UX/UI improvements
-- Unit, widget, and integration tests
+- `lib/screens/` : Écrans principaux par feature (explore, profile, admin, etc.)
+- `lib/models/` : Modèles de données (User, Tour, Event, Place, etc.)
+- `lib/services/` : Services métiers (auth, tour, navigation, notifications, etc.)
+- `test/` : Tests unitaires et d’intégration par fonctionnalité
+- Voir le fichier [PLANNING.md](./PLANNING.md) pour la roadmap détaillée.
 
-### New Features
+## Installation et lancement
 
-- Authentication (Sign in, Sign up, Sign out)
-- User profile management
-- Place discovery (model and test implemented)
-- Reviews (model and test implemented)
-- Tours (model and test implemented)
-- Events (model and test implemented)
+1. **Prérequis** :
+   - Flutter SDK >= 3.8.1
+   - Compte Firebase (voir section configuration)
+2. **Installation des dépendances** :
+   ```bash
+   flutter pub get
+   ```
+3. **Configuration Firebase** :
+   - Créer un projet Firebase
+   - Ajouter les fichiers `google-services.json` (Android) et `GoogleService-Info.plist` (iOS)
+   - Configurer `firebase_options.dart` avec vos clés API
+4. **Lancement** :
+   ```bash
+   flutter run
+   ```
+5. **Tests** :
+   ```bash
+   flutter test
+   ```
 
-## Project Structure
+## Bonnes pratiques & conventions
 
-- Follows Clean Architecture and feature-first organization
-- Models use Freezed and JSON serialization
-- Unit tests for each model and repository
+- Code modulaire, réutilisable et bien commenté.
+- Respect des conventions de nommage Flutter/Dart.
+- Documentation systématique en haut de chaque widget.
+- Tests pour chaque nouveau composant/fonctionnalité.
+- Optimisation des performances et responsive design.
+- Gestion des erreurs et feedback utilisateur.
 
-## Progress
+## Roadmap
 
-- [x] Auth and Place models implemented
-- [x] Place model tested (see `test/features/places/data/models/place_model_test.dart`)
-- [x] Review model tested (see `test/features/reviews/data/models/review_model_test.dart`)
-- [x] Tour model tested (see `test/features/tours/data/models/tour_model_test.dart`)
-- [x] Event model tested (see `test/features/events/data/models/event_model_test.dart`)
-- [ ] More unit tests for other models (in progress)
+Voir [PLANNING.md](./PLANNING.md) et [TASK.md](./TASK.md) pour la liste détaillée des tâches passées, en cours, et à venir.
 
-## Getting Started
+## Contribuer
 
-This project is a starting point for a Flutter application.
+1. Forker le repo, créer une branche, proposer une PR.
+2. Documenter les changements dans les fichiers appropriés.
+3. Respecter la structure et les conventions du projet.
 
-A few resources to get you started if this is your first Flutter project:
+## Licence
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Ce projet est sous licence MIT. Voir [LICENSE](./LICENSE).
 
-For help getting started with Flutter development, view the [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on mobile development, and a full API reference.
+---
 
-## Project Planning
-
-For a detailed look at planned features and progress, see the [PLANNING.md](https://github.com/FrancKINANI/Local-Lens/blob/master/PLANNING.md) file.
+> Pour toute question, bug ou suggestion, ouvrir une issue ou contacter l’auteur principal : [FrancKINANI](https://github.com/FrancKINANI).
