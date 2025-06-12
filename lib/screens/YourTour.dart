@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'your_tour/YourTourHeader.dart';
 import 'your_tour/YourTourDaySection.dart';
 import 'your_tour/YourTourActionsSection.dart';
-import 'package:flutter/material.dart';
+import 'explore/ExploreBottomNav.dart';
+import '../services/navigation_service.dart';
+import '../config/routes.dart';
 
 /// Écran YourTour réécrit pour utiliser des widgets extraits et documentés.
 class YourTour extends StatefulWidget {
@@ -11,6 +15,30 @@ class YourTour extends StatefulWidget {
 }
 
 class YourTourState extends State<YourTour> {
+  int selectedNavIndex = 1; // 1 is for Tours section
+
+  void _handleNavIndexChanged(int index) {
+    setState(() {
+      selectedNavIndex = index;
+    });
+
+    final navigationService = Provider.of<NavigationService>(
+      context,
+      listen: false,
+    );
+    switch (index) {
+      case 0: // Explore
+        navigationService.navigateToReplacement(Routes.explore);
+        break;
+      case 1: // Tours
+        // Already on tours screen
+        break;
+      case 2: // Profile
+        navigationService.navigateToReplacement(Routes.profile);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Exemple de données pour la journée 1
@@ -51,29 +79,45 @@ class YourTourState extends State<YourTour> {
         child: Container(
           constraints: const BoxConstraints.expand(),
           color: const Color(0xFFFFFFFF),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// Header extrait
-                const YourTourHeader(
-                  title: "Your Tour",
-                  imageUrl:
-                      "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/73f33957-b3c7-479c-bd44-cb99af5dffba",
-                ),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header section
+                      const YourTourHeader(
+                        title: "Your Tour",
+                        imageUrl:
+                            "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/73f33957-b3c7-479c-bd44-cb99af5dffba",
+                      ),
 
-                /// Section Day 1 extraite
-                YourTourDaySection(dayTitle: "Day 1", steps: day1Steps),
+                      // Day 1 section
+                      YourTourDaySection(dayTitle: "Day 1", steps: day1Steps),
 
-                /// Section actions extraite
-                YourTourActionsSection(
-                  onEdit: () {
-                    // TODO: Implémenter la logique d'édition du tour
-                    print('Edit Tour pressed');
-                  },
+                      // Actions section
+                      YourTourActionsSection(
+                        onEdit: () {
+                          // TODO: Implement tour editing logic
+                          print('Edit Tour pressed');
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              // Bottom navigation
+              ExploreBottomNav(
+                selectedIndex: selectedNavIndex,
+                onIndexChanged: _handleNavIndexChanged,
+              ),
+              // Bottom navigation
+              ExploreBottomNav(
+                selectedIndex: selectedNavIndex,
+                onIndexChanged: _handleNavIndexChanged,
+              ),
+            ],
           ),
         ),
       ),

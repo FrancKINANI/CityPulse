@@ -14,51 +14,73 @@ class Explore extends StatefulWidget {
 class ExploreState extends State<Explore> {
   String textField1 = '';
   String selectedFilter = 'All';
-  int quickNavIndex = 0;
+  int selectedNavIndex = 0;
+
+  void _handleFilterChanged(String filter) {
+    setState(() {
+      selectedFilter = filter;
+    });
+  }
+
+  void _handleNavIndexChanged(int index) {
+    setState(() {
+      selectedNavIndex = index;
+    });
+  }
+
+  void _handlePlaceSelected(FeaturedPlace place) {
+    // TODO: Implémenter la navigation vers les détails du lieu
+    debugPrint('Selected place: ${place.title}');
+  }
+
   @override
   Widget build(BuildContext context) {
-    /// Utilisation de la section Featured Places extraite.
     final featuredPlaces = [
       FeaturedPlace(
-        imageUrl:
-            "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1b2e7e2e-7e2e-4e2e-8e2e-1b2e7e2e7e2e",
+        imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
         title: "Central Park",
+        description: "New York's iconic urban oasis",
       ),
       FeaturedPlace(
-        imageUrl:
-            "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2c3d4e5f-6a7b-8c9d-0e1f-2c3d4e5f6a7b",
+        imageUrl: "https://images.unsplash.com/photo-1582711012153-0fe66dfa3c18",
         title: "Museum of Art",
+        description: "World-class art collection",
       ),
-      // ... autres lieux ...
+      FeaturedPlace(
+        imageUrl: "https://images.unsplash.com/photo-1577593980495-6e7f67824439",
+        title: "Historic District",
+        description: "Preserved architectural beauty",
+      ),
+      FeaturedPlace(
+        imageUrl: "https://images.unsplash.com/photo-1472851294608-062f824d29cc",
+        title: "Artisan Alley",
+        description: "Local crafts and boutiques",
+      ),
     ];
     return Scaffold(
+      backgroundColor: AppStyles.backgroundColor,
       body: SafeArea(
-        child: Container(
-          constraints: const BoxConstraints.expand(),
-          color: Color(0xFFFFFFFF),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  color: Color(0xFFFFFFFF),
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /// Utilisation du header extrait pour la recherche et l'icône principale.
                         ExploreHeader(
                           value: textField1,
                           onChanged: (v) => setState(() => textField1 = v),
                         ),
-
-                        /// Utilisation des filtres extraits pour la sélection de catégorie.
                         ExploreFilters(
                           selected: selectedFilter,
-                          onSelect: (f) => setState(() => selectedFilter = f),
-                          filters: ['All', 'Featured', 'New'],
+                          onSelect: _handleFilterChanged,
+                          filters: const ['All', 'Featured', 'New'],
+                        ),
+                        const ExploreHeroSection(),
+                        ExploreFeaturedPlaces(
+                          places: featuredPlaces,
+                          onPlaceSelected: _handlePlaceSelected,
                         ),
                         IntrinsicHeight(
                           child: Container(

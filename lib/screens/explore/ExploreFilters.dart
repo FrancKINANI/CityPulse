@@ -7,6 +7,7 @@
 ///   - ValueChanged<String> onSelect : callback lors de la sélection
 ///   - List<String> filters : liste des filtres à afficher
 import 'package:flutter/material.dart';
+import '../../config/styles.dart';
 
 class ExploreFilters extends StatelessWidget {
   final String selected;

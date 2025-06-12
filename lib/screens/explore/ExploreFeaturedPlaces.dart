@@ -1,51 +1,92 @@
-/// Widget ExploreFeaturedPlaces
-/// Affiche une liste de lieux en vedette sous forme de cards avec image et titre.
-///
-/// Props :
-///   - List<FeaturedPlace> places : liste des lieux à afficher
 import 'package:flutter/material.dart';
+import '../../config/styles.dart';
 
 class FeaturedPlace {
   final String imageUrl;
   final String title;
-  const FeaturedPlace({required this.imageUrl, required this.title});
+  final String? description;
+
+  const FeaturedPlace({
+    required this.imageUrl,
+    required this.title,
+    this.description,
+  });
 }
 
 class ExploreFeaturedPlaces extends StatelessWidget {
   final List<FeaturedPlace> places;
-  const ExploreFeaturedPlaces({Key? key, required this.places})
-    : super(key: key);
+  final Function(FeaturedPlace)? onPlaceSelected;
 
+  const ExploreFeaturedPlaces({
+    super.key,
+    required this.places,
+    this.onPlaceSelected,
+  });
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: const EdgeInsets.only(top: 16, bottom: 16, left: 16),
-          child: const Text(
-            "Featured Places",
-            style: TextStyle(
-              color: Color(0xFFFFFFFF),
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (int i = 0; i < places.length; i += 2)
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: _FeaturedPlaceCard(place: places[i])),
-                    if (i + 1 < places.length)
-                      Expanded(child: _FeaturedPlaceCard(place: places[i + 1])),
-                  ],
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            'Featured Places',
+            style: AppStyles.headline3,
+          ),
+        ),        SizedBox(
+          height: 280,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            itemCount: places.length,
+            itemBuilder: (context, index) {
+              final place = places[index];
+              return SizedBox(
+                width: 220,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () => onPlaceSelected?.call(place),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: Image.network(
+                            place.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                place.title,
+                                style: AppStyles.body1.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              if (place.description != null) ...[
+                                const SizedBox(height: 4),
+                                Text(
+                                  place.description!,
+                                  style: AppStyles.body2,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+              );
+            },
+          ),
             ],
           ),
         ),
