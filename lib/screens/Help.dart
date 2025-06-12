@@ -120,7 +120,7 @@ class HelpState extends State<Help> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,7 +199,7 @@ class HelpState extends State<Help> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,7 +278,7 @@ class HelpState extends State<Help> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
@@ -357,7 +357,7 @@ class HelpState extends State<Help> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
@@ -519,7 +519,7 @@ class HelpState extends State<Help> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

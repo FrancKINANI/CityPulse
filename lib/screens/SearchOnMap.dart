@@ -42,7 +42,7 @@ class SearchOnMapState extends State<SearchOnMap> {
 																		child: Row(
 																			children: [
 																				Expanded(
-																					child: Container(
+																					child: SizedBox(
 																						width: double.infinity,
 																						child: Text(
 																							"CityPulse",
@@ -69,12 +69,12 @@ class SearchOnMapState extends State<SearchOnMap> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
 																			children: [
-																				Container(
+																				SizedBox(
 																					height: 320,
 																					width: double.infinity,
 																					child: Image.network(
@@ -176,7 +176,7 @@ class SearchOnMapState extends State<SearchOnMap> {
 																									child: IntrinsicHeight(
 																										child: Column(
 																											children: [
-																												Container(
+																												SizedBox(
 																													width: 27,
 																													child: Text(
 																														"Tours",
@@ -245,7 +245,7 @@ class SearchOnMapState extends State<SearchOnMap> {
 																															),
 																														),
 																													),
-																													Container(
+																													SizedBox(
 																														width: 20,
 																														height: 20,
 																														child: Image.network(
@@ -291,7 +291,7 @@ class SearchOnMapState extends State<SearchOnMap> {
 																															),
 																														),
 																													),
-																													Container(
+																													SizedBox(
 																														width: 20,
 																														height: 20,
 																														child: Image.network(

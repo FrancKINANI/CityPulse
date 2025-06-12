@@ -1,0 +1,77 @@
+/// Widget ExploreHeroSection
+/// Affiche l'image principale, le titre, la description et la durée de lecture de la section hero de l'écran Explore.
+///
+/// Props :
+///   - String imageUrl : URL de l'image principale
+///   - String title : titre de la section
+///   - String description : description courte
+///   - String duration : durée de lecture ou info complémentaire
+import 'package:flutter/material.dart';
+
+class ExploreHeroSection extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+  final String description;
+  final String duration;
+  const ExploreHeroSection({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+    required this.duration,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+            height: 201,
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(imageUrl, fit: BoxFit.fill),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Color(0xFFFFFFFF),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    color: Color(0xFF96C4A8),
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  duration,
+                  style: const TextStyle(
+                    color: Color(0xFF96C4A8),
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

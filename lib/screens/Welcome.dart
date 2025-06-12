@@ -55,7 +55,7 @@ class WelcomeState extends State<Welcome> {
 																					margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
 																					width: double.infinity,
 																					child: Text(
-																						"Explore the city\'s heartbeat",
+																						"Explore the city's heartbeat",
 																						style: TextStyle(
 																							color: Color(0xFF96C4A8),
 																							fontSize: 14,
@@ -95,7 +95,7 @@ class WelcomeState extends State<Welcome> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

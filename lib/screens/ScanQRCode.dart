@@ -40,7 +40,7 @@ class ScanQRCodeState extends State<ScanQRCode> {
 																		fit: BoxFit.fill,
 																	)
 																),
-																Container(
+																SizedBox(
 																	height: 133,
 																	width: double.infinity,
 																	child: Image.network(

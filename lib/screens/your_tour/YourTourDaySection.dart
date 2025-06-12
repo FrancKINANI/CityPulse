@@ -1,0 +1,101 @@
+/// Widget YourTourDaySection
+/// Affiche une journée du tour avec son titre et la liste des étapes.
+///
+/// Props :
+///   - String dayTitle : le titre de la journée (ex : 'Day 1')
+///   - List<YourTourStep> steps : liste des étapes de la journée
+import 'package:flutter/material.dart';
+
+class YourTourStep {
+  final String imageUrl;
+  final String title;
+  final String time;
+  const YourTourStep({
+    required this.imageUrl,
+    required this.title,
+    required this.time,
+  });
+}
+
+class YourTourDaySection extends StatelessWidget {
+  final String dayTitle;
+  final List<YourTourStep> steps;
+  const YourTourDaySection({
+    Key? key,
+    required this.dayTitle,
+    required this.steps,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 20, bottom: 20, left: 16),
+          child: Text(
+            dayTitle,
+            style: const TextStyle(
+              color: Color(0xFFFFFFFF),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        for (final step in steps) _YourTourStepCard(step: step),
+      ],
+    );
+  }
+}
+
+class _YourTourStepCard extends StatelessWidget {
+  final YourTourStep step;
+  const _YourTourStepCard({required this.step});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color(0xFF141E16),
+      padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            width: 100,
+            height: 56,
+            child: Image.network(step.imageUrl, fit: BoxFit.fill),
+          ),
+          IntrinsicWidth(
+            child: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    step.title,
+                    style: const TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(right: 11),
+                    child: Text(
+                      step.time,
+                      style: const TextStyle(
+                        color: Color(0xFF9BBFAA),
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

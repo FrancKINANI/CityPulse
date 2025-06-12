@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 class HowToCreateATour? extends StatefulWidget {
 	const HowToCreateATour?({super.key});
 	@override
-		HowToCreateATour?State createState() => HowToCreateATour?State();
+		HowToCreateATour?State 
+
+  HowToCreateATour({super.key});@override
+  createState() => HowToCreateATour?State();
 	}
 class HowToCreateATour?State extends State<HowToCreateATour?> {
 	@override
@@ -150,7 +153,7 @@ class HowToCreateATour?State extends State<HowToCreateATour?> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

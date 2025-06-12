@@ -156,7 +156,7 @@ class CreatingATourState extends State<CreatingATour> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,7 +248,7 @@ class CreatingATourState extends State<CreatingATour> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,

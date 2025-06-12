@@ -32,7 +32,7 @@ class GestionnaireDashboardState extends State<GestionnaireDashboard> {
 															crossAxisAlignment: CrossAxisAlignment.start,
 															children: [
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class GestionnaireDashboardState extends State<GestionnaireDashboard> {
 																									)
 																								),
 																								Expanded(
-																									child: Container(
+																									child: SizedBox(
 																										width: double.infinity,
 																										child: Text(
 																											"Dashboard",
@@ -272,7 +272,7 @@ class GestionnaireDashboardState extends State<GestionnaireDashboard> {
 																																	)
 																																),
 																																IntrinsicHeight(
-																																	child: Container(
+																																	child: SizedBox(
 																																		width: double.infinity,
 																																		child: Row(
 																																			mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -537,7 +537,7 @@ class GestionnaireDashboardState extends State<GestionnaireDashboard> {
 																		),
 																	),
 																),
-																Container(
+																SizedBox(
 																	height: 96,
 																	width: double.infinity,
 																	child: Image.network(

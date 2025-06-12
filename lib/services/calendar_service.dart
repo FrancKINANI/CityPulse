@@ -48,11 +48,11 @@ class CalendarService extends ChangeNotifier {
     final List<Event> upcomingEvents = [];
 
     _events.forEach((date, events) {
-      events.forEach((event) {
+      for (var event in events) {
         if (event.startDate.isAfter(now)) {
           upcomingEvents.add(event);
         }
-      });
+      }
     });
 
     upcomingEvents.sort((a, b) => a.startDate.compareTo(b.startDate));

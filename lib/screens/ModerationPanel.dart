@@ -32,7 +32,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 															crossAxisAlignment: CrossAxisAlignment.start,
 															children: [
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +169,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																													),
 																													Expanded(
 																														child: IntrinsicHeight(
-																															child: Container(
+																															child: SizedBox(
 																																width: double.infinity,
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,7 +182,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																																				fontWeight: FontWeight.bold,
 																																			),
 																																		),
-																																		Container(
+																																		SizedBox(
 																																			width: double.infinity,
 																																			child: Text(
 																																				"Submitted by: Jordan",
@@ -240,7 +240,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																													),
 																													Expanded(
 																														child: IntrinsicHeight(
-																															child: Container(
+																															child: SizedBox(
 																																width: double.infinity,
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,7 +308,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																													),
 																													Expanded(
 																														child: IntrinsicHeight(
-																															child: Container(
+																															child: SizedBox(
 																																width: double.infinity,
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,12 +376,12 @@ class ModerationPanelState extends State<ModerationPanel> {
 																													),
 																													Expanded(
 																														child: IntrinsicHeight(
-																															child: Container(
+																															child: SizedBox(
 																																width: double.infinity,
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
 																																	children: [
-																																		Container(
+																																		SizedBox(
 																																			width: double.infinity,
 																																			child: Text(
 																																				"Metropolitan Museum",
@@ -441,7 +441,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																						child: Column(
 																							crossAxisAlignment: CrossAxisAlignment.start,
 																							children: [
-																								Container(
+																								SizedBox(
 																									height: 260,
 																									width: double.infinity,
 																									child: Image.network(
@@ -596,7 +596,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																					),
 																				),
 																				IntrinsicHeight(
-																					child: Container(
+																					child: SizedBox(
 																						width: double.infinity,
 																						child: Column(
 																							crossAxisAlignment: CrossAxisAlignment.start,
@@ -623,7 +623,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
 																																	children: [
-																																		Container(
+																																		SizedBox(
 																																			width: 20,
 																																			height: 20,
 																																			child: Image.network(
@@ -674,7 +674,7 @@ class ModerationPanelState extends State<ModerationPanel> {
 																																child: Column(
 																																	crossAxisAlignment: CrossAxisAlignment.start,
 																																	children: [
-																																		Container(
+																																		SizedBox(
 																																			width: 20,
 																																			height: 20,
 																																			child: Image.network(

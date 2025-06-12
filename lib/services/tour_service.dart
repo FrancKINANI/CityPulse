@@ -3,8 +3,8 @@ import '../models/tour.dart';
 import '../models/event.dart';
 
 class TourService extends ChangeNotifier {
-  List<Tour> _tours = [];
-  List<Event> _events = [];
+  final List<Tour> _tours = [];
+  final List<Event> _events = [];
 
   List<Tour> get tours => _tours;
   List<Event> get events => _events;

@@ -32,7 +32,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 															crossAxisAlignment: CrossAxisAlignment.start,
 															children: [
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,13 +151,13 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																									),
 																								),
 																								IntrinsicHeight(
-																									child: Container(
+																									child: SizedBox(
 																										width: double.infinity,
 																										child: Column(
 																											crossAxisAlignment: CrossAxisAlignment.start,
 																											children: [
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +322,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																													),
 																												),
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,7 +491,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																													),
 																												),
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -656,7 +656,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																													),
 																												),
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -821,7 +821,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																													),
 																												),
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -999,7 +999,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																													),
 																												),
 																												IntrinsicHeight(
-																													child: Container(
+																													child: SizedBox(
 																														width: double.infinity,
 																														child: Row(
 																															crossAxisAlignment: CrossAxisAlignment.start,
@@ -1195,7 +1195,7 @@ class PlaceEventOnCalendarState extends State<PlaceEventOnCalendar> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

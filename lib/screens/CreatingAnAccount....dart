@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 class CreatingAnAccount... extends StatefulWidget {
 	const CreatingAnAccount...({super.key});
 	@override
-		CreatingAnAccount...State createState() => CreatingAnAccount...State();
+		CreatingAnAccount
+
+  CreatingAnAccount({super.key});...@override
+  State createState() => CreatingAnAccount...State();
 	}
 class CreatingAnAccount...State extends State<CreatingAnAccount...> {
 	@override
@@ -116,7 +119,7 @@ class CreatingAnAccount...State extends State<CreatingAnAccount...> {
 																					margin: const EdgeInsets.only( top: 20, bottom: 8, left: 16, right: 16),
 																					width: double.infinity,
 																					child: Text(
-																						"Hang tight! We\'re setting up your account",
+																						"Hang tight! We're setting up your account",
 																						style: TextStyle(
 																							color: Color(0xFFFFFFFF),
 																							fontSize: 24,
@@ -129,7 +132,7 @@ class CreatingAnAccount...State extends State<CreatingAnAccount...> {
 																					margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
 																					width: double.infinity,
 																					child: Text(
-																						"This might take a moment, but we promise it\'ll be worth the wait. Get ready to explore the city!",
+																						"This might take a moment, but we promise it'll be worth the wait. Get ready to explore the city!",
 																						style: TextStyle(
 																							color: Color(0xFFFFFFFF),
 																							fontSize: 16,
@@ -142,7 +145,7 @@ class CreatingAnAccount...State extends State<CreatingAnAccount...> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

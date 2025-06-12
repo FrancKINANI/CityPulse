@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 class Connecting... extends StatefulWidget {
 	const Connecting...({super.key});
 	@override
-		Connecting...State createState() => Connecting...State();
+		Connecting
+
+  Connecting({super.key});...@override
+  State createState() => Connecting...State();
 	}
 class Connecting...State extends State<Connecting...> {
 	@override
@@ -80,7 +83,7 @@ class Connecting...State extends State<Connecting...> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

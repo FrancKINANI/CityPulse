@@ -32,12 +32,12 @@ class ExploreDetailsState extends State<ExploreDetails> {
 															crossAxisAlignment: CrossAxisAlignment.start,
 															children: [
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,
 																			children: [
-																				Container(
+																				SizedBox(
 																					height: 320,
 																					width: double.infinity,
 																					child: Image.network(
@@ -66,7 +66,7 @@ class ExploreDetailsState extends State<ExploreDetails> {
 																												child: Column(
 																													crossAxisAlignment: CrossAxisAlignment.start,
 																													children: [
-																														Container(
+																														SizedBox(
 																															width: 24,
 																															height: 24,
 																															child: Image.network(
@@ -99,7 +99,7 @@ class ExploreDetailsState extends State<ExploreDetails> {
 																					margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
 																					width: double.infinity,
 																					child: Text(
-																						"A contemporary architectural marvel, The Modernist stands as a beacon of innovation in the city\'s skyline. Its sleek lines and glass facade reflect the urban landscape, offering a glimpse into the future of design.",
+																						"A contemporary architectural marvel, The Modernist stands as a beacon of innovation in the city's skyline. Its sleek lines and glass facade reflect the urban landscape, offering a glimpse into the future of design.",
 																						style: TextStyle(
 																							color: Color(0xFFFFFFFF),
 																							fontSize: 16,
@@ -121,7 +121,7 @@ class ExploreDetailsState extends State<ExploreDetails> {
 																					margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
 																					width: double.infinity,
 																					child: Text(
-																						"The Modernist is not just a building; it\'s a statement. It houses a variety of spaces, from residential units to commercial offices, all designed with a minimalist aesthetic. The building\'s commitment to sustainability is evident in its energy-efficient systems and green spaces.",
+																						"The Modernist is not just a building; it's a statement. It houses a variety of spaces, from residential units to commercial offices, all designed with a minimalist aesthetic. The building's commitment to sustainability is evident in its energy-efficient systems and green spaces.",
 																						style: TextStyle(
 																							color: Color(0xFFFFFFFF),
 																							fontSize: 16,
@@ -451,7 +451,7 @@ class ExploreDetailsState extends State<ExploreDetails> {
 																	),
 																),
 																IntrinsicHeight(
-																	child: Container(
+																	child: SizedBox(
 																		width: double.infinity,
 																		child: Column(
 																			crossAxisAlignment: CrossAxisAlignment.start,

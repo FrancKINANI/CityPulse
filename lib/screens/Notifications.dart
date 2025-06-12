@@ -229,12 +229,12 @@ class NotificationsState extends State<Notifications> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
 																												children: [
-																													Container(
+																													SizedBox(
 																														width: double.infinity,
 																														child: Text(
 																															"Ethan Walker commented on your post",
@@ -279,7 +279,7 @@ class NotificationsState extends State<Notifications> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,12 +373,12 @@ class NotificationsState extends State<Notifications> {
 																								),
 																								Expanded(
 																									child: IntrinsicHeight(
-																										child: Container(
+																										child: SizedBox(
 																											width: double.infinity,
 																											child: Column(
 																												crossAxisAlignment: CrossAxisAlignment.start,
 																												children: [
-																													Container(
+																													SizedBox(
 																														width: double.infinity,
 																														child: Text(
 																															"Olivia Hayes commented on your post",
@@ -409,7 +409,7 @@ class NotificationsState extends State<Notifications> {
 																		),
 																	),
 																),
-																Container(
+																SizedBox(
 																	height: 73,
 																	width: double.infinity,
 																	child: Image.network(
