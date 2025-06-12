@@ -26,7 +26,7 @@ import 'screens/YourTour.dart';
 import 'screens/ShareTour.dart';
 import 'screens/Profile.dart';
 import 'screens/Setting.dart';
-import 'screens/Help.dart';
+import 'screens/help/help_screen.dart';
 import 'screens/ScanQRCode.dart';
 import 'screens/SearchOnMap.dart';
 import 'screens/PlaceEventOnCalendar.dart';
@@ -96,7 +96,8 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      initialRoute: Routes.welcome,
+      initialRoute: Routes
+          .explore, // Changed from Routes.welcome for testing without auth
       routes: {
         Routes.welcome: (context) => const Welcome(),
         Routes.signin: (context) => const SignIn(),
@@ -108,7 +109,7 @@ class MyApp extends StatelessWidget {
         Routes.shareTour: (context) => const ShareTour(),
         Routes.profile: (context) => const Profile(),
         Routes.settings: (context) => const Setting(),
-        Routes.help: (context) => const Help(),
+        Routes.help: (context) => const HelpScreen(),
         Routes.scanQr: (context) => const ScanQRCode(),
         Routes.searchMap: (context) => const SearchOnMap(),
         Routes.calendar: (context) => const PlaceEventOnCalendar(),

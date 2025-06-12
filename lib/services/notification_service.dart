@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
@@ -78,7 +79,7 @@ class NotificationService {
       id,
       title,
       body,
-      TZDateTime.from(scheduledDate, local),
+      tz.TZDateTime.from(scheduledDate, tz.local),
       platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+export 'help/help_screen.dart';
+
+// Ce fichier est déprécié. Utilisez help/help_screen.dart à la place.
+@Deprecated('Utilisez help/help_screen.dart à la place')
 class Help extends StatefulWidget {
-	const Help({super.key});
-	@override
-		HelpState createState() => HelpState();
-	}
+  const Help({super.key});
+  
+  @override
+  HelpState createState() => HelpState();
+}
+
 class HelpState extends State<Help> {
-	@override
-	Widget build(BuildContext context) {
-		return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    // Rediriger vers le nouveau composant
+    return const HelpScreen();
 			body: SafeArea(
 				child: Container(
 					constraints: const BoxConstraints.expand(),
