@@ -375,7 +375,7 @@ class ProfileState extends State<Profile> {
                                               children: [
                                                 InkWell(
                                                   onTap: () {
-                                                    Navigator.pushNamed(context, '/settings');
+                                                    Navigator.pushNamed(context, '/notifications');
                                                   },
                                                   child: IntrinsicWidth(
                                                     child: IntrinsicHeight(

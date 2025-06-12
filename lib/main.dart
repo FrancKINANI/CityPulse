@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'config/firebase_options.dart';
 
 // Configuration
-import 'config/app_config.dart';
+import 'config/app_theme.dart';
 import 'config/routes.dart';
 
 // Services

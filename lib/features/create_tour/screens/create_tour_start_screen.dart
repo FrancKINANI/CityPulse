@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
-import 'package:citypulse/config/styles.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class CreateTourStartScreen extends StatelessWidget {
   const CreateTourStartScreen({super.key});
@@ -12,18 +12,18 @@ class CreateTourStartScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: AppStyles.backgroundColor,
+            color: AppTheme.backgroundColor,
           ), // Adjusted color
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Create a Tour',
-          style: TextStyle(color: AppStyles.backgroundColor), // Adjusted color
+          style: TextStyle(color: AppTheme.backgroundColor), // Adjusted color
         ),
-        backgroundColor: AppStyles.primaryColor, // Adjusted color
+        backgroundColor: AppTheme.primaryColor, // Adjusted color
       ),
       body: Container(
-        color: AppStyles.primaryColor, // Background color
+        color: AppTheme.primaryColor, // Background color
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
@@ -31,8 +31,8 @@ class CreateTourStartScreen extends StatelessWidget {
             children: [
               Text(
                 'How would you like to start?',
-                style: AppStyles.headline2.copyWith(
-                  color: AppStyles.backgroundColor,
+                style: AppTheme.subheadingStyle.copyWith(
+                  color: AppTheme.backgroundColor,
                 ), // Adjusted color
                 textAlign: TextAlign.center,
               ),
@@ -40,7 +40,7 @@ class CreateTourStartScreen extends StatelessWidget {
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                color: AppStyles.backgroundColor,
+                color: AppTheme.backgroundColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(
@@ -56,17 +56,17 @@ class CreateTourStartScreen extends StatelessWidget {
                         Icon(
                           Icons.auto_awesome,
                           size: 50,
-                          color: AppStyles.accentColor,
+                          color: AppTheme.accentColor,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'Surprise Me',
-                          style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                          style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           'Let us create a personalized tour for you based on popular places and your preferences.',
-                          style: AppStyles.body2.copyWith(color: AppStyles.textLightColor),
+                          style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
@@ -75,7 +75,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppStyles.accentColor,
+                              backgroundColor: AppTheme.accentColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -88,8 +88,9 @@ class CreateTourStartScreen extends StatelessWidget {
                             },
                             child: Text(
                               'Select',
-                              style: AppStyles.buttonText.copyWith(
-                                color: AppStyles.primaryColor,
+                              style: AppTheme.bodyStyle.copyWith(
+                                color: AppTheme.primaryColor,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
@@ -103,7 +104,7 @@ class CreateTourStartScreen extends StatelessWidget {
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                color: AppStyles.backgroundColor,
+                color: AppTheme.backgroundColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(
@@ -119,17 +120,17 @@ class CreateTourStartScreen extends StatelessWidget {
                         Icon(
                           Icons.edit,
                           size: 50,
-                          color: AppStyles.accentColor,
+                          color: AppTheme.accentColor,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'Create Your Own',
-                          style: AppStyles.headline3.copyWith(color: AppStyles.textColor),
+                          style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           'Create your own tour by selecting places, setting schedules, and customizing details.',
-                          style: AppStyles.body2.copyWith(color: AppStyles.textLightColor),
+                          style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
@@ -139,7 +140,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
-                                color: AppStyles.accentColor,
+                                color: AppTheme.accentColor,
                                 width: 2,
                               ),
                               shape: RoundedRectangleBorder(
@@ -154,8 +155,9 @@ class CreateTourStartScreen extends StatelessWidget {
                             },
                             child: Text(
                               'Select',
-                              style: AppStyles.buttonText.copyWith(
-                                color: AppStyles.accentColor,
+                              style: AppTheme.bodyStyle.copyWith(
+                                color: AppTheme.accentColor,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
@@ -179,9 +181,9 @@ class CreateTourStartScreen extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: 1, // 'Tours' is selected as per image
-        selectedItemColor: AppStyles.accentColor,
-        unselectedItemColor: AppStyles.textLightColor,
-        backgroundColor: AppStyles.primaryColor, // Adjusted color
+        selectedItemColor: AppTheme.accentColor,
+        unselectedItemColor: AppTheme.textSecondaryColor,
+        backgroundColor: AppTheme.primaryColor, // Adjusted color
         onTap: (index) {
           // Handle navigation
           if (index == 0) {

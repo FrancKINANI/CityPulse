@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../config/app_config.dart';
 import '../config/app_theme.dart';
 
 class ThemeService extends ChangeNotifier {
@@ -65,66 +64,10 @@ class ThemeService extends ChangeNotifier {
   
   // Thèmes pour l'application
   ThemeData getLightTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: AppTheme.primaryColor,
-      scaffoldBackgroundColor: AppTheme.backgroundColor,
-      cardColor: AppTheme.cardColor,
-      colorScheme: ColorScheme.light(
-        primary: AppTheme.primaryColor,
-        secondary: AppTheme.secondaryColor,
-        background: AppTheme.backgroundColor,
-        error: AppTheme.errorColor,
-      ),
-      textTheme: TextTheme(
-        headlineLarge: AppConfig.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
-        headlineMedium: AppConfig.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
-        bodyLarge: AppConfig.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppTheme.primaryColor,
-        foregroundColor: AppTheme.textPrimaryColor,
-        elevation: 0,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.buttonColor,
-          foregroundColor: AppTheme.textPrimaryColor,
-        ),
-      ),
-      useMaterial3: true,
-    );
+    return AppTheme.getLightTheme();
   }
   
   ThemeData getDarkTheme() {
-    return ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: AppTheme.darkPrimaryColor,
-      scaffoldBackgroundColor: AppTheme.darkBackgroundColor,
-      cardColor: AppTheme.darkCardColor,
-      colorScheme: ColorScheme.dark(
-        primary: AppTheme.darkPrimaryColor,
-        secondary: AppTheme.darkSecondaryColor,
-        background: AppTheme.darkBackgroundColor,
-        error: AppTheme.errorColor,
-      ),
-      textTheme: TextTheme(
-        headlineLarge: AppConfig.headingStyle.copyWith(color: AppTheme.darkTextPrimaryColor),
-        headlineMedium: AppConfig.subheadingStyle.copyWith(color: AppTheme.darkTextPrimaryColor),
-        bodyLarge: AppConfig.bodyStyle.copyWith(color: AppTheme.darkTextPrimaryColor),
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppTheme.darkPrimaryColor,
-        foregroundColor: AppTheme.darkTextPrimaryColor,
-        elevation: 0,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.darkButtonColor,
-          foregroundColor: AppTheme.darkTextPrimaryColor,
-        ),
-      ),
-      useMaterial3: true,
-    );
+    return AppTheme.getDarkTheme();
   }
 }
