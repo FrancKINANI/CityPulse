@@ -338,186 +338,191 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
         ),
         backgroundColor: AppTheme.primaryColor,
       ),
-      body: Container(
-        color: AppTheme.primaryColor,
-        child: Column(
-          children: [
-            // Tour progress indicator
-            TourProgressBar(currentStep: _currentStep, totalSteps: _totalSteps),
-            
-            // Tour description input
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Tour Description',
-                      style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      controller: _descriptionController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter a detailed description of your tour...',
-                        filled: true,
-                        fillColor: AppTheme.cardColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        hintStyle: AppTheme.bodyStyle.copyWith(
-                          color: AppTheme.textSecondaryColor,
-                        ),
-                      ),
-                      style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
-                      maxLines: 4,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            
-            // Tour locations section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tour Locations',
-                    style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
-                  ),
-                  const SizedBox(height: 8),
-                  if (_selectedPlaces.isNotEmpty) ...[                    
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: AppTheme.cardColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Selected Places (${_selectedPlaces.length})',
-                            style: AppTheme.bodyStyle.copyWith(
-                              color: AppTheme.textPrimaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: _selectedPlaces.map((place) {
-                              return Chip(
-                                label: Text(
-                                  place.name,
-                                  style: TextStyle(color: AppTheme.primaryColor),
-                                ),
-                                backgroundColor: AppTheme.accentColor,
-                                deleteIconColor: AppTheme.primaryColor,
-                                onDeleted: () => _removePlaceFromTour(place),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ],
-              ),
-            ),
-            
-            // Search bar
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: _searchController,
-                onChanged: _performSearch,
-                decoration: InputDecoration(
-                  hintText: 'Search places, restaurants, attractions...',
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: AppTheme.textSecondaryColor,
-                  ),
-                  filled: true,
-                  fillColor: AppTheme.cardColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  hintStyle: AppTheme.bodyStyle.copyWith(
-                    color: AppTheme.textSecondaryColor,
-                  ),
-                ),
-                style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
-              ),
-            ),
-            
-            // Category filters
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  _buildFilterButton('All'),
-                  _buildFilterButton('Park'),
-                  _buildFilterButton('Museum'),
-                  _buildFilterButton('Restaurant'),
-                  _buildFilterButton('Historic'),
-                  _buildFilterButton('Zoo'),
-                  _buildFilterButton('Shopping'),
-                ],
-              ),
-            ),
-            
-            // Search results
-            Expanded(
-              child: _searchController.text.isEmpty
-                  ? ListView(
-                      padding: const EdgeInsets.all(16.0),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            color: AppTheme.primaryColor,
+            child: Column(
+              children: [
+                // Tour progress indicator
+                TourProgressBar(currentStep: _currentStep, totalSteps: _totalSteps),
+                
+                // Tour description input
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Popular Places',
-                          style: AppTheme.subheadingStyle.copyWith(
-                            color: AppTheme.textPrimaryColor,
+                          'Tour Description',
+                          style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _descriptionController,
+                          decoration: InputDecoration(
+                            hintText: 'Enter a detailed description of your tour...',
+                            filled: true,
+                            fillColor: AppTheme.cardColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                            hintStyle: AppTheme.bodyStyle.copyWith(
+                              color: AppTheme.textSecondaryColor,
+                            ),
+                          ),
+                          style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
+                          maxLines: 4,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                
+                // Tour locations section
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Tour Locations',
+                        style: AppTheme.subheadingStyle.copyWith(color: AppTheme.textPrimaryColor),
+                      ),
+                      const SizedBox(height: 8),
+                      if (_selectedPlaces.isNotEmpty) ...[                    
+                        Container(
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            color: AppTheme.cardColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Selected Places (${_selectedPlaces.length})',
+                                style: AppTheme.bodyStyle.copyWith(
+                                  color: AppTheme.textPrimaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: _selectedPlaces.map((place) {
+                                  return Chip(
+                                    label: Text(
+                                      place.name,
+                                      style: TextStyle(color: AppTheme.primaryColor),
+                                    ),
+                                    backgroundColor: AppTheme.accentColor,
+                                    deleteIconColor: AppTheme.primaryColor,
+                                    onDeleted: () => _removePlaceFromTour(place),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 16),
-                        ..._popularPlaces
-                            .map((place) => _buildPlaceCard(place))
-                            ,
                       ],
-                    )
-                  : _searchResults.isEmpty
-                      ? Center(
-                          child: Text(
-                            'No places found',
-                            style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
-                          ),
-                        )
-                      : ListView(
+                    ],
+                  ),
+                ),
+                
+                // Search bar
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: _performSearch,
+                    decoration: InputDecoration(
+                      hintText: 'Search places, restaurants, attractions...',
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: AppTheme.textSecondaryColor,
+                      ),
+                      filled: true,
+                      fillColor: AppTheme.cardColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      hintStyle: AppTheme.bodyStyle.copyWith(
+                        color: AppTheme.textSecondaryColor,
+                      ),
+                    ),
+                    style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
+                  ),
+                ),
+                
+                // Category filters
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    children: [
+                      _buildFilterButton('All'),
+                      _buildFilterButton('Park'),
+                      _buildFilterButton('Museum'),
+                      _buildFilterButton('Restaurant'),
+                      _buildFilterButton('Historic'),
+                      _buildFilterButton('Zoo'),
+                      _buildFilterButton('Shopping'),
+                    ],
+                  ),
+                ),
+                
+                // Search results
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: _searchController.text.isEmpty
+                      ? ListView(
                           padding: const EdgeInsets.all(16.0),
                           children: [
                             Text(
-                              'Search Results',
+                              'Popular Places',
                               style: AppTheme.subheadingStyle.copyWith(
                                 color: AppTheme.textPrimaryColor,
                               ),
                             ),
                             const SizedBox(height: 16),
-                            ..._searchResults
+                            ..._popularPlaces
                                 .map((place) => _buildPlaceCard(place))
                                 ,
                           ],
-                        ),
+                        )
+                      : _searchResults.isEmpty
+                          ? Center(
+                              child: Text(
+                                'No places found',
+                                style: AppTheme.bodyStyle.copyWith(color: AppTheme.textPrimaryColor),
+                              ),
+                            )
+                          : ListView(
+                              padding: const EdgeInsets.all(16.0),
+                              children: [
+                                Text(
+                                  'Search Results',
+                                  style: AppTheme.subheadingStyle.copyWith(
+                                    color: AppTheme.textPrimaryColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                ..._searchResults
+                                    .map((place) => _buildPlaceCard(place))
+                                    ,
+                              ],
+                            ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

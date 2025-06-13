@@ -5,6 +5,7 @@
 ///   - VoidCallback onEdit : callback appelé lors du clic sur Edit Tour
 library;
 import 'package:flutter/material.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class YourTourActionsSection extends StatelessWidget {
   final VoidCallback onEdit;
@@ -21,16 +22,16 @@ class YourTourActionsSection extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 222, 174, 116),
+                color: AppTheme.accentColor,
               ),
               padding: const EdgeInsets.symmetric(vertical: 9),
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               width: double.infinity,
-              child: const Center(
+              child: Center(
                 child: Text(
                   "Edit Tour",
                   style: TextStyle(
-                    color: Color(0xFF141E16),
+                    color: AppTheme.textPrimaryColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -40,7 +41,7 @@ class YourTourActionsSection extends StatelessWidget {
           ),
         ),
         Container(
-          color: const Color(0xFF141E16),
+          color: AppTheme.backgroundColor,
           height: 20,
           width: double.infinity,
         ),

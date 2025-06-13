@@ -180,53 +180,55 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen> w
       body: Container(
         color: AppTheme.primaryColor,
         padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LinearProgressIndicator(
-                value: _progressValue,
-                backgroundColor: AppTheme.cardColor,
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                  AppTheme.accentColor,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                '${(_progressValue * 100).toInt()}% complete',
-                style: AppTheme.bodyStyle.copyWith(
-                  color: AppTheme.textSecondaryColor,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                _statusText,
-                style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Your personalized tour is being crafted based on popular places, your interests, and optimal routes.',
-                style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                height: 239,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5159c3db-0018-425c-80ce-6ac1cf473856", // Placeholder image, replace with actual loading animation or image
-                    fit: BoxFit.fill,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LinearProgressIndicator(
+                  value: _progressValue,
+                  backgroundColor: AppTheme.cardColor,
+                  valueColor: const AlwaysStoppedAnimation<Color>(
+                    AppTheme.accentColor,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                Text(
+                  '${(_progressValue * 100).toInt()}% complete',
+                  style: AppTheme.bodyStyle.copyWith(
+                    color: AppTheme.textSecondaryColor,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  _statusText,
+                  style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Your personalized tour is being crafted based on popular places, your interests, and optimal routes.',
+                  style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 40),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  height: 239,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/5159c3db-0018-425c-80ce-6ac1cf473856", // Placeholder image, replace with actual loading animation or image
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

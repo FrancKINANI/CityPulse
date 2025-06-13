@@ -23,6 +23,9 @@ import 'features/create_tour/screens/create_tour_screen.dart';
 import 'features/create_tour/screens/add_to_tour_screen.dart';
 import 'features/create_tour/screens/edit_tour_schedule_screen.dart';
 import 'features/profile/screens/edit_profile_screen.dart';
+import 'features/legacy/profile/profile_screen.dart';
+import 'features/create_tour/screens/creating_tour_loading_screen.dart';
+import 'features/legacy/screens/YourTour.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,12 +83,12 @@ class MyApp extends StatelessWidget {
         Routes.exploreDetails: (context) => const PlaceholderScreen(title: 'Explore Details'),
         Routes.createTourStart: (context) => const CreateTourStartScreen(),
         Routes.createTour: (context) => const CreateTourScreen(),
-        Routes.creatingTourLoading: (context) => const PlaceholderScreen(title: 'Creating Tour Loading'),
+        Routes.creatingTourLoading: (context) => const CreatingTourLoadingScreen(),
         Routes.addToTour: (context) => const AddToTourScreen(),
         Routes.editTourSchedule: (context) => EditTourScheduleScreen(selectedLocations: []),
-        Routes.yourTours: (context) => const PlaceholderScreen(title: 'Your Tours'),
+        Routes.yourTours: (context) => const YourTour(),
         Routes.shareTour: (context) => const PlaceholderScreen(title: 'Share Tour'),
-        Routes.profile: (context) => const PlaceholderScreen(title: 'Profile'),
+        Routes.profile: (context) => const ProfileScreen(),
         Routes.settings: (context) => const PlaceholderScreen(title: 'Settings'),
         Routes.help: (context) => const PlaceholderScreen(title: 'Help'),
         Routes.scanQr: (context) => const PlaceholderScreen(title: 'Scan QR'),
@@ -110,7 +113,12 @@ class PlaceholderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('$title coming soon')),
+      body: SingleChildScrollView(
+        child: Center(child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text('$title coming soon'),
+        )),
+      ),
     );
   }
 }

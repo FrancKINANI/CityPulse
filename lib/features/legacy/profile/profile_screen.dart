@@ -40,6 +40,23 @@ class ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: AppTheme.textPrimaryColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppTheme.backgroundColor,
+        elevation: 0,
+        iconTheme: IconThemeData(color: AppTheme.textPrimaryColor),
+      ),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
@@ -62,35 +79,6 @@ class ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Header
-                              Container(
-                                padding: const EdgeInsets.all(16),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                        top: 12,
-                                        bottom: 12,
-                                        right: 24,
-                                      ),
-                                      width: 24,
-                                      height: 24,
-                                      child: Image.network(
-                                        "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/cdbab2e9-b867-4a1c-aa22-beeecd910979",
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Profile",
-                                      style: TextStyle(
-                                        color: AppTheme.textPrimaryColor,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
 
                               // Profile Info
                               Center(
@@ -150,7 +138,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 child: const Text(
                                   "Account",
                                   style: TextStyle(
-                                    color: AppTheme.darkTextPrimaryColor,
+                                    color: AppTheme.darkPrimaryColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -164,7 +152,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 title: "Personal Information",
                                 onTap: () {},
                                 iconColor: AppTheme.accentColor,
-                                textColor: AppTheme.accentColor,
+                                textColor: AppTheme.darkPrimaryColor,
                               ),
                               _buildMenuItem(
                                 icon:
@@ -172,7 +160,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 title: "App Settings",
                                 onTap: () {},
                                 iconColor: AppTheme.accentColor,
-                                textColor: AppTheme.accentColor,
+                                textColor: AppTheme.darkPrimaryColor,
                               ),
                               _buildMenuItem(
                                 icon:
@@ -180,7 +168,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 title: "Notifications",
                                 onTap: () {},
                                 iconColor: AppTheme.accentColor,
-                                textColor: AppTheme.accentColor,
+                                textColor: AppTheme.darkPrimaryColor,
                               ),
 
                               // Support Section
@@ -193,7 +181,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 child: const Text(
                                   "Support",
                                   style: TextStyle(
-                                    color: AppTheme.darkTextPrimaryColor,
+                                    color: AppTheme.darkPrimaryColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -207,7 +195,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 title: "Help Center",
                                 onTap: () {},
                                 iconColor: AppTheme.accentColor,
-                                textColor: AppTheme.accentColor,
+                                textColor: AppTheme.darkPrimaryColor,
                               ),
                               _buildMenuItem(
                                 icon:
@@ -215,7 +203,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 title: "Contact Us",
                                 onTap: () {},
                                 iconColor: AppTheme.accentColor,
-                                textColor: AppTheme.accentColor,
+                                textColor: AppTheme.darkPrimaryColor,
                               ),
 
                               // Logout Button

@@ -12,27 +12,27 @@ class CreateTourStartScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: AppTheme.backgroundColor,
+            color: AppTheme.textColor,
           ), // Adjusted color
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Create a Tour',
-          style: TextStyle(color: AppTheme.backgroundColor), // Adjusted color
+          style: TextStyle(color: AppTheme.darkPrimaryColor), // Adjusted color
         ),
         backgroundColor: AppTheme.primaryColor, // Adjusted color
       ),
       body: Container(
         color: AppTheme.primaryColor, // Background color
         padding: const EdgeInsets.all(16.0),
-        child: Center(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'How would you like to start?',
                 style: AppTheme.subheadingStyle.copyWith(
-                  color: AppTheme.backgroundColor,
+                  color: AppTheme.textPrimaryColor,
                 ), // Adjusted color
                 textAlign: TextAlign.center,
               ),
@@ -127,13 +127,13 @@ class CreateTourStartScreen extends StatelessWidget {
                           'Create Your Own',
                           style: AppTheme.headingStyle.copyWith(color: AppTheme.textPrimaryColor),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 7),
                         Text(
                           'Create your own tour by selecting places, setting schedules, and customizing details.',
                           style: AppTheme.captionStyle.copyWith(color: AppTheme.textSecondaryColor),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           height: 50,

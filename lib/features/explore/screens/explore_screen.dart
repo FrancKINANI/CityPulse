@@ -5,10 +5,10 @@ import '../../../../services/theme_service.dart';
 import '../widgets/explore_header.dart';
 import '../widgets/explore_filters.dart';
 import '../widgets/explore_hero_section.dart';
-import '../widgets/explore_featured_places.dart';
+import 'package:citypulse/features/explore/widgets/explore_featured_places.dart';
 import '../../../../services/navigation_service.dart';
 import '../../../../config/routes.dart';
-import '../../../models/featured_place.dart';
+import '../widgets/explore_bottom_nav.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -91,7 +91,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
-      backgroundColor: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
+      backgroundColor: themeService.isDarkMode
+          ? AppTheme.darkBackgroundColor
+          : AppTheme.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [

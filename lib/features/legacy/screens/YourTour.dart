@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'your_tour/YourTourDaySection.dart';
-import 'your_tour/YourTourActionsSection.dart';
-import 'package:citypulse/features/explore/ExploreBottomNav.dart';
+import 'package:citypulse/features/legacy/your_tour/YourTourDaySection.dart';
+import 'package:citypulse/features/legacy/your_tour/YourTourActionsSection.dart';
+import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/config/app_theme.dart';
@@ -108,23 +108,24 @@ class YourTourState extends State<YourTour> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppTheme.backgroundColor),
+          icon: const Icon(Icons.arrow_back, color: AppTheme.darkPrimaryColor),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           activeTour?.title ?? 'Your Tour',
-          style: const TextStyle(color: AppTheme.backgroundColor),
+          style: TextStyle(color: AppTheme.textPrimaryColor),
         ),
         backgroundColor: AppTheme.primaryColor,
       ),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: const Color(0xFFFFFFFF),
+          color: AppTheme.backgroundColor,
           child: Column(
             children: [
               Expanded(
                 child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -134,7 +135,9 @@ class YourTourState extends State<YourTour> {
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
                             activeTour!.description,
-                            style: AppTheme.bodyStyle,
+                            style: AppTheme.bodyStyle.copyWith(
+                              color: AppTheme.textPrimaryColor,
+                            ),
                           ),
                         ),
 
