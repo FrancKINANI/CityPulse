@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/features/explore/ExploreBottomNav.dart';
+import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -80,10 +80,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                         fit: BoxFit.fill,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "Profile",
                                       style: TextStyle(
-                                        color: AppTheme.darkTextPrimaryColor,
+                                        color: AppTheme.textPrimaryColor,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -93,40 +93,50 @@ class ProfileScreenState extends State<ProfileScreen> {
                               ),
 
                               // Profile Info
-                              Container(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(bottom: 16),
-                                      width: 128,
-                                      height: 128,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white24,
+                              Center(
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.only(
+                                          bottom: 16,
+                                        ),
+                                        width: 128,
+                                        height: 128,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppTheme.cardColor,
+                                        ),
+                                        child: ClipOval(
+                                          child: Image.network(
+                                            "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fd151d05-98b8-447c-95bd-b04dd3c0651b",
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
-                                      child: Image.network(
-                                        "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fd151d05-98b8-447c-95bd-b04dd3c0651b",
-                                        fit: BoxFit.cover,
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        "Sophia Bennett",
+                                        style: TextStyle(
+                                          color: AppTheme.textPrimaryColor,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    const Text(
-                                      "Sophia Bennett",
-                                      style: TextStyle(
-                                        color: AppTheme.darkTextPrimaryColor,
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        "sophia.bennett@email.com",
+                                        style: TextStyle(
+                                          color: AppTheme.textSecondaryColor,
+                                          fontSize: 16,
+                                        ),
                                       ),
-                                    ),
-                                    const Text(
-                                      "sophia.bennett@email.com",
-                                      style: TextStyle(
-                                        color: AppTheme.darkTextSecondaryColor,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
 
@@ -153,18 +163,24 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b118c6a9-77b0-4f0c-bd51-0623e820af3c",
                                 title: "Personal Information",
                                 onTap: () {},
+                                iconColor: AppTheme.accentColor,
+                                textColor: AppTheme.accentColor,
                               ),
                               _buildMenuItem(
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/71d3cf13-15a4-4f71-bd54-ae44cc1c6eed",
                                 title: "App Settings",
                                 onTap: () {},
+                                iconColor: AppTheme.accentColor,
+                                textColor: AppTheme.accentColor,
                               ),
                               _buildMenuItem(
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9865ff56-5b1b-46d2-9d1f-89372e4a00a4",
                                 title: "Notifications",
                                 onTap: () {},
+                                iconColor: AppTheme.accentColor,
+                                textColor: AppTheme.accentColor,
                               ),
 
                               // Support Section
@@ -190,12 +206,16 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0593b80e-dc23-444e-ad3a-8222bae962c5",
                                 title: "Help Center",
                                 onTap: () {},
+                                iconColor: AppTheme.accentColor,
+                                textColor: AppTheme.accentColor,
                               ),
                               _buildMenuItem(
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b3b06ff8-4315-4433-a25d-8ddb2c698b8b",
                                 title: "Contact Us",
                                 onTap: () {},
+                                iconColor: AppTheme.accentColor,
+                                textColor: AppTheme.accentColor,
                               ),
 
                               // Logout Button
@@ -209,7 +229,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: AppTheme.backgroundColor,
+                                      color: AppTheme.accentColor,
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 9,
@@ -219,7 +239,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     child: Text(
                                       "Log Out",
                                       style: TextStyle(
-                                        color: AppTheme.buttonText.color,
+                                        color: AppTheme.textPrimaryColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -256,6 +276,8 @@ class ProfileScreenState extends State<ProfileScreen> {
     required String icon,
     required String title,
     required VoidCallback onTap,
+    Color? iconColor,
+    Color? textColor,
   }) {
     return Container(
       color: AppTheme.backgroundColor,
@@ -273,18 +295,26 @@ class ProfileScreenState extends State<ProfileScreen> {
               margin: const EdgeInsets.only(right: 16),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  icon,
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.fill,
+                child: ColorFiltered(
+                  colorFilter: iconColor != null
+                      ? ColorFilter.mode(iconColor, BlendMode.srcIn)
+                      : const ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.srcIn,
+                        ),
+                  child: Image.network(
+                    icon,
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
             Text(
               title,
               style: TextStyle(
-                color: AppTheme.darkTextPrimaryColor,
+                color: textColor ?? AppTheme.darkTextPrimaryColor,
                 fontSize: 16,
               ),
             ),
