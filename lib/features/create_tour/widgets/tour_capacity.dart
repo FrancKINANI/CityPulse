@@ -18,7 +18,7 @@ class TourCapacity extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Tour Capacity',
             style: themeService.isDarkMode ? AppTheme.darkHeadingStyle : AppTheme.headingStyle,
           ),

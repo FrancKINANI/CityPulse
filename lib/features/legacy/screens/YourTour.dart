@@ -116,6 +116,19 @@ class YourTourState extends State<YourTour> {
           style: TextStyle(color: AppTheme.textPrimaryColor),
         ),
         backgroundColor: AppTheme.primaryColor,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add, color: AppTheme.darkPrimaryColor),
+            tooltip: 'Create Tour',
+            onPressed: () {
+              final navigationService = Provider.of<NavigationService>(
+                context,
+                listen: false,
+              );
+              navigationService.navigateTo(Routes.createTourStart);
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Container(

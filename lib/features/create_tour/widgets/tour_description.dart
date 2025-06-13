@@ -17,7 +17,7 @@ class TourDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Tour Description',
             style: themeService.isDarkMode ? AppTheme.darkHeadingStyle : AppTheme.headingStyle,
           ),
