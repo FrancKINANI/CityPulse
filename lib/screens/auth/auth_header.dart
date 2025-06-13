@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../services/theme_service.dart';
+import '../../config/app_theme.dart';
 
 /// Widget AuthHeader
 /// En-tête pour les écrans d'authentification.
@@ -19,6 +22,7 @@ class AuthHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -26,7 +30,7 @@ class AuthHeader extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
             fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
@@ -36,8 +40,8 @@ class AuthHeader extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             subtitle!,
-            style: const TextStyle(
-              color: Color(0xFF9BBFAA),
+            style: TextStyle(
+              color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
               fontSize: 16,
             ),
             textAlign: TextAlign.center,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../config/app_theme.dart';
+import '../services/theme_service.dart';
+import 'package:provider/provider.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -10,6 +12,7 @@ class Welcome extends StatefulWidget {
 class WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -53,7 +56,7 @@ class WelcomeState extends State<Welcome> {
                                           child: Text(
                                             "CityPulse",
                                             style: TextStyle(
-                                              color: AppTheme.textPrimaryColor,
+                                              color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
                                               fontSize: 32,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -69,8 +72,7 @@ class WelcomeState extends State<Welcome> {
                                           child: Text(
                                             "Explore the city's heartbeat",
                                             style: TextStyle(
-                                              color:
-                                                  AppTheme.textSecondaryColor,
+                                              color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
                                               fontSize: 14,
                                             ),
                                             textAlign: TextAlign.center,
@@ -135,7 +137,7 @@ class WelcomeState extends State<Welcome> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(24),
-                                                color: AppTheme.secondaryColor,
+                                                color: themeService.isDarkMode ? AppTheme.darkSecondaryColor : AppTheme.secondaryColor,
                                               ),
                                               padding:
                                                   const EdgeInsets.symmetric(
@@ -152,8 +154,7 @@ class WelcomeState extends State<Welcome> {
                                                   Text(
                                                     "Get Started",
                                                     style: TextStyle(
-                                                      color: AppTheme
-                                                          .textPrimaryColor,
+                                                      color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
                                                       fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.bold,

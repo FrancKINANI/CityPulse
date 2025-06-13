@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../config/app_theme.dart';
+import '../../services/theme_service.dart';
 import 'ExploreHeader.dart';
 import 'ExploreFilters.dart';
 import 'ExploreHeroSection.dart';
@@ -88,8 +89,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [

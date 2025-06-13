@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/config/app_theme.dart';
 import 'package:flutter/services.dart';
 
 class TourCapacity extends StatelessWidget {
@@ -9,6 +12,7 @@ class TourCapacity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -16,7 +20,7 @@ class TourCapacity extends StatelessWidget {
         children: [
           const Text(
             'Tour Capacity',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: themeService.isDarkMode ? AppTheme.darkHeadingStyle : AppTheme.headingStyle,
           ),
           const SizedBox(height: 8),
           TextField(
@@ -25,9 +29,28 @@ class TourCapacity extends StatelessWidget {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(
               hintText: 'Enter maximum number of participants',
+              hintStyle: TextStyle(color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: themeService.isDarkMode ? AppTheme.darkDividerColor : AppTheme.dividerColor),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: themeService.isDarkMode ? AppTheme.darkDividerColor : AppTheme.dividerColor),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: themeService.isDarkMode ? AppTheme.darkSecondaryColor : AppTheme.secondaryColor),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: AppTheme.errorColor),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: AppTheme.errorColor),
+              ),
+              errorStyle: TextStyle(color: AppTheme.errorColor),
               errorText: errorText,
             ),
           ),

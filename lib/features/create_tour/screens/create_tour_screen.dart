@@ -4,12 +4,6 @@ import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import '../services/tour_service.dart';
 import '../widgets/tour_progress_bar.dart';
-import '../widgets/tour_description.dart';
-import '../widgets/tour_schedule.dart';
-import '../widgets/tour_price.dart';
-import '../widgets/tour_capacity.dart';
-import '../widgets/tour_image_upload.dart';
-import '../widgets/tour_submit_button.dart';
 
 class CreateTourScreen extends StatefulWidget {
   const CreateTourScreen({super.key});

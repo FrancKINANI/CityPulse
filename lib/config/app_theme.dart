@@ -276,19 +276,19 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: primaryButtonStyle.copyWith(
           // Copier le style du bouton et ajuster pour le mode sombre
-          backgroundColor: MaterialStateProperty.all(darkSecondaryColor),
-          foregroundColor: MaterialStateProperty.all(Colors.white),
+          backgroundColor: WidgetStateProperty.all(darkSecondaryColor),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: secondaryButtonStyle.copyWith(
-          foregroundColor: MaterialStateProperty.all(darkSecondaryColor),
+          foregroundColor: WidgetStateProperty.all(darkSecondaryColor),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: outlinedButtonStyle.copyWith(
-          foregroundColor: MaterialStateProperty.all(darkTextPrimaryColor),
-          side: MaterialStateProperty.all(BorderSide(color: darkDividerColor)),
+          foregroundColor: WidgetStateProperty.all(darkTextPrimaryColor),
+          side: WidgetStateProperty.all(BorderSide(color: darkDividerColor)),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(

@@ -9,6 +9,8 @@ library;
 
 import 'package:flutter/material.dart';
 import '../../config/app_theme.dart';
+import 'package:provider/provider.dart';
+import '../../services/theme_service.dart';
 
 class ExploreHeader extends StatelessWidget {
   final String value;
@@ -21,8 +23,9 @@ class ExploreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: AppTheme.backgroundColor,
+      color: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       width: double.infinity,
       child: Row(
@@ -68,12 +71,13 @@ class ExploreHeader extends StatelessWidget {
               ),
               child: TextField(
                 style: TextStyle(
-                  color: AppTheme.textPrimaryColor,
+                  color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
                   fontSize: 16,
                 ),
                 onChanged: onChanged,
                 decoration: const InputDecoration(
                   hintText: "Search",
+                  hintStyle: TextStyle(color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor),
                   isDense: true,
                   contentPadding: EdgeInsets.symmetric(vertical: 0),
                   border: InputBorder.none,

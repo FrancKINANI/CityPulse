@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class TourProgressBar extends StatelessWidget {
   final int currentStep;
@@ -12,6 +15,7 @@ class TourProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -19,13 +23,16 @@ class TourProgressBar extends StatelessWidget {
         children: [
           LinearProgressIndicator(
             value: currentStep / totalSteps,
-            backgroundColor: Colors.grey[200],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+            backgroundColor: themeService.isDarkMode ? AppTheme.darkDividerColor : AppTheme.dividerColor,
+            valueColor: AlwaysStoppedAnimation<Color>(themeService.isDarkMode ? AppTheme.darkSecondaryColor : AppTheme.secondaryColor),
           ),
           const SizedBox(height: 8),
           Text(
             'Step $currentStep of $totalSteps',
-            style: TextStyle(color: Colors.grey[600], fontSize: 12),
+            style: TextStyle(
+              color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
+              fontSize: 12,
+            ),
           ),
         ],
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../config/app_theme.dart';
+import '../services/theme_service.dart';
 
 class SettingsHeader extends StatelessWidget {
   final String userName;
@@ -16,22 +18,23 @@ class SettingsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: const Color(0xFF141E16),
+      color: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const BackButton(color: Colors.white),
+              const BackButton(color: AppTheme.textColor),
               const SizedBox(width: 8),
               const Text(
                 'Paramètres',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -45,7 +48,7 @@ class SettingsHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.1),
+                    color: AppTheme.backgroundColor.withOpacity(0.1),
                     width: 2,
                   ),
                 ),
@@ -64,7 +67,7 @@ class SettingsHeader extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -72,7 +75,7 @@ class SettingsHeader extends StatelessWidget {
                       userEmail,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.7),
+                        color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
                       ),
                     ),
                   ],
@@ -80,7 +83,7 @@ class SettingsHeader extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onEditProfile,
-                icon: const Icon(Icons.edit, color: Colors.white),
+                icon: Icon(Icons.edit, color: themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor),
               ),
             ],
           ),

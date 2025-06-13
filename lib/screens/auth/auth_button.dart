@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../services/theme_service.dart';
+import '../../config/app_theme.dart';
 
 /// Widget AuthButton
 /// Bouton d'action réutilisable pour les écrans d'authentification.
@@ -28,21 +31,22 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor ?? const Color(0xFF4CAF50),
+        backgroundColor: backgroundColor ?? (themeService.isDarkMode ? AppTheme.darkSecondaryColor : AppTheme.secondaryColor),
         padding: const EdgeInsets.symmetric(vertical: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
       ),
       child: isLoading
-          ? const CircularProgressIndicator(color: Colors.white)
+          ? CircularProgressIndicator(color: textColor ?? (themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor))
           : Text(
               text,
               style: TextStyle(
-                color: textColor ?? Colors.white,
+                color: textColor ?? (themeService.isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor),
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

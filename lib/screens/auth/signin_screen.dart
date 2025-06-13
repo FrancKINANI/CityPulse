@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
+import '../../services/theme_service.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
 import 'auth_form_field.dart';
@@ -60,11 +62,12 @@ class SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: const Color(0xFF141E16),
+          color: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24.0),

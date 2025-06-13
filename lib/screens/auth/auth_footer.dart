@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../services/theme_service.dart';
+import '../../config/app_theme.dart';
 
 /// Widget AuthFooter
 /// Pied de page pour les écrans d'authentification avec des liens vers d'autres écrans.
@@ -22,13 +25,14 @@ class AuthFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           text,
           style: const TextStyle(
-            color: Color(0xFF9BBFAA),
+            color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
             fontSize: 14,
           ),
         ),
@@ -37,7 +41,7 @@ class AuthFooter extends StatelessWidget {
           child: Text(
             linkText,
             style: const TextStyle(
-              color: Color(0xFF4CAF50),
+              color: themeService.isDarkMode ? AppTheme.darkSecondaryColor : AppTheme.secondaryColor,
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
