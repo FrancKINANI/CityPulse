@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlaceEventCalendarActions extends StatelessWidget {
-  const PlaceEventCalendarActions({Key? key}) : super(key: key);
+  const PlaceEventCalendarActions({super.key});
 
   @override
   Widget build(BuildContext context) {

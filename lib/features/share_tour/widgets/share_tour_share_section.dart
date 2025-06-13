@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ShareTourShareSection extends StatelessWidget {
-  const ShareTourShareSection({Key? key}) : super(key: key);
+  const ShareTourShareSection({super.key});
 
   @override
   Widget build(BuildContext context) {

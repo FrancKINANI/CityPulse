@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlaceEventCalendarForm extends StatefulWidget {
-  const PlaceEventCalendarForm({Key? key}) : super(key: key);
+  const PlaceEventCalendarForm({super.key});
 
   @override
   State<PlaceEventCalendarForm> createState() => _PlaceEventCalendarFormState();

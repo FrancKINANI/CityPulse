@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SearchOnMapFilters extends StatelessWidget {
-  const SearchOnMapFilters({Key? key}) : super(key: key);
+  const SearchOnMapFilters({super.key});
 
   @override
   Widget build(BuildContext context) {

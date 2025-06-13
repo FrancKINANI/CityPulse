@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class SearchOnMapMapSection extends StatelessWidget {
-  const SearchOnMapMapSection({Key? key}) : super(key: key);
+  const SearchOnMapMapSection({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,10 +5,10 @@ class LegacyHeader extends StatelessWidget {
   final String subtitle;
 
   const LegacyHeader({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle = '',
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

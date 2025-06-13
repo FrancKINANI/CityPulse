@@ -6,11 +6,11 @@ class AuthFormField extends StatelessWidget {
   final bool obscureText;
 
   const AuthFormField({
-    Key? key,
+    super.key,
     required this.label,
     required this.controller,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

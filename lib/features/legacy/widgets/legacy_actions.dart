@@ -4,9 +4,9 @@ class LegacyActions extends StatelessWidget {
   final List<ActionItem> actions;
 
   const LegacyActions({
-    Key? key,
+    super.key,
     required this.actions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

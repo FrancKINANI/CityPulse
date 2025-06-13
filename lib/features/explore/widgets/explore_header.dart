@@ -77,7 +77,7 @@ class ExploreHeader extends StatelessWidget {
                 onChanged: onChanged,
                 decoration: const InputDecoration(
                   hintText: "Search",
-                  hintStyle: const TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: Colors.grey),
                   isDense: true,
                   contentPadding: EdgeInsets.symmetric(vertical: 0),
                   border: InputBorder.none,
