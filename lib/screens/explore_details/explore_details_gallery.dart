@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreDetailsGallery extends StatelessWidget {
   final List<String> images;
@@ -9,16 +10,16 @@ class ExploreDetailsGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      color: Colors.white,
+      color: AppTheme.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Gallery',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF112116),
+              color: AppTheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 12),

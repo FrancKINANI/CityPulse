@@ -4,27 +4,32 @@ class AppTheme {
   // ======== COULEURS PRINCIPALES ========
   // Mode clair - Couleurs principales
   static const Color primaryColor = Colors.white;
-  static const Color primaryLightColor = Color(0xFF264433); // Ajouté depuis styles.dart
-  static const Color secondaryColor = Color(0xFF2196F3); // Bleu
-  static const Color accentColor = Color(0xFF64B5F6); // Bleu clair
+  static const Color primaryLightColor = Color(
+    0xFFFFF3E0,
+  ); // Très léger orange/crème
+  static const Color secondaryColor = Color(0xFFFFA726); // Orange 600
+  static const Color accentColor = Color(0xFFFFCC80); // Ambre 200
   static const Color backgroundColor = Colors.white;
   static const Color cardColor = Colors.white;
-  static const Color cardColorSelected = Color(0xFF3A5F48); // Ajouté depuis styles.dart
+  static const Color cardColorSelected = Color(
+    0xFFFFF3E0,
+  ); // Très léger orange/crème
   static const Color textPrimaryColor = Color(0xFF333333);
   static const Color textSecondaryColor = Color(0xFF757575);
-  static const Color textColor = Color(0xFFFFFFFF); // Ajouté depuis styles.dart
-  static const Color textLightColor = Color(0xFF96C4A8); // Ajouté depuis styles.dart
+  static const Color textColor =
+      Colors.black; // Mis à jour pour le texte sur fond clair
+  static const Color textLightColor = Color(0xFFB0BEC5); // Gris-bleu très clair
   static const Color dividerColor = Color(0xFFEEEEEE);
-  
+
   // Couleurs fonctionnelles
   static const Color errorColor = Color(0xFFE53935);
   static const Color successColor = Color(0xFF4CAF50);
   static const Color warningColor = Color(0xFFFFC107);
-  
+
   // Mode sombre - Couleurs principales
   static const Color darkPrimaryColor = Color(0xFF121212);
-  static const Color darkSecondaryColor = Color(0xFF2196F3); // Bleu
-  static const Color darkAccentColor = Color(0xFF64B5F6); // Bleu clair
+  static const Color darkSecondaryColor = Color(0xFFFFA726); // Orange 600
+  static const Color darkAccentColor = Color(0xFFFFCC80); // Ambre 200
   static const Color darkBackgroundColor = Color(0xFF121212);
   static const Color darkCardColor = Color(0xFF1E1E1E);
   static const Color darkTextPrimaryColor = Colors.white;
@@ -60,7 +65,7 @@ class AppTheme {
     color: textSecondaryColor,
     fontSize: 14,
   );
-  
+
   // Styles ajoutés depuis styles.dart
   static const TextStyle headline1 = TextStyle(
     fontSize: 28,
@@ -80,29 +85,36 @@ class AppTheme {
     color: textColor,
   );
 
-  static const TextStyle body1 = TextStyle(fontSize: 16, color: textColor);
+  static const TextStyle body1 = TextStyle(
+    fontSize: 16,
+    color: textPrimaryColor,
+  );
 
   static const TextStyle body2 = TextStyle(fontSize: 14, color: textLightColor);
 
   static const TextStyle buttonText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
+    color: Colors
+        .white, // Assurer que le texte du bouton est blanc sur les boutons colorés
   );
 
   // Mode sombre
-  static TextStyle get darkHeadingStyle => headingStyle.copyWith(color: darkTextPrimaryColor);
-  static TextStyle get darkSubheadingStyle => subheadingStyle.copyWith(color: darkTextPrimaryColor);
-  static TextStyle get darkBodyStyle => bodyStyle.copyWith(color: darkTextPrimaryColor);
-  static TextStyle get darkCaptionStyle => captionStyle.copyWith(color: darkTextSecondaryColor);
+  static TextStyle get darkHeadingStyle =>
+      headingStyle.copyWith(color: darkTextPrimaryColor);
+  static TextStyle get darkSubheadingStyle =>
+      subheadingStyle.copyWith(color: darkTextPrimaryColor);
+  static TextStyle get darkBodyStyle =>
+      bodyStyle.copyWith(color: darkTextPrimaryColor);
+  static TextStyle get darkCaptionStyle =>
+      captionStyle.copyWith(color: darkTextSecondaryColor);
 
   // ======== STYLES DE BOUTON ========
   static ButtonStyle primaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: secondaryColor,
-    foregroundColor: Colors.white,
+    foregroundColor: Colors.white, // Texte blanc sur bouton orange
     padding: const EdgeInsets.symmetric(vertical: 16),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   );
 
   static ButtonStyle secondaryButtonStyle = TextButton.styleFrom(
@@ -116,17 +128,18 @@ class AppTheme {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
   );
-  
+
   // Styles de bouton ajoutés depuis styles.dart
   static final ButtonStyle primaryButton = ElevatedButton.styleFrom(
     backgroundColor: accentColor,
-    foregroundColor: primaryColor,
+    foregroundColor: Colors.white, // Texte blanc sur bouton accent
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
   );
 
   static final ButtonStyle outlinedButton = OutlinedButton.styleFrom(
-    foregroundColor: textColor,
+    foregroundColor:
+        textPrimaryColor, // Texte de couleur primaire pour les boutons "outlined"
     side: const BorderSide(color: dividerColor),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
@@ -147,15 +160,12 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
       ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 16,
-      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
     );
   }
-  
+
   // Style d'input ajouté depuis styles.dart
   static const InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
     filled: true,
@@ -172,7 +182,7 @@ class AppTheme {
     color: cardColor,
     borderRadius: BorderRadius.circular(12),
   );
-  
+
   // Style de carte ajouté depuis styles.dart
   static final CardTheme cardTheme = CardTheme(
     color: cardColor,
@@ -204,7 +214,7 @@ class AppTheme {
         primary: primaryColor,
         secondary: secondaryColor,
         tertiary: accentColor,
-        background: backgroundColor,
+        surface: backgroundColor,
         error: errorColor,
       ),
       textTheme: TextTheme(
@@ -214,15 +224,9 @@ class AppTheme {
         bodyMedium: captionStyle,
       ),
       appBarTheme: appBarTheme,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: primaryButtonStyle,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: secondaryButtonStyle,
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: outlinedButtonStyle,
-      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(style: primaryButtonStyle),
+      textButtonTheme: TextButtonThemeData(style: secondaryButtonStyle),
+      outlinedButtonTheme: OutlinedButtonThemeData(style: outlinedButtonStyle),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: cardColor,
@@ -230,16 +234,16 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
-      dividerTheme: const DividerThemeData(
-        color: dividerColor,
-        thickness: 1,
-      ),
+      dividerTheme: const DividerThemeData(color: dividerColor, thickness: 1),
       useMaterial3: true,
     );
   }
-  
+
   static ThemeData getDarkTheme() {
     return ThemeData(
       brightness: Brightness.dark,
@@ -248,10 +252,10 @@ class AppTheme {
       cardColor: darkCardColor,
       colorScheme: ColorScheme.dark(
         primary: darkPrimaryColor,
-        secondary: darkSecondaryColor,
-        tertiary: darkAccentColor,
-        background: darkBackgroundColor,
-        error: errorColor,
+        secondary: darkSecondaryColor, // Utilisation de darkSecondaryColor
+        tertiary: darkAccentColor, // Utilisation de darkAccentColor
+        surface: darkBackgroundColor,
+        error: errorColor, // Erreur reste la même
       ),
       textTheme: TextTheme(
         headlineLarge: darkHeadingStyle,
@@ -259,20 +263,21 @@ class AppTheme {
         bodyLarge: darkBodyStyle,
         bodyMedium: darkCaptionStyle,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: appBarTheme.copyWith(
+        // Copier le thème de l'AppBar et ajuster pour le mode sombre
         backgroundColor: darkBackgroundColor,
-        elevation: 0,
-        titleTextStyle: TextStyle(
-          color: darkTextPrimaryColor,
+        titleTextStyle: darkHeadingStyle.copyWith(
           fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-        iconTheme: IconThemeData(color: darkTextPrimaryColor),
+        ), // Utiliser darkHeadingStyle
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ), // Icônes blanches pour le mode sombre
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: primaryButtonStyle.copyWith(
+          // Copier le style du bouton et ajuster pour le mode sombre
           backgroundColor: MaterialStateProperty.all(darkSecondaryColor),
-          foregroundColor: MaterialStateProperty.all(darkTextPrimaryColor),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -289,14 +294,17 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: darkCardColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         hintStyle: TextStyle(color: darkTextSecondaryColor),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
       ),
-      dividerTheme: DividerThemeData(
+      dividerTheme: const DividerThemeData(
         color: darkDividerColor,
         thickness: 1,
       ),

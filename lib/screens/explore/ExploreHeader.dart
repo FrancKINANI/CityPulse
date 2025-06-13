@@ -6,17 +6,23 @@
 ///   - String value: texte du champ de recherche
 ///   - ValueChanged<String> onChanged: callback lors de la saisie
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreHeader extends StatelessWidget {
   final String value;
   final ValueChanged<String> onChanged;
-  const ExploreHeader({super.key, required this.value, required this.onChanged});
+  const ExploreHeader({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF112116),
+      color: AppTheme.backgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       width: double.infinity,
       child: Row(
@@ -28,7 +34,7 @@ class ExploreHeader extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              color: const Color(0xFF264433),
+              color: AppTheme.primaryLightColor,
             ),
             padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16),
             child: ClipRRect(
@@ -52,7 +58,7 @@ class ExploreHeader extends StatelessWidget {
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12),
                 ),
-                color: Color(0xFF264433),
+                color: AppTheme.primaryLightColor,
               ),
               padding: const EdgeInsets.only(
                 top: 12,
@@ -61,7 +67,10 @@ class ExploreHeader extends StatelessWidget {
                 right: 16,
               ),
               child: TextField(
-                style: const TextStyle(color: Color(0xFF96C4A8), fontSize: 16),
+                style: TextStyle(
+                  color: AppTheme.textPrimaryColor,
+                  fontSize: 16,
+                ),
                 onChanged: onChanged,
                 decoration: const InputDecoration(
                   hintText: "Search",

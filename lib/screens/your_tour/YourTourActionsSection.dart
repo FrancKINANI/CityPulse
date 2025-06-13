@@ -21,7 +21,7 @@ class YourTourActionsSection extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color(0xFF93E0B2),
+                color: const Color.fromARGB(255, 222, 174, 116),
               ),
               padding: const EdgeInsets.symmetric(vertical: 9),
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

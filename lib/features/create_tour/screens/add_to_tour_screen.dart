@@ -122,7 +122,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                             place['type']!.contains(_selectedCategory),
                       )
                       .map((place) => _buildPlaceCard(place))
-                      .toList(),
+                      ,
                 ],
               ),
             ),

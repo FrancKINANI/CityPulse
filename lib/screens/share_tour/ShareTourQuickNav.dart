@@ -5,7 +5,9 @@
 ///   - int selectedIndex : index sélectionné
 ///   - ValueChanged<int> onNav : callback lors de la sélection
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ShareTourQuickNav extends StatelessWidget {
   final int selectedIndex;
@@ -23,31 +25,31 @@ class ShareTourQuickNav extends StatelessWidget {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/35c761c9-d4fd-4157-976b-de871f847263',
         'label': 'Explore',
-        'color': const Color(0xFF96C4A8),
+        'color': AppTheme.textSecondaryColor,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b3b23ebf-879b-4ab7-9ba9-d0e9bf996153',
         'label': 'My Tours',
-        'color': Colors.white,
+        'color': AppTheme.textPrimaryColor,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/637949da-8f5f-4dee-98ab-101401ce477b',
         'label': 'Create',
-        'color': const Color(0xFF96C4A8),
+        'color': AppTheme.textSecondaryColor,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/09fe8f8c-a25f-4eb3-a420-c1b75e6b5115',
         'label': 'Profile',
-        'color': const Color(0xFF96C4A8),
+        'color': AppTheme.textSecondaryColor,
       },
     ];
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Color(0xFF264433), width: 1)),
-        color: Color(0xFF1C3023),
+      decoration: BoxDecoration(
+        border: Border(top: BorderSide(color: AppTheme.dividerColor, width: 1)),
+        color: AppTheme.backgroundColor,
       ),
       padding: const EdgeInsets.only(top: 9, bottom: 9, left: 16, right: 16),
       child: Row(
@@ -76,7 +78,9 @@ class ShareTourQuickNav extends StatelessWidget {
                   Text(
                     item['label'] as String,
                     style: TextStyle(
-                      color: isSelected ? Colors.white : item['color'] as Color,
+                      color: isSelected
+                          ? AppTheme.accentColor
+                          : item['color'] as Color,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),

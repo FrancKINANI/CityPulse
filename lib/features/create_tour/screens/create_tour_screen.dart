@@ -27,12 +27,12 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
   final _searchController = TextEditingController();
   final _tourService = TourService();
 
-  List<Place> _selectedPlaces = [];
-  List<String> _imageUrls = [];
+  final List<Place> _selectedPlaces = [];
+  final List<String> _imageUrls = [];
   DateTime? _startDate;
   DateTime? _endDate;
   bool _isLoading = false;
-  int _currentStep = 1;
+  final int _currentStep = 1;
   final int _totalSteps = 5;
   String _selectedCategory = 'All';
   
@@ -497,7 +497,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                         const SizedBox(height: 16),
                         ..._popularPlaces
                             .map((place) => _buildPlaceCard(place))
-                            .toList(),
+                            ,
                       ],
                     )
                   : _searchResults.isEmpty
@@ -519,7 +519,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                             const SizedBox(height: 16),
                             ..._searchResults
                                 .map((place) => _buildPlaceCard(place))
-                                .toList(),
+                                ,
                           ],
                         ),
             ),

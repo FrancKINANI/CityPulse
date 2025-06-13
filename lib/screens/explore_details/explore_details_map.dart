@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreDetailsMap extends StatelessWidget {
   final double latitude;
@@ -16,16 +17,16 @@ class ExploreDetailsMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      color: Colors.white,
+      color: AppTheme.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Location',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF112116),
+              color: AppTheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 12),
@@ -34,33 +35,33 @@ class ExploreDetailsMap extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: const Color(0xFFE5E5E5),
+              color: AppTheme.dividerColor,
             ),
             // TODO: Implement actual map widget here
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.location_on,
                     size: 48,
-                    color: Color(0xFF112116),
+                    color: AppTheme.textPrimaryColor,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Lat: $latitude, Long: $longitude',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF4A4A4A),
+                      color: AppTheme.textSecondaryColor,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     address,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
-                      color: Color(0xFF4A4A4A),
+                      color: AppTheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -73,15 +74,15 @@ class ExploreDetailsMap extends StatelessWidget {
               // TODO: Implement directions functionality
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF112116),
+              backgroundColor: AppTheme.secondaryColor,
               minimumSize: const Size.fromHeight(48),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: const Text(
+            child: Text(
               'Get Directions',
-              style: TextStyle(fontSize: 16, color: Colors.white),
+              style: TextStyle(fontSize: 16, color: AppTheme.backgroundColor),
             ),
           ),
         ],

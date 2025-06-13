@@ -7,7 +7,9 @@
 ///   - ValueChanged<String> onSelect : callback lors de la sélection
 ///   - List<String> filters : liste des filtres à afficher
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart'; // Importer AppTheme
 
 class ExploreFilters extends StatelessWidget {
   final String selected;
@@ -36,8 +38,10 @@ class ExploreFilters extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: selected == filter
-                        ? const Color(0xFF38E07A)
-                        : const Color(0xFF264433),
+                        ? AppTheme
+                              .secondaryColor // Couleur secondaire pour le filtre sélectionné (orange)
+                        : AppTheme
+                              .primaryLightColor, // Couleur claire du thème pour les filtres non sélectionnés
                   ),
                   padding: const EdgeInsets.symmetric(
                     vertical: 5,
@@ -47,8 +51,10 @@ class ExploreFilters extends StatelessWidget {
                     filter,
                     style: TextStyle(
                       color: selected == filter
-                          ? const Color(0xFF112116)
-                          : const Color(0xFFFFFFFF),
+                          ? AppTheme
+                                .backgroundColor // Texte blanc sur fond orange (sélectionné)
+                          : AppTheme
+                                .textPrimaryColor, // Texte primaire sur fond clair (non sélectionné)
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),

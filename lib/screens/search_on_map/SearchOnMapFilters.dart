@@ -7,7 +7,9 @@
 ///   - ValueChanged<String> onSelect : callback lors de la sélection
 ///   - List<String> filters : liste des filtres à afficher
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart'; // Importer AppTheme
 
 class SearchOnMapFilters extends StatelessWidget {
   final String selected;
@@ -34,8 +36,10 @@ class SearchOnMapFilters extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: isSelected
-                    ? const Color(0xFF356347)
-                    : const Color(0xFF264433),
+                    ? AppTheme
+                          .secondaryColor // Couleur secondaire pour le filtre sélectionné (orange)
+                    : AppTheme
+                          .primaryLightColor, // Couleur claire du thème pour les filtres non sélectionnés
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -47,7 +51,8 @@ class SearchOnMapFilters extends StatelessWidget {
               child: Text(
                 filter,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppTheme
+                      .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),

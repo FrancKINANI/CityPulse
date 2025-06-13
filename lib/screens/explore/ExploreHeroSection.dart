@@ -7,7 +7,9 @@
 ///   - String description : description courte
 ///   - String duration : durée de lecture ou info complémentaire
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreHeroSection extends StatelessWidget {
   final String imageUrl;
@@ -46,8 +48,8 @@ class ExploreHeroSection extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Color(0xFFFFFFFF),
+                  style: TextStyle(
+                    color: AppTheme.textPrimaryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -55,16 +57,16 @@ class ExploreHeroSection extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   description,
-                  style: const TextStyle(
-                    color: Color(0xFF96C4A8),
+                  style: TextStyle(
+                    color: AppTheme.textSecondaryColor,
                     fontSize: 16,
                   ),
                 ),
                 const SizedBox(height: 5),
                 Text(
                   duration,
-                  style: const TextStyle(
-                    color: Color(0xFF96C4A8),
+                  style: TextStyle(
+                    color: AppTheme.textSecondaryColor,
                     fontSize: 16,
                   ),
                 ),

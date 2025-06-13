@@ -7,7 +7,9 @@
 ///   - ValueChanged<String> onCategoryChanged : callback lors de la saisie catégorie
 ///   - ValueChanged<String> onDistanceChanged : callback lors de la saisie distance
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart'; // Importer AppTheme
 
 class SearchOnMapSearchBars extends StatelessWidget {
   final String category;
@@ -34,7 +36,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: const Color(0xFF264433),
+                color: AppTheme.primaryLightColor,
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -47,8 +49,8 @@ class SearchOnMapSearchBars extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
-                      style: const TextStyle(
-                        color: Color(0xFFFFFFFF),
+                      style: TextStyle(
+                        color: AppTheme.textPrimaryColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -79,7 +81,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: const Color(0xFF264433),
+                color: AppTheme.primaryLightColor,
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -91,8 +93,8 @@ class SearchOnMapSearchBars extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
-                      style: const TextStyle(
-                        color: Color(0xFFFFFFFF),
+                      style: TextStyle(
+                        color: AppTheme.textPrimaryColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

@@ -5,17 +5,24 @@
 ///   - String title : le titre du header
 ///   - String imageUrl : l'URL de l'image à afficher
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart'; // Importer AppTheme
 
 class ShareTourHeader extends StatelessWidget {
   final String title;
   final String imageUrl;
-  const ShareTourHeader({super.key, required this.title, required this.imageUrl});
+  const ShareTourHeader({
+    super.key,
+    required this.title,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF112116),
+      color:
+          AppTheme.backgroundColor, // Remplacé par la couleur de fond du thème
       padding: const EdgeInsets.all(16),
       width: double.infinity,
       child: Row(
@@ -28,8 +35,9 @@ class ShareTourHeader extends StatelessWidget {
           ),
           Text(
             title,
-            style: const TextStyle(
-              color: Color(0xFFFFFFFF),
+            style: TextStyle(
+              color: AppTheme
+                  .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

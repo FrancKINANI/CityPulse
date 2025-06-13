@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'config/firebase_options.dart';
 
 // Configuration
-import 'config/app_theme.dart';
 import 'config/routes.dart';
 
 // Services

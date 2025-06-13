@@ -112,8 +112,8 @@ class _FeaturedPlaceCard extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 1),
             child: Text(
               place.title,
-              style: const TextStyle(
-                color: Color(0xFFFFFFFF),
+              style: TextStyle(
+                color: AppTheme.textPrimaryColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

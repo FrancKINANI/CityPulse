@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreDetailsInfo extends StatelessWidget {
   final String description;
@@ -18,22 +19,22 @@ class ExploreDetailsInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      color: Colors.white,
+      color: AppTheme.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Description',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF112116),
+              color: AppTheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 12),
           Text(
             description,
-            style: const TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
+            style: TextStyle(fontSize: 14, color: AppTheme.textSecondaryColor),
           ),
           const SizedBox(height: 24),
           _buildInfoItem(Icons.access_time, 'Hours', hours),
@@ -50,7 +51,7 @@ class ExploreDetailsInfo extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 20, color: const Color(0xFF112116)),
+        Icon(icon, size: 20, color: AppTheme.textPrimaryColor),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -58,16 +59,19 @@ class ExploreDetailsInfo extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF112116),
+                  color: AppTheme.textPrimaryColor,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 value,
-                style: const TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppTheme.textSecondaryColor,
+                ),
               ),
             ],
           ),

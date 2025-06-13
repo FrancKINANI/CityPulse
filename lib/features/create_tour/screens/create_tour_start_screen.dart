@@ -70,7 +70,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
@@ -134,7 +134,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 50,
                           child: OutlinedButton(

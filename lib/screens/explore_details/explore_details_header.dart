@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart';
 
 class ExploreDetailsHeader extends StatelessWidget {
   final String imageUrl;
@@ -17,7 +18,7 @@ class ExploreDetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF112116),
+      color: AppTheme.backgroundColor,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,8 +35,8 @@ class ExploreDetailsHeader extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: AppTheme.textPrimaryColor,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -43,22 +44,28 @@ class ExploreDetailsHeader extends StatelessWidget {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.location_on,
-                      color: Colors.white,
+                      color: AppTheme.textSecondaryColor,
                       size: 16,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       location,
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      style: TextStyle(
+                        color: AppTheme.textSecondaryColor,
+                        fontSize: 14,
+                      ),
                     ),
                     const Spacer(),
                     const Icon(Icons.star, color: Colors.amber, size: 16),
                     const SizedBox(width: 4),
                     Text(
                       rating,
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      style: TextStyle(
+                        color: AppTheme.textSecondaryColor,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),

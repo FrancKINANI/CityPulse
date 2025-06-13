@@ -5,7 +5,9 @@
 ///   - String title : le titre du header
 ///   - String imageUrl : l'URL de l'image à afficher à droite
 library;
+
 import 'package:flutter/material.dart';
+import '../../config/app_theme.dart'; // Importer AppTheme
 
 class SearchOnMapHeader extends StatelessWidget {
   final String title;
@@ -19,7 +21,8 @@ class SearchOnMapHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF112116),
+      color:
+          AppTheme.backgroundColor, // Remplacé par la couleur de fond du thème
       padding: const EdgeInsets.only(top: 16, bottom: 16, left: 64, right: 16),
       width: double.infinity,
       child: Row(
@@ -29,8 +32,9 @@ class SearchOnMapHeader extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFFFFFFF),
+                style: TextStyle(
+                  color: AppTheme
+                      .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
