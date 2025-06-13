@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/settings/settings_screen.dart';
-import 'package:citypulse/screens/settings/settings_header.dart';
-import 'package:citypulse/screens/settings/settings_notifications.dart';
-import 'package:citypulse/screens/settings/settings_preferences.dart';
-import 'package:citypulse/screens/settings/settings_about.dart';
+import 'package:citypulse/features/settings/screens/settings_screen.dart';
+import 'package:citypulse/features/settings/widgets/settings_header.dart';
+import 'package:citypulse/features/settings/widgets/settings_notifications.dart';
+import 'package:citypulse/features/settings/widgets/settings_preferences.dart';
+import 'package:citypulse/features/settings/widgets/settings_about.dart';
 
 void main() {
   group('SettingsScreen Widget Tests', () {

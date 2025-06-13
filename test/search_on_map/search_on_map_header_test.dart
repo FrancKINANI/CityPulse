@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/search_on_map/SearchOnMapHeader.dart';
+import 'package:citypulse/features/search_on_map/widgets/search_on_map_header.dart';
 
 void main() {
   testWidgets('SearchOnMapHeader displays title and image', (

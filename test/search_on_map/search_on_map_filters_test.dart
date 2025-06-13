@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/search_on_map/SearchOnMapFilters.dart';
+import 'package:citypulse/features/search_on_map/widgets/search_on_map_filters.dart';
 
 void main() {
   testWidgets('SearchOnMapFilters displays filters and calls onSelect', (

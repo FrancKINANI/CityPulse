@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/help/help_screen.dart';
-import 'package:citypulse/screens/help/help_header.dart';
-import 'package:citypulse/screens/help/help_faq_section.dart';
-import 'package:citypulse/screens/help/help_contact_section.dart';
-import 'package:citypulse/screens/help/help_navigation_bar.dart';
+import 'package:citypulse/features/help/screens/help_screen.dart';
+import 'package:citypulse/features/help/widgets/help_header.dart';
+import 'package:citypulse/features/help/widgets/help_faq_section.dart';
+import 'package:citypulse/features/help/widgets/help_contact_section.dart';
+import 'package:citypulse/features/help/widgets/help_navigation_bar.dart';
 
 void main() {
   group('Help Screen Widget Tests', () {

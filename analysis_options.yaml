@@ -21,8 +21,27 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
+    avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+
+analyzer:
+  # exclude:
+    # - lib/features/legacy/**
+    # - lib/features/update_imports.dart
+    # - lib/features/add_place/**
+    # - lib/features/explore/**
+    # - lib/features/settings/**
+    # - lib/features/share_tour/**
+    # - lib/features/search_on_map/**
+    # - lib/features/gestionnaire_dashboard/**
+    # - lib/features/moderation/**
+    # - lib/features/notifications/**
+    # - lib/features/place_event_calendar/**
+    # - lib/features/auth/reset_password_screen.dart
+    # - lib/features/auth/signup_screen.dart
+    # - lib/features/auth/index.dart
+    # - lib/features/create_tour/widgets/tour_submit_button.dart
+    # - test/**
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

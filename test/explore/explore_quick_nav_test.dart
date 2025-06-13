@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/explore/ExploreQuickNav.dart';
+import 'package:citypulse/features/explore/widgets/explore_quick_nav.dart';
 
 void main() {
   testWidgets('ExploreQuickNav displays items and calls onNav', (

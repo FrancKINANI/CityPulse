@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/explore/ExploreFeaturedPlaces.dart';
+import 'package:citypulse/features/explore/widgets/explore_featured_places.dart';
 
 void main() {
   testWidgets('ExploreFeaturedPlaces displays featured places', (

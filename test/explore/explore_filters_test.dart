@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/explore/ExploreFilters.dart';
+import 'package:citypulse/features/explore/widgets/explore_filters.dart';
 
 void main() {
   testWidgets('ExploreFilters displays filters and calls onSelect', (

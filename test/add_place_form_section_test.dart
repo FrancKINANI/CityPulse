@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/add_place/AddPlaceFormSection.dart';
+import 'package:citypulse/features/add_place/widgets/add_place_form_section.dart';
 
 void main() {
   testWidgets('AddPlaceFormSection displays label and calls onChanged', (

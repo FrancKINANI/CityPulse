@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/explore/ExploreHeroSection.dart';
+import 'package:citypulse/features/explore/widgets/explore_hero_section.dart';
 
 void main() {
   group('ExploreHeroSection Widget Tests', () {

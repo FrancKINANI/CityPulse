@@ -1,0 +1,11 @@
+export './auth/index.dart';
+export './explore/index.dart';
+export './profile/index.dart';
+export './settings/index.dart';
+export './moderation/index.dart';
+export './notifications/index.dart';
+export './share_tour/index.dart';
+export './gestionnaire_dashboard/index.dart';
+export './add_place/index.dart';
+export './search_on_map/index.dart';
+export './place_event_calendar/index.dart';

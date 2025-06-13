@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/explore_details/explore_details_screen.dart';
-import 'package:citypulse/screens/explore_details/explore_details_header.dart';
-import 'package:citypulse/screens/explore_details/explore_details_info.dart';
-import 'package:citypulse/screens/explore_details/explore_details_gallery.dart';
-import 'package:citypulse/screens/explore_details/explore_details_map.dart';
-import 'package:citypulse/screens/explore_details/explore_details_actions.dart';
+import 'package:citypulse/features/explore_details/screens/explore_details_screen.dart';
+import 'package:citypulse/features/explore_details/widgets/explore_details_header.dart';
+import 'package:citypulse/features/explore_details/widgets/explore_details_info.dart';
+import 'package:citypulse/features/explore_details/widgets/explore_details_gallery.dart';
+import 'package:citypulse/features/explore_details/widgets/explore_details_map.dart';
+import 'package:citypulse/features/explore_details/widgets/explore_details_actions.dart';
 
 void main() {
   group('ExploreDetails Screen Tests', () {
