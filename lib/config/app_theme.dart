@@ -32,7 +32,7 @@ class AppTheme {
   static const Color darkAccentColor = Color(0xFFFFCC80); // Ambre 200
   static const Color darkBackgroundColor = Color(0xFF121212);
   static const Color darkCardColor = Color(0xFF1E1E1E);
-  static const Color darkTextPrimaryColor = Colors.white;
+  static const Color darkTextPrimaryColor = Color.fromARGB(255, 23, 23, 23);
   static const Color darkTextSecondaryColor = Color(0xFFBDBDBD);
   static const Color darkDividerColor = Color(0xFF424242);
 

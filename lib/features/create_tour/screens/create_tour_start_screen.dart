@@ -189,8 +189,8 @@ class CreateTourStartScreen extends StatelessWidget {
           if (index == 0) {
             Navigator.pushReplacementNamed(context, Routes.explore);
           } else if (index == 1) {
-            // Already on Tours related screen, or navigate to Your Tours
-            Navigator.pushReplacementNamed(context, Routes.yourTours);
+            // Navigate to create tour screen instead of yourTours
+            Navigator.pushReplacementNamed(context, Routes.createTour);
           } else if (index == 2) {
             Navigator.pushReplacementNamed(context, Routes.profile);
           }

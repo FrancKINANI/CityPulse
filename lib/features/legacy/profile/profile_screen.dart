@@ -79,7 +79,6 @@ class ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
                               // Profile Info
                               Center(
                                 child: Container(
@@ -227,7 +226,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     child: Text(
                                       "Log Out",
                                       style: TextStyle(
-                                        color: AppTheme.textPrimaryColor,
+                                        color: AppTheme.darkTextPrimaryColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),

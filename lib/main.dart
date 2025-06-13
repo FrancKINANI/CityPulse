@@ -15,7 +15,7 @@ import 'services/notification_service.dart';
 import 'services/theme_service.dart';
 
 // Screens
-import 'features/legacy/screens/welcome_screen.dart';
+import 'features/legacy/screens/Welcome.dart';
 import 'features/auth/screens/signin_screen.dart';
 import 'features/explore/screens/explore_screen.dart';
 import 'features/create_tour/screens/create_tour_start_screen.dart';
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
       themeMode: themeService.themeMode,
       theme: themeService.getLightTheme(),
       darkTheme: themeService.getDarkTheme(),
-      initialRoute: Routes.createTourStart,
+      initialRoute: Routes.welcome,
       routes: {
         Routes.welcome: (context) => const Welcome(),
         Routes.signin: (context) => const SignInScreen(),
