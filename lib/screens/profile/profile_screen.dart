@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../services/navigation_service.dart';
 import '../../config/routes.dart';
-import '../explore/explore_bottom_nav.dart';
+import '../../config/app_theme.dart';
+import '../explore/ExploreBottomNav.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -42,13 +43,13 @@ class ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: const Color(0xFFFFFFFF),
+          color: AppTheme.backgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Container(
-                  color: const Color(0xFFFFFFFF),
+                  color: AppTheme.backgroundColor,
                   width: double.infinity,
                   height: double.infinity,
                   child: SingleChildScrollView(
@@ -56,7 +57,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          color: const Color(0xFF141E16),
+                          color: AppTheme.backgroundColor,
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +83,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     const Text(
                                       "Profile",
                                       style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
+                                        color: AppTheme.darkTextPrimaryColor,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -113,7 +114,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     const Text(
                                       "Sophia Bennett",
                                       style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
+                                        color: AppTheme.darkTextPrimaryColor,
                                         fontSize: 22,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -121,7 +122,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     const Text(
                                       "sophia.bennett@email.com",
                                       style: TextStyle(
-                                        color: Color(0xFF9BBFAA),
+                                        color: AppTheme.darkTextSecondaryColor,
                                         fontSize: 16,
                                       ),
                                     ),
@@ -139,7 +140,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 child: const Text(
                                   "Account",
                                   style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
+                                    color: AppTheme.darkTextPrimaryColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -176,7 +177,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 child: const Text(
                                   "Support",
                                   style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
+                                    color: AppTheme.darkTextPrimaryColor,
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -208,17 +209,17 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xFF283F33),
+                                      color: AppTheme.backgroundColor,
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 9,
                                     ),
                                     width: double.infinity,
                                     alignment: Alignment.center,
-                                    child: const Text(
+                                    child: Text(
                                       "Log Out",
                                       style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
+                                        color: AppTheme.buttonText.color,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -228,7 +229,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                               ),
                               // Spacer
                               Container(
-                                color: const Color(0xFF141E16),
+                                color: AppTheme.backgroundColor,
                                 height: 20,
                               ),
                             ],
@@ -257,7 +258,7 @@ class ProfileScreenState extends State<ProfileScreen> {
     required VoidCallback onTap,
   }) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: AppTheme.backgroundColor,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: InkWell(
         onTap: onTap,
@@ -266,7 +267,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFF283F33),
+                color: AppTheme.darkCardColor,
               ),
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.only(right: 16),
@@ -282,7 +283,10 @@ class ProfileScreenState extends State<ProfileScreen> {
             ),
             Text(
               title,
-              style: const TextStyle(color: Color(0xFFFFFFFF), fontSize: 16),
+              style: TextStyle(
+                color: AppTheme.darkTextPrimaryColor,
+                fontSize: 16,
+              ),
             ),
           ],
         ),

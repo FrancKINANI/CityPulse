@@ -25,7 +25,6 @@ import 'features/create_tour/screens/create_tour_start_screen.dart';
 import 'features/create_tour/screens/creating_tour_loading_screen.dart';
 import 'screens/YourTour.dart';
 import 'screens/ShareTour.dart';
-import 'screens/Profile.dart';
 import 'screens/Setting.dart';
 import 'screens/help/help_screen.dart';
 import 'screens/ScanQRCode.dart';
@@ -37,6 +36,7 @@ import 'screens/ModerationPanel.dart';
 import 'screens/EditProfile.dart';
 import 'screens/AddPlace.dart';
 import 'screens/Reset.dart';
+import 'screens/profile/profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
             const CreatingTourLoadingScreen(),
         Routes.yourTours: (context) => const YourTour(),
         Routes.shareTour: (context) => const ShareTour(),
-        Routes.profile: (context) => const Profile(),
+        Routes.profile: (context) => const ProfileScreen(),
         Routes.settings: (context) => const Setting(),
         Routes.help: (context) => const HelpScreen(),
         Routes.scanQr: (context) => const ScanQRCode(),
