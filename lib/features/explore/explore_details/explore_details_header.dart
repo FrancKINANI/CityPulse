@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ExploreDetailsHeader extends StatelessWidget {
   final String imageUrl;
@@ -18,7 +17,7 @@ class ExploreDetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,40 +32,28 @@ class ExploreDetailsHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: AppTheme.textPrimaryColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(title, style: Theme.of(context).textTheme.headlineSmall),
                 const SizedBox(height: 8),
                 Row(
                   children: [
                     Icon(
                       Icons.location_on,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).textTheme.bodyMedium?.color,
                       size: 16,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       location,
-                      style: TextStyle(
-                        color: AppTheme.textSecondaryColor,
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const Spacer(),
-                    const Icon(Icons.star, color: Colors.amber, size: 16),
-                    const SizedBox(width: 4),
-                    Text(
-                      rating,
-                      style: TextStyle(
-                        color: AppTheme.textSecondaryColor,
-                        fontSize: 14,
-                      ),
+                    Icon(
+                      Icons.star,
+                      color: Theme.of(context).colorScheme.tertiary,
+                      size: 16,
                     ),
+                    const SizedBox(width: 4),
+                    Text(rating, style: Theme.of(context).textTheme.bodyMedium),
                   ],
                 ),
               ],

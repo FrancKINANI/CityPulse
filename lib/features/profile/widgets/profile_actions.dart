@@ -9,22 +9,22 @@ class ProfileActions extends StatelessWidget {
       child: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Modifier le profil'),
+            leading: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
+            title: Text('Modifier le profil', style: Theme.of(context).textTheme.bodyLarge),
             onTap: () {
               // TODO: Implement edit profile
             },
           ),
           ListTile(
-            leading: const Icon(Icons.qr_code),
-            title: const Text('Scanner QR Code'),
+            leading: Icon(Icons.qr_code, color: Theme.of(context).iconTheme.color),
+            title: Text('Scanner QR Code', style: Theme.of(context).textTheme.bodyLarge),
             onTap: () {
               // TODO: Implement QR code scanning
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Déconnexion'),
+            leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.error),
+            title: Text('Déconnexion', style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.error)),
             onTap: () {
               // TODO: Implement logout
             },

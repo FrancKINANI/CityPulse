@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class TourImageUpload extends StatelessWidget {
   final List<String> imageUrls;
@@ -17,16 +15,12 @@ class TourImageUpload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Tour Images',
-            style: themeService.isDarkMode ? AppTheme.darkHeadingStyle : AppTheme.headingStyle,
-          ),
+          Text('Tour Images', style: Theme.of(context).textTheme.headlineLarge),
           const SizedBox(height: 16),
           GridView.builder(
             shrinkWrap: true,
@@ -43,15 +37,13 @@ class TourImageUpload extends StatelessWidget {
                   onTap: onAddImage,
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                      color: themeService.isDarkMode ? AppTheme.darkDividerColor : AppTheme.dividerColor,
-                    ),
+                      border: Border.all(color: Theme.of(context).dividerColor),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add_photo_alternate,
                       size: 40,
-                      color: themeService.isDarkMode ? AppTheme.darkTextSecondaryColor : AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 );

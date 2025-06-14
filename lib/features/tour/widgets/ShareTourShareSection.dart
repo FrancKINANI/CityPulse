@@ -5,17 +5,16 @@
 ///   - String link : le lien à partager
 ///   - String qrImageUrl : l'URL de l'image du QR code
 library;
+
 import 'package:flutter/material.dart';
 
 class ShareTourShareSection extends StatelessWidget {
   final String link;
   final String qrImageUrl;
-  final ThemeService themeService;
   const ShareTourShareSection({
     super.key,
     required this.link,
     required this.qrImageUrl,
-    required this.themeService,
   });
 
   @override
@@ -31,21 +30,15 @@ class ShareTourShareSection extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkSecondaryColor
-                        : AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 1,
                   ),
                   bottom: BorderSide(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkSecondaryColor
-                        : AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 1,
                   ),
                   left: BorderSide(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkSecondaryColor
-                        : AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     width: 1,
                   ),
                 ),
@@ -53,21 +46,14 @@ class ShareTourShareSection extends StatelessWidget {
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12),
                 ),
-                color: themeService.isDarkMode
-                    ? AppTheme.darkCardColor
-                    : AppTheme.cardColor,
+                color: Theme.of(context).cardColor,
               ),
               height: 56,
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 link,
-                style: TextStyle(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
-                  fontSize: 14,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -76,21 +62,15 @@ class ShareTourShareSection extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkSecondaryColor
-                      : AppTheme.secondaryColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   width: 1,
                 ),
                 right: BorderSide(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkSecondaryColor
-                      : AppTheme.secondaryColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   width: 1,
                 ),
                 bottom: BorderSide(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkSecondaryColor
-                      : AppTheme.secondaryColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   width: 1,
                 ),
               ),
@@ -98,9 +78,7 @@ class ShareTourShareSection extends StatelessWidget {
                 topRight: Radius.circular(12),
                 bottomRight: Radius.circular(12),
               ),
-              color: themeService.isDarkMode
-                  ? AppTheme.darkSecondaryColor
-                  : AppTheme.secondaryColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             padding: const EdgeInsets.all(8),
             child: ClipRRect(

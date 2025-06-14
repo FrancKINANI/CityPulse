@@ -1,42 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
-import 'package:citypulse/config/app_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class CreateTourStartScreen extends StatelessWidget {
   const CreateTourStartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-          ), // Adjusted color
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Create a Tour',
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-          ), // Adjusted color
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor, // Adjusted color
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
-        color: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor, // Background color
+        color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
@@ -44,11 +31,7 @@ class CreateTourStartScreen extends StatelessWidget {
             children: [
               Text(
                 'How would you like to start?',
-                style: AppTheme.subheadingStyle.copyWith(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
-                ), // Adjusted color
+                style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
@@ -57,9 +40,7 @@ class CreateTourStartScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                color: themeService.isDarkMode
-                    ? AppTheme.darkCardColor
-                    : AppTheme.cardColor,
+                color: Theme.of(context).cardColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.creatingTourLoading);
@@ -72,27 +53,17 @@ class CreateTourStartScreen extends StatelessWidget {
                         Icon(
                           Icons.auto_awesome,
                           size: 50,
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkAccentColor
-                              : AppTheme.accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'Surprise Me',
-                          style: AppTheme.headingStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextPrimaryColor
-                                : AppTheme.textPrimaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 8),
                         Text(
                           'Let us create a personalized tour for you based on popular places and your preferences.',
-                          style: AppTheme.captionStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextSecondaryColor
-                                : AppTheme.textSecondaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 16),
@@ -101,9 +72,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: themeService.isDarkMode
-                                  ? AppTheme.darkAccentColor
-                                  : AppTheme.accentColor,
+                              backgroundColor: Theme.of(context).primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -116,12 +85,12 @@ class CreateTourStartScreen extends StatelessWidget {
                             },
                             child: Text(
                               'Select',
-                              style: AppTheme.bodyStyle.copyWith(
-                                color: themeService.isDarkMode
-                                    ? AppTheme.darkPrimaryColor
-                                    : AppTheme.primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.labelLarge
+                                  ?.copyWith(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                  ),
                             ),
                           ),
                         ),
@@ -136,9 +105,7 @@ class CreateTourStartScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                color: themeService.isDarkMode
-                    ? AppTheme.darkCardColor
-                    : AppTheme.cardColor,
+                color: Theme.of(context).cardColor,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.createTour);
@@ -151,27 +118,17 @@ class CreateTourStartScreen extends StatelessWidget {
                         Icon(
                           Icons.edit,
                           size: 50,
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkAccentColor
-                              : AppTheme.accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'Create Your Own',
-                          style: AppTheme.headingStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextPrimaryColor
-                                : AppTheme.textPrimaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 7),
                         Text(
                           'Create your own tour by selecting places, setting schedules, and customizing details.',
-                          style: AppTheme.captionStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextSecondaryColor
-                                : AppTheme.textSecondaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 10),
@@ -181,9 +138,7 @@ class CreateTourStartScreen extends StatelessWidget {
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
                               side: BorderSide(
-                                color: themeService.isDarkMode
-                                    ? AppTheme.darkAccentColor
-                                    : AppTheme.accentColor,
+                                color: Theme.of(context).colorScheme.primary,
                                 width: 2,
                               ),
                               shape: RoundedRectangleBorder(
@@ -195,12 +150,12 @@ class CreateTourStartScreen extends StatelessWidget {
                             },
                             child: Text(
                               'Select',
-                              style: AppTheme.bodyStyle.copyWith(
-                                color: themeService.isDarkMode
-                                    ? AppTheme.darkAccentColor
-                                    : AppTheme.accentColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.labelLarge
+                                  ?.copyWith(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
                             ),
                           ),
                         ),
@@ -216,54 +171,24 @@ class CreateTourStartScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.explore,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextSecondaryColor
-                  : AppTheme.textSecondaryColor,
-            ),
+            icon: Icon(Icons.explore, color: Theme.of(context).iconTheme.color),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.list_alt,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkAccentColor
-                  : AppTheme.accentColor,
+              color: Theme.of(context).colorScheme.primary,
             ),
             label: 'My Tours',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextSecondaryColor
-                  : AppTheme.textSecondaryColor,
-            ),
+            icon: Icon(Icons.person, color: Theme.of(context).iconTheme.color),
             label: 'Profile',
           ),
         ],
-        currentIndex: 1, // 'Tours' is selected as per image
-        selectedItemColor: themeService.isDarkMode
-            ? AppTheme.darkAccentColor
-            : AppTheme.accentColor,
-        unselectedItemColor: themeService.isDarkMode
-            ? AppTheme.darkTextSecondaryColor
-            : AppTheme.textSecondaryColor,
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor, // Adjusted color
-        onTap: (index) {
-          // Handle navigation
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, Routes.explore);
-          } else if (index == 1) {
-            // Navigate to create tour screen instead of yourTours
-            Navigator.pushReplacementNamed(context, Routes.createTour);
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, Routes.profile);
-          }
-        },
+        currentIndex: 1,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).unselectedWidgetColor,
       ),
     );
   }

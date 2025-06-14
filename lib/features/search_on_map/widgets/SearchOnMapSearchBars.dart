@@ -9,7 +9,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart'; // Importer AppTheme
 
 class SearchOnMapSearchBars extends StatelessWidget {
   final String category;
@@ -36,7 +35,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: AppTheme.primaryLightColor,
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -50,7 +49,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       style: TextStyle(
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -81,7 +80,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: AppTheme.primaryLightColor,
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -94,7 +93,7 @@ class SearchOnMapSearchBars extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       style: TextStyle(
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

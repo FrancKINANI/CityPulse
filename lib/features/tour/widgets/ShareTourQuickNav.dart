@@ -9,7 +9,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/app_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class ShareTourQuickNav extends StatelessWidget {
   final int selectedIndex;
@@ -22,42 +21,38 @@ class ShareTourQuickNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     final items = [
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/35c761c9-d4fd-4157-976b-de871f847263',
         'label': 'Explore',
-        'color': themeService.currentTheme.textSecondaryColor,
+        'color': Theme.of(context).textTheme.bodySmall?.color,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b3b23ebf-879b-4ab7-9ba9-d0e9bf996153',
         'label': 'My Tours',
-        'color': themeService.currentTheme.textPrimaryColor,
+        'color': Theme.of(context).colorScheme.primary,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/637949da-8f5f-4dee-98ab-101401ce477b',
         'label': 'Create',
-        'color': themeService.currentTheme.textSecondaryColor,
+        'color': Theme.of(context).textTheme.bodySmall?.color,
       },
       {
         'iconUrl':
             'https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/09fe8f8c-a25f-4eb3-a420-c1b75e6b5115',
         'label': 'Profile',
-        'color': themeService.currentTheme.textSecondaryColor,
+        'color': Theme.of(context).textTheme.bodySmall?.color,
       },
     ];
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(
-            color: themeService.currentTheme.dividerColor,
-            width: 1,
-          ),
+          top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
         ),
-        color: themeService.currentTheme.colorScheme.surface,
+        color: Theme.of(context).colorScheme.surface,
       ),
       padding: const EdgeInsets.only(top: 9, bottom: 9, left: 16, right: 16),
       child: Row(
@@ -87,10 +82,8 @@ class ShareTourQuickNav extends StatelessWidget {
                     item['label'] as String,
                     style: TextStyle(
                       color: isSelected
-                          ? (themeService.isDarkMode
-                              ? AppTheme.darkSecondaryColor
-                              : AppTheme.secondaryColor)
-                          : item['color'] as Color,
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).textTheme.bodySmall?.color,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),

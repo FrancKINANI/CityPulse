@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../services/theme_service.dart';
-import '../../../../config/app_theme.dart';
 
 class ExploreFilters extends StatelessWidget {
   final String selected;
@@ -17,7 +15,6 @@ class ExploreFilters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
@@ -28,32 +25,27 @@ class ExploreFilters extends StatelessWidget {
             child: GestureDetector(
               onTap: () => onSelect(filter),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? AppTheme.primaryColor
-                      : themeService.isDarkMode
-                          ? AppTheme.darkBackgroundColor
-                          : AppTheme.backgroundColor,
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: isSelected
-                        ? AppTheme.primaryColor
-                        : themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).dividerColor,
                   ),
                 ),
                 child: Text(
                   filter,
                   style: TextStyle(
                     color: isSelected
-                        ? themeService.isDarkMode
-                            ? AppTheme.darkTextPrimaryColor
-                            : AppTheme.textPrimaryColor
-                        : themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
               ),

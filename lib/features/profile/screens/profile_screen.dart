@@ -4,6 +4,7 @@ import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
+import 'package:citypulse/services/auth_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -145,7 +146,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b118c6a9-77b0-4f0c-bd51-0623e820af3c",
                                 title: "Personal Information",
-                                onTap: () {},
+                                onTap: () {
+                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                  navigationService.navigateTo(Routes.editProfile);
+                                },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,
                               ),
@@ -153,7 +157,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/71d3cf13-15a4-4f71-bd54-ae44cc1c6eed",
                                 title: "App Settings",
-                                onTap: () {},
+                                onTap: () {
+                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                  navigationService.navigateTo(Routes.settings);
+                                },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,
                               ),
@@ -161,7 +168,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/9865ff56-5b1b-46d2-9d1f-89372e4a00a4",
                                 title: "Notifications",
-                                onTap: () {},
+                                onTap: () {
+                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                  navigationService.navigateTo(Routes.notifications);
+                                },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,
                               ),
@@ -184,7 +194,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0593b80e-dc23-444e-ad3a-8222bae962c5",
                                 title: "Help Center",
-                                onTap: () {},
+                                onTap: () {
+                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                  navigationService.navigateTo(Routes.help);
+                                },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,
                               ),
@@ -192,7 +205,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 icon:
                                     "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b3b06ff8-4315-4433-a25d-8ddb2c698b8b",
                                 title: "Contact Us",
-                                onTap: () {},
+                                onTap: () {
+                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                  navigationService.navigateTo(Routes.help); // Assuming 'Help' route for Contact Us
+                                },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,
                               ),
@@ -204,7 +220,13 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   vertical: 12,
                                 ),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    // Placeholder for logout logic
+                                    final authService = Provider.of<AuthService>(context, listen: false);
+                                    await authService.signOut();
+                                    final navigationService = Provider.of<NavigationService>(context, listen: false);
+                                    navigationService.navigateToReplacement(Routes.welcome);
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),

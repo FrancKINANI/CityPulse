@@ -19,9 +19,7 @@ class ThemeButton extends StatelessWidget {
       onPressed: onPressed,
       icon: Icon(
         isDarkMode ? Icons.light_mode : Icons.dark_mode,
-        color: Provider.of<ThemeService>(context).isDarkMode 
-          ? AppTheme.darkTextPrimaryColor 
-          : AppTheme.textPrimaryColor,
+        color: Theme.of(context).iconTheme.color,
       ),
     );
   }

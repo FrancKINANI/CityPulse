@@ -5,17 +5,22 @@
 ///   - String title : le titre du header
 ///   - String imageUrl : l'URL de l'image à afficher
 library;
+
 import 'package:flutter/material.dart';
 
 class YourTourHeader extends StatelessWidget {
   final String title;
   final String imageUrl;
-  const YourTourHeader({super.key, required this.title, required this.imageUrl});
+  const YourTourHeader({
+    super.key,
+    required this.title,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: Theme.of(context).colorScheme.primary,
       padding: const EdgeInsets.all(16),
       width: double.infinity,
       child: Row(
@@ -28,8 +33,8 @@ class YourTourHeader extends StatelessWidget {
           ),
           Text(
             title,
-            style: const TextStyle(
-              color: Color(0xFFFFFFFF),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

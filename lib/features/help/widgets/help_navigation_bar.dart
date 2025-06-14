@@ -6,9 +6,11 @@ class HelpNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        border: Border(top: BorderSide(color: Color(0xFF283F33), width: 1)),
-        color: Color(0xFF1E2D26),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
+        ),
+        color: Theme.of(context).colorScheme.surface,
       ),
       padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 16),
       width: double.infinity,
@@ -17,18 +19,21 @@ class HelpNavigationBar extends StatelessWidget {
         children: [
           // Explore Button
           _buildNavButton(
+            context,
             "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f2bc856a-5fea-4787-a5d6-6abd43645d14",
             "Explore",
             isSelected: false,
           ),
           // Tours Button
           _buildNavButton(
+            context,
             "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/642dfc13-69f0-4b08-a193-8f091ad77ee1",
             "Tours",
             isSelected: false,
           ),
           // Profile Button
           _buildNavButton(
+            context,
             "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1c9fd4bf-3ac9-463b-bfd1-a5b1903f6e23",
             "Profile",
             isSelected: false,
@@ -39,6 +44,7 @@ class HelpNavigationBar extends StatelessWidget {
   }
 
   Widget _buildNavButton(
+    BuildContext context,
     String imageUrl,
     String label, {
     bool isSelected = false,
@@ -67,8 +73,8 @@ class HelpNavigationBar extends StatelessWidget {
                   label,
                   style: TextStyle(
                     color: isSelected
-                        ? const Color(0xFFFFFFFF)
-                        : const Color(0xFF9BBFAA),
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).textTheme.bodySmall?.color,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),

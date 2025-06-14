@@ -6,7 +6,7 @@ class HelpHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: Theme.of(context).appBarTheme.backgroundColor,
       padding: const EdgeInsets.all(16),
       width: double.infinity,
       child: Row(
@@ -20,10 +20,10 @@ class HelpHeader extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          const Text(
+          Text(
             "Help",
             style: TextStyle(
-              color: Color(0xFFFFFFFF),
+              color: Theme.of(context).appBarTheme.foregroundColor,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

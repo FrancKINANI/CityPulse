@@ -187,8 +187,15 @@ class AppTheme {
   );
 
   // Style de carte ajouté depuis styles.dart
-  static final CardTheme cardTheme = CardTheme(
+  static final CardThemeData lightCardThemeData = CardThemeData(
     color: cardColor,
+    elevation: 0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  );
+
+  static final CardThemeData darkCardThemeData = CardThemeData(
+    color: darkCardColor,
     elevation: 0,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -211,39 +218,49 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.light,
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: backgroundColor,
-      cardColor: cardColor,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: primaryColor,
+        onPrimary: textPrimaryColor,
         secondary: secondaryColor,
-        tertiary: accentColor,
+        onSecondary: Colors.white,
         surface: backgroundColor,
+        onSurface: textPrimaryColor,
+        background: backgroundColor,
+        onBackground: textPrimaryColor,
         error: errorColor,
+        onError: Colors.white,
       ),
-      textTheme: TextTheme(
+      scaffoldBackgroundColor: backgroundColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: backgroundColor,
+        elevation: 0,
+        iconTheme: IconThemeData(color: textPrimaryColor),
+        titleTextStyle: TextStyle(
+          color: textPrimaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      textTheme: const TextTheme(
         headlineLarge: headingStyle,
         headlineMedium: subheadingStyle,
         bodyLarge: bodyStyle,
-        bodyMedium: captionStyle,
+        bodyMedium: bodyStyle,
+        bodySmall: captionStyle,
+        // Styles ajoutés depuis styles.dart
+        displayLarge: headline1,
+        displayMedium: headline2,
+        displaySmall: headline3,
+        titleLarge: body1,
+        titleMedium: body2,
+        labelLarge: buttonText,
       ),
-      appBarTheme: appBarTheme,
       elevatedButtonTheme: ElevatedButtonThemeData(style: primaryButtonStyle),
       textButtonTheme: TextButtonThemeData(style: secondaryButtonStyle),
       outlinedButtonTheme: OutlinedButtonThemeData(style: outlinedButtonStyle),
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: cardColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
-      ),
-      dividerTheme: const DividerThemeData(color: dividerColor, thickness: 1),
-      useMaterial3: true,
+      inputDecorationTheme: inputDecorationTheme,
+      cardTheme: lightCardThemeData,
+      dividerColor: dividerColor,
     );
   }
 
@@ -251,67 +268,64 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.dark,
       primaryColor: darkPrimaryColor,
-      scaffoldBackgroundColor: darkBackgroundColor,
-      cardColor: darkCardColor,
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: darkPrimaryColor,
-        secondary: darkSecondaryColor, // Utilisation de darkSecondaryColor
-        tertiary: darkAccentColor, // Utilisation de darkAccentColor
+        onPrimary: darkTextPrimaryColor,
+        secondary: darkSecondaryColor,
+        onSecondary: Colors.white,
         surface: darkBackgroundColor,
-        error: errorColor, // Erreur reste la même
+        onSurface: darkTextPrimaryColor,
+        background: darkBackgroundColor,
+        onBackground: darkTextPrimaryColor,
+        error: errorColor,
+        onError: Colors.white,
+      ),
+      scaffoldBackgroundColor: darkBackgroundColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: darkBackgroundColor,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: darkTextPrimaryColor),
+        titleTextStyle: darkHeadingStyle.copyWith(fontSize: 20),
       ),
       textTheme: TextTheme(
         headlineLarge: darkHeadingStyle,
         headlineMedium: darkSubheadingStyle,
         bodyLarge: darkBodyStyle,
-        bodyMedium: darkCaptionStyle,
-      ),
-      appBarTheme: appBarTheme.copyWith(
-        // Copier le thème de l'AppBar et ajuster pour le mode sombre
-        backgroundColor: darkBackgroundColor,
-        titleTextStyle: darkHeadingStyle.copyWith(
-          fontSize: 18,
-        ), // Utiliser darkHeadingStyle
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ), // Icônes blanches pour le mode sombre
+        bodyMedium: darkBodyStyle,
+        bodySmall: darkCaptionStyle,
+        // Styles ajoutés depuis styles.dart
+        displayLarge: headline1.copyWith(color: darkTextPrimaryColor),
+        displayMedium: headline2.copyWith(color: darkTextPrimaryColor),
+        displaySmall: headline3.copyWith(color: darkTextPrimaryColor),
+        titleLarge: body1.copyWith(color: darkTextPrimaryColor),
+        titleMedium: body2.copyWith(color: darkTextPrimaryColor),
+        labelLarge: buttonText,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: primaryButtonStyle.copyWith(
-          // Copier le style du bouton et ajuster pour le mode sombre
-          backgroundColor: WidgetStateProperty.all(darkSecondaryColor),
-          foregroundColor: WidgetStateProperty.all(Colors.white),
+          backgroundColor: MaterialStateProperty.all(darkSecondaryColor),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: secondaryButtonStyle.copyWith(
-          foregroundColor: WidgetStateProperty.all(darkSecondaryColor),
+          foregroundColor: MaterialStateProperty.all(darkSecondaryColor),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: outlinedButtonStyle.copyWith(
-          foregroundColor: WidgetStateProperty.all(darkTextPrimaryColor),
-          side: WidgetStateProperty.all(BorderSide(color: darkDividerColor)),
+          foregroundColor: MaterialStateProperty.all(darkTextPrimaryColor),
+          side: MaterialStateProperty.all(
+            const BorderSide(color: darkDividerColor),
+          ),
         ),
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
+      inputDecorationTheme: inputDecorationTheme.copyWith(
         fillColor: darkCardColor,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          borderSide: BorderSide.none,
-        ),
         hintStyle: TextStyle(color: darkTextSecondaryColor),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
       ),
-      dividerTheme: const DividerThemeData(
-        color: darkDividerColor,
-        thickness: 1,
-      ),
-      useMaterial3: true,
+      cardTheme: darkCardThemeData,
+      dividerColor: darkDividerColor,
     );
   }
 }

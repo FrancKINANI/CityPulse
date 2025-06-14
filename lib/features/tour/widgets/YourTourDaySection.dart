@@ -4,12 +4,10 @@
 /// Props :
 ///   - String dayTitle : le titre de la journée (ex : 'Day 1')
 ///   - List<YourTourStep> steps : liste des étapes de la journée
-///   - ThemeService themeService : service de thème pour les couleurs
 library;
 
 import 'package:flutter/material.dart';
 import '../../../config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class YourTourStep {
   final String imageUrl;
@@ -25,12 +23,10 @@ class YourTourStep {
 class YourTourDaySection extends StatelessWidget {
   final String dayTitle;
   final List<YourTourStep> steps;
-  final ThemeService themeService;
   const YourTourDaySection({
     super.key,
     required this.dayTitle,
     required this.steps,
-    required this.themeService,
   });
 
   @override
@@ -40,15 +36,9 @@ class YourTourDaySection extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(top: 20, bottom: 20, left: 16),
-          child: Text(
-            dayTitle,
-            style: AppTheme.subheadingStyle.copyWith(
-                color: themeService.isDarkMode
-                    ? AppTheme.darkTextPrimaryColor
-                    : AppTheme.textPrimaryColor),
-          ),
+          child: Text(dayTitle, style: Theme.of(context).textTheme.titleMedium),
         ),
-        for (final step in steps) _YourTourStepCard(step: step, themeService: themeService),
+        for (final step in steps) _YourTourStepCard(step: step),
       ],
     );
   }
@@ -56,13 +46,12 @@ class YourTourDaySection extends StatelessWidget {
 
 class _YourTourStepCard extends StatelessWidget {
   final YourTourStep step;
-  final ThemeService themeService;
-  const _YourTourStepCard({required this.step, required this.themeService});
+  const _YourTourStepCard({required this.step});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: themeService.isDarkMode ? AppTheme.darkCardColor : AppTheme.cardColor,
+      color: Theme.of(context).cardColor,
       padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 8),
@@ -84,22 +73,15 @@ class _YourTourStepCard extends StatelessWidget {
                 children: [
                   Text(
                     step.title,
-                    style: AppTheme.bodyStyle.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextPrimaryColor
-                          : AppTheme.textPrimaryColor,
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(right: 11),
                     child: Text(
                       step.time,
-                      style: AppTheme.captionStyle.copyWith(
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ],

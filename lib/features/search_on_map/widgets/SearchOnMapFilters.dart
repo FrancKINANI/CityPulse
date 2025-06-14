@@ -9,7 +9,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart'; // Importer AppTheme
 
 class SearchOnMapFilters extends StatelessWidget {
   final String selected;
@@ -36,10 +35,12 @@ class SearchOnMapFilters extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: isSelected
-                    ? AppTheme
-                          .secondaryColor // Couleur secondaire pour le filtre sélectionné (orange)
-                    : AppTheme
-                          .primaryLightColor, // Couleur claire du thème pour les filtres non sélectionnés
+                    ? Theme.of(context)
+                          .colorScheme
+                          .secondary // Couleur secondaire pour le filtre sélectionné (orange)
+                    : Theme.of(context)
+                          .colorScheme
+                          .primaryContainer, // Couleur claire du thème pour les filtres non sélectionnés
               ),
               padding: const EdgeInsets.only(
                 top: 5,
@@ -51,8 +52,9 @@ class SearchOnMapFilters extends StatelessWidget {
               child: Text(
                 filter,
                 style: TextStyle(
-                  color: AppTheme
-                      .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface, // Utiliser la couleur de texte du thème
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),

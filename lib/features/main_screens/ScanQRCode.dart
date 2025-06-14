@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../legacy/config/app_theme.dart';
 
 class ScanQRCode extends StatefulWidget {
   const ScanQRCode({super.key});
@@ -14,13 +13,13 @@ class ScanQRCodeState extends State<ScanQRCode> {
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Container(
-                  color: AppTheme.backgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   width: double.infinity,
                   height: double.infinity,
                   child: SingleChildScrollView(
@@ -29,7 +28,7 @@ class ScanQRCodeState extends State<ScanQRCode> {
                       children: [
                         IntrinsicHeight(
                           child: Container(
-                            color: AppTheme.backgroundColor,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

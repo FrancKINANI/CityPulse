@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:provider/provider.dart';
+// import 'package:citypulse/config/app_theme.dart'; // Supprimé car nous utilisons Theme.of(context)
+// import 'package:citypulse/services/theme_service.dart'; // Supprimé car nous utilisons Theme.of(context)
+// import 'package:provider/provider.dart'; // Supprimé si ThemeService n'est plus utilisé ici
 
 class SettingsHeader extends StatelessWidget {
   final String userName;
@@ -19,27 +19,28 @@ class SettingsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
+    // final themeService = Provider.of<ThemeService>(context); // Supprimé
     return Container(
-      color: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme.backgroundColor,
+      color: Theme.of(
+        context,
+      ).colorScheme.background, // Utilisation de Theme.of(context)
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const BackButton(color: AppTheme.textColor),
+              BackButton(
+                color: Theme.of(
+                  context,
+                ).iconTheme.color, // Utilisation de Theme.of(context)
+              ),
               const SizedBox(width: 8),
               Text(
                 'Paramètres',
-                style: TextStyle(
-                  fontSize: 20,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  // Utilisation de Theme.of(context).textTheme
                   fontWeight: FontWeight.bold,
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -53,7 +54,9 @@ class SettingsHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppTheme.backgroundColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.background.withOpacity(
+                      0.1,
+                    ), // Utilisation de Theme.of(context)
                     width: 2,
                   ),
                 ),
@@ -69,22 +72,17 @@ class SettingsHeader extends StatelessWidget {
                   children: [
                     Text(
                       userName,
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        // Utilisation de Theme.of(context).textTheme
                         fontWeight: FontWeight.bold,
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextPrimaryColor
-                            : AppTheme.textPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       userEmail,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        // Utilisation de Theme.of(context).textTheme
+                        // color: Theme.of(context).colorScheme.onSurfaceVariant, // Alternative for secondary text
                       ),
                     ),
                   ],
@@ -94,9 +92,9 @@ class SettingsHeader extends StatelessWidget {
                 onPressed: onEditProfile,
                 icon: Icon(
                   Icons.edit,
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
+                  color: Theme.of(
+                    context,
+                  ).iconTheme.color, // Utilisation de Theme.of(context)
                 ),
               ),
             ],

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import 'package:citypulse/services/tour_service.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:citypulse/features/tour/widgets/tour_progress_bar.dart';
 
 class CreateTourScreen extends StatefulWidget {
@@ -245,55 +243,48 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
     }
   }
 
-  Widget _buildFilterButton(String category, ThemeService themeService) {
+  Widget _buildFilterButton(String category) {
     final isSelected = _selectedCategory == category;
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: ChoiceChip(
         label: Text(category),
         selected: isSelected,
-        selectedColor: isSelected
-            ? Theme.of(context).colorScheme.secondary
-            : (themeService.isDarkMode
-                  ? AppTheme.darkAccentColor
-                  : AppTheme.accentColor),
-        labelStyle: TextStyle(
-          color: isSelected
-              ? (themeService.isDarkMode
-                    ? AppTheme.darkPrimaryColor
-                    : AppTheme.primaryColor)
-              : (themeService.isDarkMode
-                    ? AppTheme.darkTextSecondaryColor
-                    : AppTheme.textSecondaryColor),
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkCardColor
-            : AppTheme.cardColor,
+        selectedColor: Theme.of(context).colorScheme.primary,
         onSelected: (selected) {
           setState(() {
             _selectedCategory = category;
-            _performSearch(_searchController.text);
+            _performSearch(
+              _searchController.text,
+            ); // Re-filter on category change
           });
         },
+        labelStyle: TextStyle(
+          color: isSelected
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).textTheme.bodyMedium?.color,
+        ),
+        backgroundColor: Theme.of(context).cardColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).dividerColor,
+            width: 1,
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildPlaceCard(
-    Map<String, dynamic> place,
-    ThemeService themeService,
-  ) {
+  Widget _buildPlaceCard(Map<String, dynamic> place) {
     final isSelected = _selectedPlaces.any((p) => p.id == place['id']);
 
     return Card(
       color: isSelected
-          ? (themeService.isDarkMode
-                ? AppTheme.darkAccentColor.withOpacity(0.2)
-                : AppTheme.accentColor.withOpacity(0.2))
-          : (themeService.isDarkMode
-                ? AppTheme.darkCardColor
-                : AppTheme.cardColor),
+          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+          : Theme.of(context).cardColor,
       margin: const EdgeInsets.only(bottom: 16.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
@@ -310,14 +301,10 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 errorBuilder: (context, error, stackTrace) => Container(
                   width: 80,
                   height: 80,
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkCardColor
-                      : Colors.grey[300], // Adjust for dark mode if needed
+                  color: Theme.of(context).colorScheme.surface,
                   child: Icon(
                     Icons.image_not_supported,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : Colors.grey, // Adjust for dark mode if needed
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
               ),
@@ -329,32 +316,21 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 children: [
                   Text(
                     place['name'],
-                    style: AppTheme.bodyStyle.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextPrimaryColor
-                          : AppTheme.textPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     place['description'],
-                    style: AppTheme.captionStyle.copyWith(
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextSecondaryColor
-                          : AppTheme.textSecondaryColor,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     (place['categories'] as List<dynamic>).join(' • '),
-                    style: AppTheme.captionStyle.copyWith(
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextSecondaryColor
-                          : AppTheme.textSecondaryColor,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),
@@ -363,9 +339,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: isSelected
                     ? Theme.of(context).colorScheme.secondary
-                    : (themeService.isDarkMode
-                          ? AppTheme.darkAccentColor
-                          : AppTheme.accentColor),
+                    : Theme.of(context).colorScheme.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -387,10 +361,10 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
               },
               child: Text(
                 isSelected ? 'Remove' : 'Add to tour',
-                style: AppTheme.captionStyle.copyWith(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkPrimaryColor
-                      : AppTheme.primaryColor,
+                style: TextStyle(
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : Theme.of(context).colorScheme.onPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -403,36 +377,25 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Create Tour',
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-          ),
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            color: themeService.isDarkMode
-                ? AppTheme.darkBackgroundColor
-                : AppTheme.backgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               children: [
                 // Tour progress indicator
@@ -451,37 +414,52 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       children: [
                         Text(
                           'Tour Description',
-                          style: AppTheme.subheadingStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextPrimaryColor
-                                : AppTheme.textPrimaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _titleController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a title for your tour';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter tour title',
+                            filled: true,
+                            fillColor: Theme.of(context).cardColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                            hintStyle: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(color: Theme.of(context).hintColor),
+                          ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                        ),
+                        const SizedBox(height: 16),
                         TextFormField(
                           controller: _descriptionController,
                           decoration: InputDecoration(
                             hintText:
                                 'Enter a detailed description of your tour...',
                             filled: true,
-                            fillColor: themeService.isDarkMode
-                                ? AppTheme.darkCardColor
-                                : AppTheme.cardColor,
+                            fillColor: Theme.of(context).cardColor,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide.none,
                             ),
-                            hintStyle: AppTheme.bodyStyle.copyWith(
-                              color: themeService.isDarkMode
-                                  ? AppTheme.darkTextSecondaryColor
-                                  : AppTheme.textSecondaryColor,
-                            ),
+                            hintStyle: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(color: Theme.of(context).hintColor),
                           ),
-                          style: AppTheme.bodyStyle.copyWith(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextPrimaryColor
-                                : AppTheme.textPrimaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
                           maxLines: 4,
                         ),
                       ],
@@ -497,20 +475,14 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                     children: [
                       Text(
                         'Tour Locations',
-                        style: AppTheme.subheadingStyle.copyWith(
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkTextPrimaryColor
-                              : AppTheme.textPrimaryColor,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
                       if (_selectedPlaces.isNotEmpty) ...[
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkCardColor
-                                : AppTheme.cardColor,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Column(
@@ -518,12 +490,8 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                             children: [
                               Text(
                                 'Selected Places (${_selectedPlaces.length})',
-                                style: AppTheme.bodyStyle.copyWith(
-                                  color: themeService.isDarkMode
-                                      ? AppTheme.darkTextPrimaryColor
-                                      : AppTheme.textPrimaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context).textTheme.bodyLarge
+                                    ?.copyWith(fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 8),
                               Wrap(
@@ -533,18 +501,21 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                                   return Chip(
                                     label: Text(
                                       place.name,
-                                      style: TextStyle(
-                                        color: themeService.isDarkMode
-                                            ? AppTheme.darkPrimaryColor
-                                            : AppTheme.primaryColor,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                          ),
                                     ),
-                                    backgroundColor: themeService.isDarkMode
-                                        ? AppTheme.darkAccentColor
-                                        : AppTheme.accentColor,
-                                    deleteIconColor: themeService.isDarkMode
-                                        ? AppTheme.darkPrimaryColor
-                                        : AppTheme.primaryColor,
+                                    backgroundColor: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                    deleteIconColor: Theme.of(
+                                      context,
+                                    ).colorScheme.onSecondary,
                                     onDeleted: () =>
                                         _removePlaceFromTour(place),
                                   );
@@ -568,23 +539,16 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                     decoration: InputDecoration(
                       hintText: 'Search places, restaurants, attractions...',
                       filled: true,
-                      fillColor: themeService.isDarkMode
-                          ? AppTheme.darkCardColor
-                          : AppTheme.cardColor,
+                      fillColor: Theme.of(context).cardColor,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
                       ),
-                      hintStyle: AppTheme.bodyStyle.copyWith(
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
-                      ),
+                      hintStyle: Theme.of(context).textTheme.bodyMedium
+                          ?.copyWith(color: Theme.of(context).hintColor),
                     ),
-                    style: AppTheme.bodyStyle.copyWith(
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextPrimaryColor
-                          : AppTheme.textPrimaryColor,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ),
@@ -596,12 +560,12 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     children: [
-                      _buildFilterButton('All', themeService),
-                      _buildFilterButton('Park', themeService),
-                      _buildFilterButton('Museum', themeService),
-                      _buildFilterButton('Zoo', themeService),
-                      _buildFilterButton('Historic', themeService),
-                      _buildFilterButton('Restaurant', themeService),
+                      _buildFilterButton('All'),
+                      _buildFilterButton('Park'),
+                      _buildFilterButton('Museum'),
+                      _buildFilterButton('Zoo'),
+                      _buildFilterButton('Historic'),
+                      _buildFilterButton('Restaurant'),
                     ],
                   ),
                 ),
@@ -616,11 +580,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                         _searchResults.isNotEmpty
                             ? 'Search Results'
                             : 'Popular Places',
-                        style: AppTheme.subheadingStyle.copyWith(
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkTextPrimaryColor
-                              : AppTheme.textPrimaryColor,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 16),
                       _searchResults.isNotEmpty
@@ -629,10 +589,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: _searchResults.length,
                               itemBuilder: (context, index) {
-                                return _buildPlaceCard(
-                                  _searchResults[index],
-                                  themeService,
-                                );
+                                return _buildPlaceCard(_searchResults[index]);
                               },
                             )
                           : ListView.builder(
@@ -640,10 +597,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: _popularPlaces.length,
                               itemBuilder: (context, index) {
-                                return _buildPlaceCard(
-                                  _popularPlaces[index],
-                                  themeService,
-                                );
+                                return _buildPlaceCard(_popularPlaces[index]);
                               },
                             ),
                     ],
@@ -656,45 +610,27 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _handleSubmit,
-                    style: AppTheme.primaryButtonStyle.copyWith(
-                      backgroundColor: WidgetStateProperty.resolveWith<Color>((
-                        Set<WidgetState> states,
-                      ) {
-                        if (states.contains(WidgetState.disabled)) {
-                          return themeService.isDarkMode
-                              ? AppTheme.darkSecondaryColor.withOpacity(0.5)
-                              : AppTheme.secondaryColor.withOpacity(0.5);
-                        }
-                        return themeService.isDarkMode
-                            ? AppTheme.darkSecondaryColor
-                            : AppTheme.secondaryColor;
-                      }),
-                      foregroundColor: WidgetStateProperty.resolveWith<Color>((
-                        Set<WidgetState> states,
-                      ) {
-                        return themeService.isDarkMode
-                            ? AppTheme.darkPrimaryColor
-                            : AppTheme.primaryColor;
-                      }),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: _isLoading
                         ? SizedBox(
                             width: 24,
                             height: 24,
                             child: CircularProgressIndicator(
-                              color: themeService.isDarkMode
-                                  ? AppTheme.darkPrimaryColor
-                                  : AppTheme.primaryColor,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               strokeWidth: 2,
                             ),
                           )
                         : Text(
                             'Create Tour',
-                            style: AppTheme.buttonText.copyWith(
-                              color: themeService.isDarkMode
-                                  ? AppTheme.darkPrimaryColor
-                                  : AppTheme.primaryColor,
-                            ),
+                            style: Theme.of(context).textTheme.labelLarge
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                           ),
                   ),
                 ),

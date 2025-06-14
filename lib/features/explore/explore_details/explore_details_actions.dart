@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ExploreDetailsActions extends StatelessWidget {
   final VoidCallback onAddToTour;
@@ -18,7 +17,7 @@ class ExploreDetailsActions extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -31,6 +30,7 @@ class ExploreDetailsActions extends StatelessWidget {
         children: [
           Expanded(
             child: _buildActionButton(
+              context: context,
               icon: Icons.add_circle_outline,
               label: 'Add to Tour',
               onPressed: onAddToTour,
@@ -39,6 +39,7 @@ class ExploreDetailsActions extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: _buildActionButton(
+              context: context,
               icon: Icons.share,
               label: 'Share',
               onPressed: onShare,
@@ -47,6 +48,7 @@ class ExploreDetailsActions extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: _buildActionButton(
+              context: context,
               icon: Icons.calendar_today,
               label: 'Calendar',
               onPressed: onCalendar,
@@ -58,6 +60,7 @@ class ExploreDetailsActions extends StatelessWidget {
   }
 
   Widget _buildActionButton({
+    required BuildContext context,
     required IconData icon,
     required String label,
     required VoidCallback onPressed,
@@ -65,18 +68,21 @@ class ExploreDetailsActions extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppTheme.secondaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         padding: const EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: AppTheme.backgroundColor, size: 24),
+          Icon(icon, color: Theme.of(context).colorScheme.onPrimary, size: 24),
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(fontSize: 12, color: AppTheme.backgroundColor),
+            style: TextStyle(
+              fontSize: 12,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ],
       ),

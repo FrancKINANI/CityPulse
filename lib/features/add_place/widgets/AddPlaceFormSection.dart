@@ -31,7 +31,7 @@ class AddPlaceFormSection extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: const Color(0xFF264433),
+            color: const Color(0xFFFFA500),
           ),
           height: label == "Description" ? 144 : 32,
           width: double.infinity,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 /// Widget AuthHeader
 /// En-tête pour les écrans d'authentification.
@@ -12,14 +10,8 @@ import 'package:citypulse/config/app_theme.dart';
 class AuthHeader extends StatelessWidget {
   final String title;
   final String? subtitle;
-  final ThemeService themeService;
 
-  const AuthHeader({
-    super.key,
-    required this.title,
-    this.subtitle,
-    required this.themeService,
-  });
+  const AuthHeader({super.key, required this.title, this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +21,16 @@ class AuthHeader extends StatelessWidget {
         const SizedBox(height: 48),
         Text(
           title,
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         if (subtitle != null) ...[
           const SizedBox(height: 16),
           Text(
             subtitle!,
-            style: TextStyle(
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextSecondaryColor
-                  : AppTheme.textSecondaryColor,
-              fontSize: 16,
-            ),
+            style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
         ],

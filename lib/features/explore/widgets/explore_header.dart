@@ -8,9 +8,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class ExploreHeader extends StatelessWidget {
   final String value;
@@ -23,9 +20,8 @@ class ExploreHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: themeService.isDarkMode ? AppTheme.darkBackgroundColor : AppTheme.backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       width: double.infinity,
       child: Row(
@@ -37,10 +33,7 @@ class ExploreHeader extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              color: themeService.isDarkMode
-                  ? AppTheme.primaryLightColor :
-                  AppTheme.darkPrimaryColor,
-                  
+              color: Theme.of(context).cardColor,
             ),
             padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16),
             child: ClipRRect(
@@ -64,9 +57,7 @@ class ExploreHeader extends StatelessWidget {
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12),
                 ),
-                color: themeService.isDarkMode
-                    ? AppTheme.primaryLightColor
-                    : AppTheme.darkPrimaryColor,
+                color: Theme.of(context).cardColor,
               ),
               padding: const EdgeInsets.only(
                 top: 12,
@@ -76,13 +67,13 @@ class ExploreHeader extends StatelessWidget {
               ),
               child: TextField(
                 style: TextStyle(
-                  color: themeService.isDarkMode ? AppTheme.primaryColor : AppTheme.darkTextPrimaryColor,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                   fontSize: 16,
                 ),
                 onChanged: onChanged,
                 decoration: InputDecoration(
                   hintText: "Search",
-                  hintStyle: TextStyle(color: themeService.isDarkMode ? AppTheme.primaryColor : AppTheme.darkTextPrimaryColor),
+                  hintStyle: TextStyle(color: Theme.of(context).hintColor),
                   isDense: true,
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
                   border: InputBorder.none,

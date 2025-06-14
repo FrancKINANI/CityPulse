@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class FeaturedPlace {
   final String imageUrl;
@@ -24,7 +23,6 @@ class ExploreFeaturedPlaces extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,7 +30,7 @@ class ExploreFeaturedPlaces extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Text(
             'Featured Places',
-            style: isDarkMode ? AppTheme.darkHeadingStyle : AppTheme.headingStyle,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
         SizedBox(
@@ -47,7 +45,7 @@ class ExploreFeaturedPlaces extends StatelessWidget {
                 width: 220,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
-                  color: isDarkMode ? AppTheme.darkCardColor : AppTheme.cardColor,
+                  color: Theme.of(context).cardColor,
                   child: InkWell(
                     onTap: () => onPlaceSelected?.call(place),
                     child: Column(
@@ -67,14 +65,14 @@ class ExploreFeaturedPlaces extends StatelessWidget {
                             children: [
                               Text(
                                 place.title,
-                                style: (isDarkMode ? AppTheme.darkBodyStyle : AppTheme.bodyStyle)
-                                    .copyWith(fontWeight: FontWeight.bold),
+                                style: Theme.of(context).textTheme.bodyLarge
+                                    ?.copyWith(fontWeight: FontWeight.bold),
                               ),
                               if (place.description != null) ...[
                                 const SizedBox(height: 4),
                                 Text(
                                   place.description!,
-                                  style: isDarkMode ? AppTheme.darkCaptionStyle : AppTheme.captionStyle,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -101,7 +99,6 @@ class _FeaturedPlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: const EdgeInsets.only(bottom: 12, left: 16, right: 16),
       child: Column(
@@ -117,11 +114,9 @@ class _FeaturedPlaceCard extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 1),
             child: Text(
               place.title,
-              style: TextStyle(
-                color: isDarkMode ? AppTheme.darkTextPrimaryColor : AppTheme.textPrimaryColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
         ],

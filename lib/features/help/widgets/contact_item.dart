@@ -9,7 +9,7 @@ class ContactItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: Theme.of(context).cardColor,
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       width: double.infinity,
       child: Row(
@@ -21,7 +21,7 @@ class ContactItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFF283F33),
+                color: Theme.of(context).colorScheme.surface,
               ),
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.only(right: 16),
@@ -40,10 +40,7 @@ class ContactItem extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 1),
-            child: Text(
-              title,
-              style: const TextStyle(color: Color(0xFFFFFFFF), fontSize: 16),
-            ),
+            child: Text(title, style: Theme.of(context).textTheme.bodyLarge),
           ),
         ],
       ),

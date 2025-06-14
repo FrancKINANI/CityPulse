@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
 import 'package:citypulse/features/auth/widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
@@ -53,12 +52,11 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: const Color(0xFF141E16),
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -67,11 +65,10 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AuthHeader(
+                    const AuthHeader(
                       title: "Reset Password",
                       subtitle:
                           "Enter your email and we'll send you instructions to reset your password",
-                      themeService: themeService,
                     ),
 
                     if (!_resetSent) ...[
@@ -113,32 +110,25 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF283F33),
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.check_circle,
-                              color: Color(0xFF4CAF50),
+                              color: Theme.of(context).colorScheme.tertiary,
                               size: 48,
                             ),
                             const SizedBox(height: 16),
-                            const Text(
+                            Text(
                               "Reset link sent!",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             const SizedBox(height: 8),
                             Text(
                               "We've sent instructions to ${_emailController.text}",
-                              style: const TextStyle(
-                                color: Color(0xFF9BBFAA),
-                                fontSize: 14,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -152,7 +142,7 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         onPressed: () {
                           Navigator.pushReplacementNamed(context, '/signin');
                         },
-                        backgroundColor: const Color(0xFF283F33),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                       ),
                     ],
 
@@ -165,7 +155,6 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         onLinkPressed: () {
                           Navigator.pushReplacementNamed(context, '/signin');
                         },
-                        themeService: themeService,
                       ),
                   ],
                 ),

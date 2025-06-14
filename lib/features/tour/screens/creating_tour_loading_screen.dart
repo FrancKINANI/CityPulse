@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import 'package:citypulse/services/tour_service.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'dart:math' as math;
 
 class CreatingTourLoadingScreen extends StatefulWidget {
@@ -188,34 +186,23 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Creating Tour',
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-          ),
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
-        color: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Center(
@@ -224,32 +211,24 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
               children: [
                 LinearProgressIndicator(
                   value: _progressValue,
-                  backgroundColor: themeService.isDarkMode
-                      ? AppTheme.darkCardColor
-                      : AppTheme.cardColor,
+                  backgroundColor: Theme.of(context).cardColor,
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    themeService.isDarkMode
-                        ? AppTheme.darkAccentColor
-                        : AppTheme.accentColor,
+                    Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 const SizedBox(height: 20),
                 Text(
                   '${(_progressValue * 100).toInt()}% complete',
-                  style: AppTheme.bodyStyle.copyWith(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   _statusText,
                   textAlign: TextAlign.center,
-                  style: AppTheme.captionStyle.copyWith(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextPrimaryColor
-                        : AppTheme.textPrimaryColor,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
                 const SizedBox(height: 40),
@@ -274,9 +253,9 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
                     height: 50,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: themeService.isDarkMode
-                            ? AppTheme.darkSecondaryColor
-                            : AppTheme.secondaryColor,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).colorScheme.secondary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -287,10 +266,7 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
                       },
                       child: Text(
                         'Done',
-                        style: AppTheme.bodyStyle.copyWith(
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkPrimaryColor
-                              : AppTheme.primaryColor,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),

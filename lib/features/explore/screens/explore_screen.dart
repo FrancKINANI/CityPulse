@@ -89,11 +89,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
-      backgroundColor: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [

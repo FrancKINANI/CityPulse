@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:provider/provider.dart';
 import 'package:citypulse/config/routes.dart';
 
 class Welcome extends StatefulWidget {
@@ -13,18 +10,18 @@ class Welcome extends StatefulWidget {
 class WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Container(
-                  color: AppTheme.backgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   width: double.infinity,
                   height: double.infinity,
                   child: SingleChildScrollView(
@@ -36,8 +33,7 @@ class WelcomeState extends State<Welcome> {
                             margin: const EdgeInsets.only(bottom: 368),
                             width: double.infinity,
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   margin: const EdgeInsets.only(
@@ -49,13 +45,13 @@ class WelcomeState extends State<Welcome> {
                                   width: double.infinity,
                                   child: Text(
                                     "CityPulse",
-                                    style: TextStyle(
-                                      color: themeService.isDarkMode
-                                          ? AppTheme.darkTextPrimaryColor
-                                          : AppTheme.textPrimaryColor,
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineLarge
+                                        ?.copyWith(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -67,18 +63,18 @@ class WelcomeState extends State<Welcome> {
                                   width: double.infinity,
                                   child: Text(
                                     "Explore the city's heartbeat",
-                                    style: TextStyle(
-                                      color: themeService.isDarkMode
-                                          ? AppTheme.darkTextSecondaryColor
-                                          : AppTheme.textSecondaryColor,
-                                      fontSize: 14,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(fontSize: 14),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 IntrinsicHeight(
                                   child: Container(
-                                    color: AppTheme.backgroundColor,
+                                    color: Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor,
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 16,
                                     ),
@@ -89,22 +85,19 @@ class WelcomeState extends State<Welcome> {
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(
-                                                  12,
-                                                ),
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
                                           ),
-                                          margin:
-                                              const EdgeInsets.symmetric(
-                                                horizontal: 16,
-                                              ),
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                          ),
                                           height: 239,
                                           width: double.infinity,
                                           child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(
-                                                  12,
-                                                ),
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
                                             child: Image.network(
                                               "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2bd3af36-efc8-4c1f-843e-9b4953b93e77",
                                               fit: BoxFit.fill,
@@ -123,21 +116,20 @@ class WelcomeState extends State<Welcome> {
                           child: SizedBox(
                             width: double.infinity,
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(context, Routes.explore);
+                                    Navigator.pushNamed(
+                                      context,
+                                      Routes.explore,
+                                    );
                                   },
                                   child: IntrinsicHeight(
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(24),
-                                        color: themeService.isDarkMode
-                                            ? AppTheme.darkSecondaryColor
-                                            : AppTheme.secondaryColor,
+                                        borderRadius: BorderRadius.circular(24),
+                                        color: Theme.of(context).secondaryColor,
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                         vertical: 12,
@@ -151,13 +143,13 @@ class WelcomeState extends State<Welcome> {
                                         children: [
                                           Text(
                                             "Get Started",
-                                            style: TextStyle(
-                                              color: themeService.isDarkMode
-                                                  ? AppTheme.darkTextPrimaryColor
-                                                  : AppTheme.textPrimaryColor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge
+                                                ?.copyWith(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -165,7 +157,9 @@ class WelcomeState extends State<Welcome> {
                                   ),
                                 ),
                                 Container(
-                                  color: AppTheme.backgroundColor,
+                                  color: Theme.of(
+                                    context,
+                                  ).scaffoldBackgroundColor,
                                   height: 20,
                                   width: double.infinity,
                                   child: SizedBox(),

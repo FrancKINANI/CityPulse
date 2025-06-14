@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:provider/provider.dart';
 
 class SettingsAbout extends StatelessWidget {
@@ -21,86 +19,58 @@ class SettingsAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme.backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'À propos',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
-            ),
-          ),
+          Text('À propos', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 16),
-          buildInfoRow(themeService, 'Version', appVersion),
+          buildInfoRow(context, 'Version', appVersion),
           const Divider(),
           buildActionRow(
-            themeService,
+            context,
             'Politique de confidentialité',
             Icons.privacy_tip_outlined,
             onPrivacyPolicy,
           ),
           const Divider(),
           buildActionRow(
-            themeService,
+            context,
             'Conditions d\'utilisation',
             Icons.description_outlined,
             onTermsOfService,
           ),
           const Divider(),
           buildActionRow(
-            themeService,
+            context,
             'Licences',
             Icons.file_copy_outlined,
             onLicenses,
           ),
           const Divider(),
-          buildActionRow(themeService, 'Aide', Icons.help_outline, onHelp),
+          buildActionRow(context, 'Aide', Icons.help_outline, onHelp),
         ],
       ),
     );
   }
 
-  Widget buildInfoRow(ThemeService themeService, String label, String value) {
+  Widget buildInfoRow(BuildContext context, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 16,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 16,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextSecondaryColor
-                  : AppTheme.textSecondaryColor,
-            ),
-          ),
+          Text(label, style: Theme.of(context).textTheme.bodyLarge),
+          Text(value, style: Theme.of(context).textTheme.bodyMedium),
         ],
       ),
     );
   }
 
   Widget buildActionRow(
-    ThemeService themeService,
+    BuildContext context,
     String title,
     IconData icon,
     VoidCallback onTap,
@@ -111,31 +81,15 @@ class SettingsAbout extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 24,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
-            ),
+            Icon(icon, size: 24, color: Theme.of(context).iconTheme.color),
             const SizedBox(width: 16),
             Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
-                ),
-              ),
+              child: Text(title, style: Theme.of(context).textTheme.bodyLarge),
             ),
             Icon(
               Icons.arrow_forward_ios,
               size: 16,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
+              color: Theme.of(context).iconTheme.color,
             ),
           ],
         ),

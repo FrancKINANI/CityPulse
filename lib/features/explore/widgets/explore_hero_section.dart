@@ -9,7 +9,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ExploreHeroSection extends StatelessWidget {
   final String imageUrl;
@@ -46,30 +45,14 @@ class ExploreHeroSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: AppTheme.textPrimaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(title, style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 5),
                 Text(
                   description,
-                  style: TextStyle(
-                    color: AppTheme.textSecondaryColor,
-                    fontSize: 16,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 5),
-                Text(
-                  duration,
-                  style: TextStyle(
-                    color: AppTheme.textSecondaryColor,
-                    fontSize: 16,
-                  ),
-                ),
+                Text(duration, style: Theme.of(context).textTheme.bodyMedium),
               ],
             ),
           ),

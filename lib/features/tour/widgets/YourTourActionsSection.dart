@@ -3,20 +3,14 @@
 ///
 /// Props :
 ///   - VoidCallback onEdit : callback appelé lors du clic sur Edit Tour
-///   - ThemeService themeService : service pour gérer le thème de l'application
+///
 library;
+
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class YourTourActionsSection extends StatelessWidget {
   final VoidCallback onEdit;
-  final ThemeService themeService;
-  const YourTourActionsSection({
-    super.key,
-    required this.onEdit,
-    required this.themeService,
-  });
+  const YourTourActionsSection({super.key, required this.onEdit});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +23,7 @@ class YourTourActionsSection extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: themeService.isDarkMode
-                    ? AppTheme.darkAccentColor
-                    : AppTheme.accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               padding: const EdgeInsets.symmetric(vertical: 9),
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -40,9 +32,7 @@ class YourTourActionsSection extends StatelessWidget {
                 child: Text(
                   "Edit Tour",
                   style: TextStyle(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkPrimaryColor
-                        : AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.onSecondary,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -52,9 +42,7 @@ class YourTourActionsSection extends StatelessWidget {
           ),
         ),
         Container(
-          color: themeService.isDarkMode
-              ? AppTheme.darkBackgroundColor
-              : AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           height: 20,
           width: double.infinity,
         ),

@@ -6,7 +6,6 @@ export 'package:citypulse/features/tour/screens/creating_tour_loading_screen.dar
 export 'package:citypulse/features/tour/widgets/ShareTourHeader.dart';
 export 'package:citypulse/features/tour/widgets/ShareTourQuickNav.dart';
 export 'package:citypulse/features/tour/widgets/ShareTourActionsSection.dart';
-export 'package:citypulse/features/tour/widgets/create_tour_header.dart';
 export 'package:citypulse/features/tour/widgets/tour_description.dart';
 export 'package:citypulse/features/tour/widgets/tour_capacity.dart';
 export 'package:citypulse/features/tour/widgets/YourTourActionsSection.dart';
@@ -15,8 +14,6 @@ export 'package:citypulse/features/tour/widgets/tour_submit_button.dart';
 export 'package:citypulse/features/tour/widgets/tour_image_upload.dart';
 export 'package:citypulse/features/tour/widgets/tour_price.dart';
 export 'package:citypulse/features/tour/widgets/tour_progress_bar.dart';
-export 'package:citypulse/features/tour/widgets/tour_location.dart';
-export 'package:citypulse/features/tour/widgets/tour_schedule.dart';
 export 'package:citypulse/features/tour/widgets/YourTourHeader.dart';
 export 'package:citypulse/features/tour/widgets/ShareTourShareSection.dart';
 export 'package:citypulse/features/tour/widgets/ShareTourImageSection.dart';

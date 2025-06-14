@@ -8,26 +8,22 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 class ShareTourHeader extends StatelessWidget {
   final String title;
   final String imageUrl;
-  final ThemeService themeService;
   const ShareTourHeader({
     super.key,
     required this.title,
     required this.imageUrl,
-    required this.themeService,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme
-                .backgroundColor, // Remplacé par la couleur de fond du thème
+      color: Theme.of(
+        context,
+      ).scaffoldBackgroundColor, // Utilise la couleur de fond du Scaffold du thème
       padding: const EdgeInsets.all(16),
       width: double.infinity,
       child: Row(
@@ -40,14 +36,9 @@ class ShareTourHeader extends StatelessWidget {
           ),
           Text(
             title,
-            style: TextStyle(
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme
-                        .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge, // Utilise le style de titre large du thème
           ),
         ],
       ),

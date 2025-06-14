@@ -5,8 +5,6 @@ import 'package:citypulse/features/shared_widgets/auth_form_field.dart';
 import 'package:citypulse/features/shared_widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
 import 'package:citypulse/features/auth/widgets/auth_footer.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 /// Écran d'inscription refactorisé utilisant des composants modulaires.
 class SignUpScreen extends StatefulWidget {
@@ -68,14 +66,11 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: themeService.isDarkMode
-              ? AppTheme.darkBackgroundColor
-              : AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -84,9 +79,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AuthHeader(
+                    const AuthHeader(
                       title: "Create your account",
-                      themeService: themeService,
                     ),
 
                     AuthFormField(
@@ -102,7 +96,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                     const SizedBox(height: 16),
 
-                    AuthFormField(
+                    AuthFormField(  
                       controller: _emailController,
                       hintText: "Email",
                       keyboardType: TextInputType.emailAddress,
@@ -156,7 +150,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       Text(
                         _errorMessage!,
                         style: TextStyle(
-                          color: AppTheme.errorColor,
+                          color: Theme.of(context).colorScheme.error,
                           fontSize: 14,
                         ),
                         textAlign: TextAlign.center,
@@ -173,13 +167,12 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                     const SizedBox(height: 24),
 
-                    AuthFooter(
+                    const AuthFooter(
                       text: "Already have an account? ",
                       linkText: "Sign In",
                       onLinkPressed: () {
                         Navigator.pushReplacementNamed(context, '/signin');
                       },
-                      themeService: themeService,
                     ),
                   ],
                 ),

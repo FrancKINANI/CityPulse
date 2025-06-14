@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:citypulse/features/settings/widgets/settings_header.dart';
 import 'package:citypulse/features/settings/widgets/settings_notifications.dart';
 import 'package:citypulse/features/settings/widgets/settings_preferences.dart';
 import 'package:citypulse/features/settings/widgets/settings_about.dart';
+import 'package:citypulse/services/theme_service.dart';
 
 class SettingsScreen extends StatelessWidget {
   final String userName;
@@ -18,6 +20,21 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
+
+    String currentThemeString;
+    switch (themeService.themeMode) {
+      case ThemeMode.light:
+        currentThemeString = 'Clair';
+        break;
+      case ThemeMode.dark:
+        currentThemeString = 'Sombre';
+        break;
+      case ThemeMode.system:
+        currentThemeString = 'Système';
+        break;
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -52,14 +69,28 @@ class SettingsScreen extends StatelessWidget {
               const SizedBox(height: 8),
               SettingsPreferences(
                 language: 'Français', // TODO: Get from preferences
-                theme: 'Système',
+                theme: currentThemeString,
                 locationEnabled: true,
                 autoPlayVideos: false,
                 onLanguageChanged: (value) {
                   // TODO: Update preferences
                 },
-                onThemeChanged: (value) {
-                  // TODO: Update preferences
+                onThemeChanged: (newValue) {
+                  ThemeMode newThemeMode;
+                  switch (newValue) {
+                    case 'Clair':
+                      newThemeMode = ThemeMode.light;
+                      break;
+                    case 'Sombre':
+                      newThemeMode = ThemeMode.dark;
+                      break;
+                    case 'Système':
+                      newThemeMode = ThemeMode.system;
+                      break;
+                    default:
+                      newThemeMode = ThemeMode.system;
+                  }
+                  themeService.setThemeMode(newThemeMode);
                 },
                 onLocationChanged: (value) {
                   // TODO: Update preferences

@@ -9,7 +9,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart'; // Importer AppTheme
+// import 'package:citypulse/config/app_theme.dart'; // Supprimé
 
 class ExploreFilters extends StatelessWidget {
   final String selected;
@@ -38,10 +38,12 @@ class ExploreFilters extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: selected == filter
-                        ? AppTheme
-                              .secondaryColor // Couleur secondaire pour le filtre sélectionné (orange)
-                        : AppTheme
-                              .primaryLightColor, // Couleur claire du thème pour les filtres non sélectionnés
+                        ? Theme.of(context)
+                              .colorScheme
+                              .secondary // Couleur secondaire pour le filtre sélectionné (orange)
+                        : Theme.of(context)
+                              .colorScheme
+                              .primaryContainer, // Couleur claire du thème pour les filtres non sélectionnés
                   ),
                   padding: const EdgeInsets.symmetric(
                     vertical: 5,
@@ -51,10 +53,12 @@ class ExploreFilters extends StatelessWidget {
                     filter,
                     style: TextStyle(
                       color: selected == filter
-                          ? AppTheme
-                                .backgroundColor // Texte blanc sur fond orange (sélectionné)
-                          : AppTheme
-                                .textPrimaryColor, // Texte primaire sur fond clair (non sélectionné)
+                          ? Theme.of(context)
+                                .colorScheme
+                                .onSecondary // Texte sur fond orange (sélectionné)
+                          : Theme.of(context)
+                                .colorScheme
+                                .onSurface, // Texte primaire sur fond clair (non sélectionné)
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),

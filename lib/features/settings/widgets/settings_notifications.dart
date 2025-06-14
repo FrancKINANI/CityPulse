@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:provider/provider.dart';
 
 class SettingsNotifications extends StatelessWidget {
@@ -27,56 +25,44 @@ class SettingsNotifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme.backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Notifications',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
-            ),
-          ),
+          Text('Notifications', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 16),
           _buildNotificationOption(
-            themeService,
             'Notifications push',
             'Recevoir des notifications sur votre appareil',
             pushEnabled,
             onPushChanged,
+            context,
           ),
           const Divider(),
           _buildNotificationOption(
-            themeService,
             'Notifications email',
             'Recevoir des notifications par email',
             emailEnabled,
             onEmailChanged,
+            context,
           ),
           const Divider(),
           _buildNotificationOption(
-            themeService,
             'Mises à jour des tours',
             'Être notifié des changements dans vos tours',
             tourUpdatesEnabled,
             onTourUpdatesChanged,
+            context,
           ),
           const Divider(),
           _buildNotificationOption(
-            themeService,
             'Rappels d\'événements',
             'Recevoir des rappels pour vos événements',
             eventRemindersEnabled,
             onEventRemindersChanged,
+            context,
           ),
         ],
       ),
@@ -84,11 +70,11 @@ class SettingsNotifications extends StatelessWidget {
   }
 
   Widget _buildNotificationOption(
-    ThemeService themeService,
     String title,
     String subtitle,
     bool value,
     Function(bool) onChanged,
+    BuildContext parentContext,
   ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -98,25 +84,11 @@ class SettingsNotifications extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextPrimaryColor
-                        : AppTheme.textPrimaryColor,
-                  ),
-                ),
+                Text(title, style: Theme.of(parentContext).textTheme.bodyLarge),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
-                  ),
+                  style: Theme.of(parentContext).textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -124,7 +96,7 @@ class SettingsNotifications extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: AppTheme.secondaryColor,
+            activeColor: Theme.of(parentContext).colorScheme.primary,
           ),
         ],
       ),

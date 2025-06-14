@@ -11,13 +11,9 @@ class HelpContactSection extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: const Text(
+          child: Text(
             "Contact Us",
-            style: TextStyle(
-              color: Color(0xFFFFFFFF),
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
         const ContactItem(

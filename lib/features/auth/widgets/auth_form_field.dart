@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 /// Widget AuthFormField
 /// Champ de formulaire réutilisable pour les écrans d'authentification.
@@ -43,26 +40,15 @@ class AuthFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      style: TextStyle(
-        color: themeService.isDarkMode
-            ? AppTheme.darkTextPrimaryColor
-            : AppTheme.textPrimaryColor,
-      ),
+      style: Theme.of(context).textTheme.bodyLarge,
       decoration: InputDecoration(
         filled: true,
-        fillColor: themeService.isDarkMode
-            ? AppTheme.darkCardColor
-            : AppTheme.cardColor,
+        fillColor: Theme.of(context).inputDecorationTheme.fillColor,
         hintText: hintText,
-        hintStyle: TextStyle(
-          color: themeService.isDarkMode
-              ? AppTheme.darkTextSecondaryColor
-              : AppTheme.textSecondaryColor,
-        ),
+        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

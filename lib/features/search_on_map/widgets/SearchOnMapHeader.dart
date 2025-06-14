@@ -7,7 +7,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart'; // Importer AppTheme
+// import 'package:citypulse/config/app_theme.dart'; // Supprimé
 
 class SearchOnMapHeader extends StatelessWidget {
   final String title;
@@ -21,8 +21,9 @@ class SearchOnMapHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color:
-          AppTheme.backgroundColor, // Remplacé par la couleur de fond du thème
+      color: Theme.of(
+        context,
+      ).colorScheme.background, // Utilisation de Theme.of(context)
       padding: const EdgeInsets.only(top: 16, bottom: 16, left: 64, right: 16),
       width: double.infinity,
       child: Row(
@@ -32,11 +33,13 @@ class SearchOnMapHeader extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 title,
-                style: TextStyle(
-                  color: AppTheme
-                      .textPrimaryColor, // Utiliser la couleur de texte primaire du thème
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  // Utiliser les styles de texte du thème
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface, // Utiliser la couleur de texte du thème
                 ),
                 textAlign: TextAlign.center,
               ),

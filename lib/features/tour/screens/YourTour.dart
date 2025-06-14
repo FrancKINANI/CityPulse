@@ -7,7 +7,6 @@ import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/models/tour.dart';
-import 'package:citypulse/services/theme_service.dart';
 
 /// Écran YourTour réécrit pour utiliser des widgets extraits et documentés.
 class YourTour extends StatefulWidget {
@@ -21,12 +20,10 @@ class YourTour extends StatefulWidget {
 
 class YourTourState extends State<YourTour> {
   int selectedNavIndex = 1; // 1 is for Tours section
-  late final ThemeService _themeService;
 
   @override
   void initState() {
     super.initState();
-    _themeService = Provider.of<ThemeService>(context, listen: false);
   }
 
   void _handleNavIndexChanged(int index) {
@@ -118,30 +115,22 @@ class YourTourState extends State<YourTour> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: _themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           activeTour?.title ?? 'Your Tour',
-          style: AppTheme.subheadingStyle.copyWith(
-            color: _themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
+          style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+            color: Theme.of(context).appBarTheme.titleTextStyle?.color,
           ),
         ),
-        backgroundColor: _themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: [
           IconButton(
             icon: Icon(
               Icons.add,
-              color: _themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
+              color: Theme.of(context).appBarTheme.iconTheme?.color,
             ),
             tooltip: 'Create Tour',
             onPressed: () {
@@ -157,9 +146,7 @@ class YourTourState extends State<YourTour> {
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: _themeService.isDarkMode
-              ? AppTheme.darkBackgroundColor
-              : AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             children: [
               Expanded(
@@ -174,16 +161,12 @@ class YourTourState extends State<YourTour> {
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
                             activeTour!.description,
-                            style: AppTheme.bodyStyle.copyWith(
-                              color: _themeService.isDarkMode
-                                  ? AppTheme.darkTextPrimaryColor
-                                  : AppTheme.textPrimaryColor,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ),
 
                       // Day 1 section
-                      YourTourDaySection(dayTitle: "Day 1", steps: tourSteps, themeService: _themeService),
+                      YourTourDaySection(dayTitle: "Day 1", steps: tourSteps),
 
                       // Actions section
                       YourTourActionsSection(
@@ -191,7 +174,6 @@ class YourTourState extends State<YourTour> {
                           // TODO: Implement tour editing logic
                           print('Edit Tour pressed');
                         },
-                        themeService: _themeService,
                       ),
                     ],
                   ),

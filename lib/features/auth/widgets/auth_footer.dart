@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 /// Widget AuthFooter
 /// Pied de page pour les écrans d'authentification avec des liens vers d'autres écrans.
@@ -14,14 +12,12 @@ class AuthFooter extends StatelessWidget {
   final String text;
   final String linkText;
   final VoidCallback onLinkPressed;
-  final ThemeService themeService;
 
   const AuthFooter({
     super.key,
     required this.text,
     required this.linkText,
     required this.onLinkPressed,
-    required this.themeService,
   });
 
   @override
@@ -31,24 +27,13 @@ class AuthFooter extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextSecondaryColor
-                : AppTheme.textSecondaryColor,
-            fontSize: 14,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         TextButton(
           onPressed: onLinkPressed,
           child: Text(
             linkText,
-            style: TextStyle(
-              color: themeService.isDarkMode
-                  ? AppTheme.darkSecondaryColor
-                  : AppTheme.secondaryColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
           ),
         ),
       ],

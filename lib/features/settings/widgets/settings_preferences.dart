@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class SettingsPreferences extends StatelessWidget {
   final String language;
@@ -27,28 +26,15 @@ class SettingsPreferences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: themeService.isDarkMode
-          ? AppTheme.darkBackgroundColor
-          : AppTheme.backgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Préférences',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: themeService.isDarkMode
-                  ? AppTheme.darkTextPrimaryColor
-                  : AppTheme.textPrimaryColor,
-            ),
-          ),
+          Text('Préférences', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 16),
           _buildDropdownSetting(
-            themeService,
             'Langue',
             'Choisissez votre langue préférée',
             language,
@@ -58,7 +44,6 @@ class SettingsPreferences extends StatelessWidget {
           ),
           const Divider(),
           _buildDropdownSetting(
-            themeService,
             'Thème',
             'Choisissez l\'apparence de l\'application',
             theme,
@@ -68,19 +53,19 @@ class SettingsPreferences extends StatelessWidget {
           ),
           const Divider(),
           _buildSwitchSetting(
-            themeService,
             'Localisation',
             'Autoriser l\'accès à votre position',
             locationEnabled,
             onLocationChanged,
+            context,
           ),
           const Divider(),
           _buildSwitchSetting(
-            themeService,
             'Lecture automatique',
             'Lire automatiquement les vidéos',
             autoPlayVideos,
             onAutoPlayVideosChanged,
+            context,
           ),
         ],
       ),
@@ -88,14 +73,13 @@ class SettingsPreferences extends StatelessWidget {
   }
 
   Widget _buildDropdownSetting(
-    ThemeService themeService,
     String title,
     String subtitle,
     String value,
     List<String> options,
-    Function(String) onChanged, [
-    BuildContext? parentContext,
-  ]) {
+    Function(String) onChanged,
+    BuildContext parentContext,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -104,25 +88,11 @@ class SettingsPreferences extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextPrimaryColor
-                        : AppTheme.textPrimaryColor,
-                  ),
-                ),
+                Text(title, style: Theme.of(parentContext).textTheme.bodyLarge),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
-                  ),
+                  style: Theme.of(parentContext).textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -133,8 +103,7 @@ class SettingsPreferences extends StatelessWidget {
               if (newValue != null) {
                 onChanged(newValue);
 
-                // Si c'est le thème, on applique le changement
-                if (title == 'Thème' && parentContext != null) {
+                if (title == 'Thème') {
                   final themeService = Provider.of<ThemeService>(
                     parentContext,
                     listen: false,
@@ -158,12 +127,7 @@ class SettingsPreferences extends StatelessWidget {
                 value: value,
                 child: Text(
                   value,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextPrimaryColor
-                        : AppTheme.textPrimaryColor,
-                  ),
+                  style: Theme.of(parentContext).textTheme.bodyMedium,
                 ),
               );
             }).toList(),
@@ -174,11 +138,11 @@ class SettingsPreferences extends StatelessWidget {
   }
 
   Widget _buildSwitchSetting(
-    ThemeService themeService,
     String title,
     String subtitle,
     bool value,
     Function(bool) onChanged,
+    BuildContext parentContext,
   ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -188,25 +152,11 @@ class SettingsPreferences extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextPrimaryColor
-                        : AppTheme.textPrimaryColor,
-                  ),
-                ),
+                Text(title, style: Theme.of(parentContext).textTheme.bodyLarge),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
-                  ),
+                  style: Theme.of(parentContext).textTheme.bodyMedium,
                 ),
               ],
             ),
@@ -214,7 +164,7 @@ class SettingsPreferences extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: AppTheme.secondaryColor,
+            activeColor: Theme.of(parentContext).colorScheme.primary,
           ),
         ],
       ),

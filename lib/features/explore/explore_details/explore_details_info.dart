@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ExploreDetailsInfo extends StatelessWidget {
   final String description;
@@ -19,60 +18,42 @@ class ExploreDetailsInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).cardColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Description',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
-            ),
-          ),
+          Text('Description', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 12),
-          Text(
-            description,
-            style: TextStyle(fontSize: 14, color: AppTheme.textSecondaryColor),
-          ),
+          Text(description, style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 24),
-          _buildInfoItem(Icons.access_time, 'Hours', hours),
+          _buildInfoItem(context, Icons.access_time, 'Hours', hours),
           const SizedBox(height: 16),
-          _buildInfoItem(Icons.phone, 'Phone', phone),
+          _buildInfoItem(context, Icons.phone, 'Phone', phone),
           const SizedBox(height: 16),
-          _buildInfoItem(Icons.language, 'Website', website),
+          _buildInfoItem(context, Icons.language, 'Website', website),
         ],
       ),
     );
   }
 
-  Widget _buildInfoItem(IconData icon, String label, String value) {
+  Widget _buildInfoItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    String value,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 20, color: AppTheme.textPrimaryColor),
+        Icon(icon, size: 20, color: Theme.of(context).iconTheme.color),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
-                ),
-              ),
+              Text(label, style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(height: 4),
-              Text(
-                value,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppTheme.textSecondaryColor,
-                ),
-              ),
+              Text(value, style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),
         ),

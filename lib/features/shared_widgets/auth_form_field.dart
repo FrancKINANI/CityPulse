@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class AuthFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -29,26 +26,20 @@ class AuthFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
+    // final themeService = Provider.of<ThemeService>(context); // Supprimé
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      style: TextStyle(
-        color: themeService.isDarkMode
-            ? AppTheme.darkTextPrimaryColor
-            : AppTheme.textPrimaryColor,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+        color: Theme.of(context).colorScheme.onSurface,
       ),
       decoration: InputDecoration(
         filled: true,
-        fillColor: themeService.isDarkMode
-            ? AppTheme.darkCardColor
-            : AppTheme.cardColor,
+        fillColor: Theme.of(context).cardColor,
         hintText: hintText,
-        hintStyle: TextStyle(
-          color: themeService.isDarkMode
-              ? AppTheme.darkTextSecondaryColor
-              : AppTheme.textSecondaryColor,
-        ),
+        hintStyle: Theme.of(
+          context,
+        ).textTheme.bodyMedium?.copyWith(color: Theme.of(context).hintColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

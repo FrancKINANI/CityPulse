@@ -15,7 +15,7 @@ class FaqItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF141E16),
+      color: Theme.of(context).cardColor,
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       width: double.infinity,
       child: Row(
@@ -28,7 +28,7 @@ class FaqItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFF283F33),
+                color: Theme.of(context).colorScheme.surface,
               ),
               padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.only(right: 16),
@@ -54,11 +54,7 @@ class FaqItem extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 1),
                   child: Text(
                     title,
-                    style: const TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Container(
@@ -66,10 +62,7 @@ class FaqItem extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     description,
-                    style: const TextStyle(
-                      color: Color(0xFF9BBFAA),
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
               ],

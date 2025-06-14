@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
 import 'package:citypulse/features/auth/widgets/auth_button.dart';
@@ -60,14 +58,11 @@ class SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: themeService.isDarkMode
-              ? AppTheme.darkBackgroundColor
-              : AppTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -115,7 +110,7 @@ class SignInScreenState extends State<SignInScreen> {
                       Text(
                         _errorMessage!,
                         style: TextStyle(
-                          color: AppTheme.errorColor,
+                          color: Theme.of(context).colorScheme.error,
                           fontSize: 14,
                         ),
                         textAlign: TextAlign.center,
@@ -138,12 +133,7 @@ class SignInScreenState extends State<SignInScreen> {
                       },
                       child: Text(
                         'Forgot Password?',
-                        style: TextStyle(
-                          color: themeService.isDarkMode
-                              ? AppTheme.darkTextSecondaryColor
-                              : AppTheme.textSecondaryColor,
-                          fontSize: 14,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
 
@@ -154,11 +144,7 @@ class SignInScreenState extends State<SignInScreen> {
                       children: [
                         Text(
                           "Don't have an account? ",
-                          style: TextStyle(
-                            color: themeService.isDarkMode
-                                ? AppTheme.darkTextPrimaryColor
-                                : AppTheme.textPrimaryColor,
-                          ),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         TextButton(
                           onPressed: () {
@@ -166,11 +152,7 @@ class SignInScreenState extends State<SignInScreen> {
                           },
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(
-                              color: themeService.isDarkMode
-                                  ? AppTheme.darkSecondaryColor
-                                  : AppTheme.secondaryColor,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
                           ),
                         ),
                       ],

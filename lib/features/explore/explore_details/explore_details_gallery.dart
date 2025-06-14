@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ExploreDetailsGallery extends StatelessWidget {
   final List<String> images;
@@ -10,18 +9,11 @@ class ExploreDetailsGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).cardColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Gallery',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
-            ),
-          ),
+          Text('Gallery', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 12),
           SizedBox(
             height: 120,

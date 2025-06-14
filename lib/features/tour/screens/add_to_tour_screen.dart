@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
+// import 'package:citypulse/config/app_theme.dart'; // Supprimé car nous utilisons Theme.of(context)
 import 'package:provider/provider.dart';
-import 'package:citypulse/services/theme_service.dart';
+// import 'package:citypulse/services/theme_service.dart'; // Supprimé
 
 class AddToTourScreen extends StatefulWidget {
   const AddToTourScreen({super.key});
@@ -48,34 +48,24 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = Provider.of<ThemeService>(context);
+    // final themeService = Provider.of<ThemeService>(context); // Supprimé
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
             Icons.close,
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
+            color: Theme.of(context).appBarTheme.iconTheme?.color,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Add to tour',
-          style: TextStyle(
-            color: themeService.isDarkMode
-                ? AppTheme.darkTextPrimaryColor
-                : AppTheme.textPrimaryColor,
-          ),
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
-        color: themeService.isDarkMode
-            ? AppTheme.darkBackgroundColor
-            : AppTheme.backgroundColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: [
             Padding(
@@ -90,28 +80,20 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   hintText: 'Search',
                   prefixIcon: Icon(
                     Icons.search,
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                   filled: true,
-                  fillColor: themeService.isDarkMode
-                      ? AppTheme.darkCardColor
-                      : AppTheme.cardColor,
+                  fillColor: Theme.of(context).cardColor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
                   ),
-                  hintStyle: AppTheme.bodyStyle.copyWith(
-                    color: themeService.isDarkMode
-                        ? AppTheme.darkTextSecondaryColor
-                        : AppTheme.textSecondaryColor,
+                  hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).hintColor,
                   ),
                 ),
-                style: AppTheme.bodyStyle.copyWith(
-                  color: themeService.isDarkMode
-                      ? AppTheme.darkTextPrimaryColor
-                      : AppTheme.textPrimaryColor,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ),
@@ -120,10 +102,10 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
-                  _buildFilterButton('Places', themeService),
-                  _buildFilterButton('Restaurants', themeService),
-                  _buildFilterButton('Hotels', themeService),
-                  _buildFilterButton('Attractions', themeService),
+                  _buildFilterButton('Places'),
+                  _buildFilterButton('Restaurants'),
+                  _buildFilterButton('Hotels'),
+                  _buildFilterButton('Attractions'),
                   // Add more categories as needed
                 ],
               ),
@@ -134,11 +116,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                 children: [
                   Text(
                     'Popular',
-                    style: AppTheme.headingStyle.copyWith(
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkTextPrimaryColor
-                          : AppTheme.textPrimaryColor,
-                    ),
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(height: 16),
                   ..._popularPlaces
@@ -149,7 +127,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                             ) &&
                             place['type']!.contains(_selectedCategory),
                       )
-                      .map((place) => _buildPlaceCard(place, themeService)),
+                      .map((place) => _buildPlaceCard(place)),
                 ],
               ),
             ),
@@ -160,9 +138,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                 height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: themeService.isDarkMode
-                        ? AppTheme.darkSecondaryColor
-                        : AppTheme.secondaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -172,10 +148,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   },
                   child: Text(
                     'Add to tour',
-                    style: AppTheme.bodyStyle.copyWith(
-                      color: themeService.isDarkMode
-                          ? AppTheme.darkPrimaryColor
-                          : AppTheme.primaryColor,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -188,7 +161,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
     );
   }
 
-  Widget _buildFilterButton(String category, ThemeService themeService) {
+  Widget _buildFilterButton(String category) {
     final isSelected = _selectedCategory == category;
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
@@ -197,29 +170,19 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
           category,
           style: TextStyle(
             color: isSelected
-                ? AppTheme.primaryColor
-                : themeService.isDarkMode
-                ? AppTheme.darkTextSecondaryColor
-                : AppTheme.textSecondaryColor,
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).textTheme.bodyMedium?.color,
           ),
         ),
         selected: isSelected,
-        selectedColor: themeService.isDarkMode
-            ? AppTheme.darkSecondaryColor
-            : AppTheme.secondaryColor,
-        labelStyle: AppTheme.captionStyle.copyWith(
+        selectedColor: Theme.of(context).colorScheme.primary,
+        labelStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
           color: isSelected
-              ? (themeService.isDarkMode
-                  ? AppTheme.darkPrimaryColor
-                  : AppTheme.primaryColor)
-              : themeService.isDarkMode
-                  ? AppTheme.darkTextSecondaryColor
-                  : AppTheme.textSecondaryColor,
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).textTheme.bodyMedium?.color,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
-        backgroundColor: themeService.isDarkMode
-            ? AppTheme.darkCardColor
-            : AppTheme.cardColor,
+        backgroundColor: Theme.of(context).cardColor,
         onSelected: (selected) {
           setState(() {
             _selectedCategory = category;
@@ -229,16 +192,12 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
     );
   }
 
-  Widget _buildPlaceCard(Map<String, String> place, ThemeService themeService) {
+  Widget _buildPlaceCard(Map<String, String> place) {
     final isSelected = _selectedPlaces.contains(place);
     return Card(
       color: isSelected
-          ? (themeService.isDarkMode
-                ? AppTheme.darkCardColor
-                : AppTheme.cardColorSelected)
-          : (themeService.isDarkMode
-                ? AppTheme.darkCardColor
-                : AppTheme.cardColor),
+          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+          : Theme.of(context).cardColor,
       margin: const EdgeInsets.only(bottom: 16.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
@@ -274,29 +233,22 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                   children: [
                     Text(
                       place['name']!,
-                      style: AppTheme.bodyStyle.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextPrimaryColor
-                            : AppTheme.textPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${place['rating']!} (${place['reviews']!})',
-                      style: AppTheme.captionStyle.copyWith(
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${place['type']!} • ${place['distance']!}',
-                      style: AppTheme.captionStyle.copyWith(
-                        color: themeService.isDarkMode
-                            ? AppTheme.darkTextSecondaryColor
-                            : AppTheme.textSecondaryColor,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
                       ),
                     ),
                   ],
@@ -313,7 +265,7 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
                     }
                   });
                 },
-                activeColor: AppTheme.secondaryColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
               ),
             ],
           ),
