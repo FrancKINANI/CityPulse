@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
-import 'package:citypulse/services/tour_service.dart';
 import 'dart:math' as math;
 
 class CreatingTourLoadingScreen extends StatefulWidget {

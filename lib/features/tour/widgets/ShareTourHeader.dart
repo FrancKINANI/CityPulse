@@ -7,7 +7,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
 
 class ShareTourHeader extends StatelessWidget {
   final String title;

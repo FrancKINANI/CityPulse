@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TourSubmitButton extends StatelessWidget {
   final bool isLoading;

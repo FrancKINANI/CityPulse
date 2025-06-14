@@ -225,8 +225,6 @@ class AppTheme {
         onSecondary: Colors.white,
         surface: backgroundColor,
         onSurface: textPrimaryColor,
-        background: backgroundColor,
-        onBackground: textPrimaryColor,
         error: errorColor,
         onError: Colors.white,
       ),
@@ -275,8 +273,6 @@ class AppTheme {
         onSecondary: Colors.white,
         surface: darkBackgroundColor,
         onSurface: darkTextPrimaryColor,
-        background: darkBackgroundColor,
-        onBackground: darkTextPrimaryColor,
         error: errorColor,
         onError: Colors.white,
       ),
@@ -303,19 +299,19 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: primaryButtonStyle.copyWith(
-          backgroundColor: MaterialStateProperty.all(darkSecondaryColor),
-          foregroundColor: MaterialStateProperty.all(Colors.white),
+          backgroundColor: WidgetStateProperty.all(darkSecondaryColor),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: secondaryButtonStyle.copyWith(
-          foregroundColor: MaterialStateProperty.all(darkSecondaryColor),
+          foregroundColor: WidgetStateProperty.all(darkSecondaryColor),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: outlinedButtonStyle.copyWith(
-          foregroundColor: MaterialStateProperty.all(darkTextPrimaryColor),
-          side: MaterialStateProperty.all(
+          foregroundColor: WidgetStateProperty.all(darkTextPrimaryColor),
+          side: WidgetStateProperty.all(
             const BorderSide(color: darkDividerColor),
           ),
         ),

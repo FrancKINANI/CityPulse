@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:citypulse/services/theme_service.dart';
 import 'package:citypulse/features/explore/widgets/explore_header.dart';
 import 'package:citypulse/features/explore/widgets/explore_filters.dart';
 import 'package:citypulse/features/explore/widgets/explore_hero_section.dart';

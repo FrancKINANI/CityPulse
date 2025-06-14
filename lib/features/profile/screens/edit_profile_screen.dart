@@ -100,12 +100,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -141,12 +141,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -187,12 +187,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -225,12 +225,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Theme.of(context).dividerColor!,
+                            color: Theme.of(context).dividerColor,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(

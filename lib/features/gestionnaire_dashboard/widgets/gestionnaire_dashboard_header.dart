@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:citypulse/config/app_config.dart';
 
 class GestionnaireDashboardHeader extends StatelessWidget {
   final String userName;
@@ -16,9 +17,11 @@ class GestionnaireDashboardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return Container(
-      color: const Color(0xFF141E16),
-      padding: const EdgeInsets.all(16),
+      color: theme.colorScheme.primary,
+      padding: const EdgeInsets.all(24),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,10 +30,17 @@ class GestionnaireDashboardHeader extends StatelessWidget {
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
-                width: 48,
-                height: 48,
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: theme.colorScheme.surface,
+                    width: 2,
+                  ),
+                ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(32),
                   child: Image.network(userAvatar, fit: BoxFit.cover),
                 ),
               ),
@@ -40,47 +50,40 @@ class GestionnaireDashboardHeader extends StatelessWidget {
                   children: [
                     Text(
                       userName,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      userRole,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
+                      userRole.toUpperCase(),
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.colorScheme.onPrimary.withOpacity(0.8),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1E2D22),
-                  borderRadius: BorderRadius.circular(16),
+                  color: theme.colorScheme.error,
+                  borderRadius: BorderRadius.circular(24),
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.white,
-                      size: 20,
+                    Icon(
+                      Icons.notifications_active,
+                      color: theme.colorScheme.onError,
+                      size: 16,
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     Text(
-                      pendingItems.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                      '$pendingItems',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onError,
                       ),
                     ),
                   ],

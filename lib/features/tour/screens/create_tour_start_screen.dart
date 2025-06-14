@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
-import 'package:provider/provider.dart';
-import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 
 class CreateTourStartScreen extends StatefulWidget {
   const CreateTourStartScreen({super.key});

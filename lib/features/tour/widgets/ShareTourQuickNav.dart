@@ -7,8 +7,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_theme.dart';
-import 'package:provider/provider.dart';
 
 class ShareTourQuickNav extends StatelessWidget {
   final int selectedIndex;

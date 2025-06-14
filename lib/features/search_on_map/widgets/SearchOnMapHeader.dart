@@ -23,7 +23,7 @@ class SearchOnMapHeader extends StatelessWidget {
     return Container(
       color: Theme.of(
         context,
-      ).colorScheme.background, // Utilisation de Theme.of(context)
+      ).colorScheme.surface, // Utilisation de Theme.of(context)
       padding: const EdgeInsets.only(top: 16, bottom: 16, left: 64, right: 16),
       width: double.infinity,
       child: Row(

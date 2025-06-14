@@ -1,44 +1,37 @@
 import 'package:flutter/material.dart';
 
-class Notifications extends StatefulWidget {
+class Notifications extends StatelessWidget {
   const Notifications({super.key});
-  @override
-  NotificationsState createState() => NotificationsState();
-}
 
-class NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: Row(
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 24),
+              margin: const EdgeInsets.only(right: 16),
               width: 24,
               height: 24,
-              child: Image.network(
-                "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/396d3015-4326-4eda-bc5f-faa582ad8688",
-                fit: BoxFit.fill,
+              child: const Icon(
+                Icons.notifications,
+                color: Colors.white,
               ),
             ),
-            Text(
+            const Text(
               "Notifications",
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(

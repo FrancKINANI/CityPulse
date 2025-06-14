@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
-import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 import 'package:citypulse/services/auth_service.dart';
 
@@ -197,17 +196,6 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 onTap: () {
                                   final navigationService = Provider.of<NavigationService>(context, listen: false);
                                   navigationService.navigateTo(Routes.help);
-                                },
-                                iconColor: Theme.of(context).colorScheme.tertiary,
-                                textColor: Theme.of(context).textTheme.bodyLarge?.color,
-                              ),
-                              _buildMenuItem(
-                                icon:
-                                    "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/b3b06ff8-4315-4433-a25d-8ddb2c698b8b",
-                                title: "Contact Us",
-                                onTap: () {
-                                  final navigationService = Provider.of<NavigationService>(context, listen: false);
-                                  navigationService.navigateTo(Routes.help); // Assuming 'Help' route for Contact Us
                                 },
                                 iconColor: Theme.of(context).colorScheme.tertiary,
                                 textColor: Theme.of(context).textTheme.bodyLarge?.color,

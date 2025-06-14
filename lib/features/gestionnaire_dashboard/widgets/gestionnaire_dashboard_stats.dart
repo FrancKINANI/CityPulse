@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:citypulse/config/app_config.dart';
 
 class GestionnaireDashboardStats extends StatelessWidget {
   final int totalPlaces;
@@ -16,21 +17,32 @@ class GestionnaireDashboardStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return Container(
-      padding: const EdgeInsets.all(16),
-      color: Colors.white,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Statistiques',
-            style: TextStyle(
-              fontSize: 18,
+            style: theme.textTheme.titleLarge?.copyWith(
+              color: theme.colorScheme.primary,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF141E16),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           Row(
             children: [
               Expanded(
@@ -38,19 +50,21 @@ class GestionnaireDashboardStats extends StatelessWidget {
                   icon: Icons.place,
                   title: 'Lieux',
                   value: totalPlaces,
+                  color: theme.colorScheme.primary,
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(
                 child: _buildStatCard(
                   icon: Icons.map,
                   title: 'Tours',
                   value: totalTours,
+                  color: theme.colorScheme.secondary,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -58,15 +72,16 @@ class GestionnaireDashboardStats extends StatelessWidget {
                   icon: Icons.people,
                   title: 'Utilisateurs',
                   value: totalUsers,
+                  color: theme.colorScheme.tertiary,
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(
                 child: _buildStatCard(
-                  icon: Icons.rate_review,
-                  title: 'À modérer',
+                  icon: Icons.comment,
+                  title: 'Avis en attente',
                   value: pendingReviews,
-                  isHighlighted: true,
+                  color: theme.colorScheme.error,
                 ),
               ),
             ],
@@ -80,39 +95,35 @@ class GestionnaireDashboardStats extends StatelessWidget {
     required IconData icon,
     required String title,
     required int value,
-    bool isHighlighted = false,
+    required Color color,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isHighlighted
-            ? const Color(0xFF1E2D22)
-            : const Color(0xFFF5F5F5),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
             icon,
-            color: isHighlighted ? Colors.white : const Color(0xFF141E16),
-            size: 24,
+            size: 36,
+            color: color,
           ),
           const SizedBox(height: 12),
           Text(
             title,
-            style: TextStyle(
-              fontSize: 14,
-              color: isHighlighted ? Colors.white70 : const Color(0xFF666666),
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: color,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Text(
             value.toString(),
-            style: TextStyle(
-              fontSize: 24,
+            style: theme.textTheme.headlineSmall?.copyWith(
+              color: color,
               fontWeight: FontWeight.bold,
-              color: isHighlighted ? Colors.white : const Color(0xFF141E16),
             ),
           ),
         ],

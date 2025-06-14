@@ -5,7 +5,6 @@ import 'package:citypulse/features/tour/widgets/ShareTourShareSection.dart';
 import 'package:citypulse/features/tour/widgets/ShareTourImageSection.dart';
 import 'package:citypulse/features/tour/widgets/ShareTourActionsSection.dart';
 import 'package:citypulse/features/tour/widgets/ShareTourQuickNav.dart';
-import 'package:provider/provider.dart';
 
 /// Écran ShareTour réécrit pour utiliser des widgets extraits et documentés.
 class ShareTour extends StatefulWidget {

@@ -5,7 +5,6 @@ import 'package:citypulse/features/tour/widgets/YourTourActionsSection.dart';
 import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/config/routes.dart';
-import 'package:citypulse/config/app_theme.dart';
 import 'package:citypulse/models/tour.dart';
 
 /// Écran YourTour réécrit pour utiliser des widgets extraits et documentés.

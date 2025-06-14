@@ -21,30 +21,11 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     // final themeService = Provider.of<ThemeService>(context); // Supprimé
     return Container(
-      color: Theme.of(
-        context,
-      ).colorScheme.background, // Utilisation de Theme.of(context)
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              BackButton(
-                color: Theme.of(
-                  context,
-                ).iconTheme.color, // Utilisation de Theme.of(context)
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Paramètres',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  // Utilisation de Theme.of(context).textTheme
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
           const SizedBox(height: 24),
           Row(
             children: [
@@ -54,9 +35,7 @@ class SettingsHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.background.withOpacity(
-                      0.1,
-                    ), // Utilisation de Theme.of(context)
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                     width: 2,
                   ),
                 ),
@@ -73,16 +52,15 @@ class SettingsHeader extends StatelessWidget {
                     Text(
                       userName,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        // Utilisation de Theme.of(context).textTheme
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       userEmail,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        // Utilisation de Theme.of(context).textTheme
-                        // color: Theme.of(context).colorScheme.onSurfaceVariant, // Alternative for secondary text
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -92,9 +70,7 @@ class SettingsHeader extends StatelessWidget {
                 onPressed: onEditProfile,
                 icon: Icon(
                   Icons.edit,
-                  color: Theme.of(
-                    context,
-                  ).iconTheme.color, // Utilisation de Theme.of(context)
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ],

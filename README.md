@@ -8,6 +8,7 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 - Navigation post-authentification selon le rôle : visiteur, utilisateur, propriétaire, administrateur.
 - Interfaces dédiées pour chaque rôle.
 - Authentification via Firebase Auth (email/mot de passe, extensible à Google/Apple).
+- Interface d'authentification stylisée avec support dark/light mode et thème orange.
 
 ### Fonctionnalités visiteur (non connecté)
 - Recherche de lieux avec filtres avancés.
@@ -16,11 +17,12 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 - Navigation GPS jusqu’aux lieux.
 
 ### Fonctionnalités utilisateur (connecté)
-- Gestion du profil utilisateur.
+- Gestion du profil utilisateur avec interface theme-aware.
 - Système de favoris, historique de visites.
-- Création et notation d’avis/commentaires.
+- Création et notation d'avis/commentaires.
 - Création et partage de circuits touristiques personnalisés.
-- Notifications personnalisées.
+- Notifications personnalisées avec interface stylisée.
+- Paramètres avec thème orange et support dark/light mode.
 
 ### Fonctionnalités propriétaire
 - Tableau de bord propriétaire.
@@ -38,10 +40,11 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 ### Fonctionnalités transversales
 - Système de notifications (Firebase Cloud Messaging, notifications locales).
 - Système de QR code (création, scan pour partage de circuits/tours).
-- Gestion des préférences utilisateur (thème, langue).
+- Gestion des préférences utilisateur (thème orange, dark/light mode, langue).
 - Support multilingue (intl).
-- Gestion des permissions et de l’état de l’application (Provider).
-- Tests unitaires, widgets et d’intégration.
+- Gestion des permissions et de l'état de l'application (Provider).
+- Tests unitaires, widgets et d'intégration.
+- Interface utilisateur cohérente avec thème orange et support dark/light mode.
 
 ## Architecture logicielle
 
@@ -64,9 +67,9 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 
 ## Structure du projet
 
-- `lib/screens/` : Écrans principaux par feature (explore, profile, admin, etc.)
-- `lib/models/` : Modèles de données (User, Tour, Event, Place, etc.)
-- `lib/services/` : Services métiers (auth, tour, navigation, notifications, etc.)
+- `screens/` : Écrans principaux par feature (explore, profile, admin, etc.)
+- `models/` : Modèles de données (User, Tour, Event, Place, etc.)
+- `services/` : Services métiers (auth, tour, navigation, notifications, etc.)
 - `test/` : Tests unitaires et d’intégration par fonctionnalité
 - Voir le fichier [PLANNING.md](./PLANNING.md) pour la roadmap détaillée.
 
@@ -100,6 +103,8 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 - Tests pour chaque nouveau composant/fonctionnalité.
 - Optimisation des performances et responsive design.
 - Gestion des erreurs et feedback utilisateur.
+- Utilisation cohérente de Theme.of(context) pour le style.
+- Composants theme-aware pour une cohérence visuelle.
 
 ## Roadmap
 
