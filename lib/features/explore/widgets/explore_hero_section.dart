@@ -9,7 +9,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import '../../../../config/app_theme.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class ExploreHeroSection extends StatelessWidget {
   final String imageUrl;

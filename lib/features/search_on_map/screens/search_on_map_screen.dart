@@ -1,7 +1,7 @@
-import 'search_on_map/SearchOnMapHeader.dart';
-import 'search_on_map/SearchOnMapMapSection.dart';
-import 'search_on_map/SearchOnMapFilters.dart';
-import 'search_on_map/SearchOnMapSearchBars.dart';
+import 'package:citypulse/features/search_on_map/widgets/SearchOnMapHeader.dart';
+import 'package:citypulse/features/search_on_map/widgets/SearchOnMapMapSection.dart';
+import 'package:citypulse/features/search_on_map/widgets/SearchOnMapFilters.dart';
+import 'package:citypulse/features/search_on_map/widgets/SearchOnMapSearchBars.dart';
 import 'package:flutter/material.dart';
 
 /// Écran SearchOnMap réécrit pour n'orchestrer que les widgets extraits et documentés.

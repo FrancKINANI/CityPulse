@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../config/app_theme.dart';
+import 'package:citypulse/config/app_theme.dart';
 
 class FeaturedPlace {
   final String imageUrl;

@@ -5,41 +5,43 @@ import '../config/app_theme.dart';
 
 class ThemeService extends ChangeNotifier {
   static const String _themeKey = 'theme_mode';
-  
+
   ThemeMode _themeMode = ThemeMode.light;
-  
+
   ThemeService() {
     _loadThemeMode();
   }
-  
+
   ThemeMode get themeMode => _themeMode;
-  
+
   bool get isDarkMode => _themeMode == ThemeMode.dark;
-  
+
   Future<void> _loadThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
     final savedThemeMode = prefs.getString(_themeKey);
-    
+
     if (savedThemeMode == null) {
       // Utiliser le thème du système par défaut
       final brightness = SchedulerBinding.instance.window.platformBrightness;
-      _themeMode = brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
+      _themeMode = brightness == Brightness.dark
+          ? ThemeMode.dark
+          : ThemeMode.light;
     } else {
       _themeMode = _getThemeModeFromString(savedThemeMode);
     }
-    
+
     notifyListeners();
   }
-  
+
   Future<void> setThemeMode(ThemeMode mode) async {
     _themeMode = mode;
-    
+
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_themeKey, _getStringFromThemeMode(mode));
-    
+
     notifyListeners();
   }
-  
+
   ThemeMode _getThemeModeFromString(String themeMode) {
     switch (themeMode) {
       case 'dark':
@@ -50,7 +52,7 @@ class ThemeService extends ChangeNotifier {
         return ThemeMode.system;
     }
   }
-  
+
   String _getStringFromThemeMode(ThemeMode themeMode) {
     switch (themeMode) {
       case ThemeMode.dark:
@@ -61,12 +63,18 @@ class ThemeService extends ChangeNotifier {
         return 'system';
     }
   }
-  
+
+  ThemeData get currentTheme {
+    return _themeMode == ThemeMode.dark
+        ? AppTheme.getDarkTheme()
+        : AppTheme.getLightTheme();
+  }
+
   // Thèmes pour l'application
   ThemeData getLightTheme() {
     return AppTheme.getLightTheme();
   }
-  
+
   ThemeData getDarkTheme() {
     return AppTheme.getDarkTheme();
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/settings/settings_notifications.dart';
+import 'package:citypulse/features/settings/widgets/settings_notifications.dart';
 
 void main() {
   group('SettingsNotifications Widget Tests', () {

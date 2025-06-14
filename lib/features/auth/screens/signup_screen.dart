@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../services/auth_service.dart';
-import 'auth_form_field.dart';
-import 'auth_button.dart';
-import 'auth_header.dart';
-import 'auth_footer.dart';
+import 'package:citypulse/services/auth_service.dart';
+import 'package:citypulse/features/shared_widgets/auth_form_field.dart';
+import 'package:citypulse/features/shared_widgets/auth_button.dart';
+import 'package:citypulse/features/auth/widgets/auth_header.dart';
+import 'package:citypulse/features/auth/widgets/auth_footer.dart';
+import 'package:citypulse/config/app_theme.dart';
+import 'package:citypulse/services/theme_service.dart';
 
 /// Écran d'inscription refactorisé utilisant des composants modulaires.
 class SignUpScreen extends StatefulWidget {
@@ -40,11 +42,12 @@ class SignUpScreenState extends State<SignUpScreen> {
     });
 
     try {
-      final success = await context.read<AuthService>().signUp(
-        _nameController.text.trim(),
-        _emailController.text.trim(),
-        _passwordController.text,
-      );
+      final success = await Provider.of<AuthService>(context, listen: false)
+          .signUp(
+            _nameController.text.trim(),
+            _emailController.text.trim(),
+            _passwordController.text,
+          );
 
       if (success) {
         if (!mounted) return;
@@ -65,11 +68,14 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          color: const Color(0xFF141E16),
+          color: themeService.isDarkMode
+              ? AppTheme.darkBackgroundColor
+              : AppTheme.backgroundColor,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -78,8 +84,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AuthHeader(title: "Create your account"),
-                    
+                    AuthHeader(
+                      title: "Create your account",
+                      themeService: themeService,
+                    ),
+
                     AuthFormField(
                       controller: _nameController,
                       hintText: "Full Name",
@@ -90,9 +99,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     AuthFormField(
                       controller: _emailController,
                       hintText: "Email",
@@ -107,9 +116,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     AuthFormField(
                       controller: _passwordController,
                       hintText: "Password",
@@ -124,9 +133,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     AuthFormField(
                       controller: _confirmPasswordController,
                       hintText: "Confirm Password",
@@ -141,32 +150,36 @@ class SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                     ),
-                    
-                    if (_errorMessage != null) ...[  
+
+                    if (_errorMessage != null) ...[
                       const SizedBox(height: 16),
                       Text(
                         _errorMessage!,
-                        style: const TextStyle(color: Colors.red, fontSize: 14),
+                        style: TextStyle(
+                          color: AppTheme.errorColor,
+                          fontSize: 14,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     AuthButton(
                       text: 'Create Account',
                       onPressed: _handleSignUp,
                       isLoading: _isLoading,
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     AuthFooter(
                       text: "Already have an account? ",
                       linkText: "Sign In",
                       onLinkPressed: () {
                         Navigator.pushReplacementNamed(context, '/signin');
                       },
+                      themeService: themeService,
                     ),
                   ],
                 ),

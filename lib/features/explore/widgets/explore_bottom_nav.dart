@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../config/app_theme.dart';
+import 'package:provider/provider.dart';
+import 'package:citypulse/services/theme_service.dart';
 
 class ExploreBottomNav extends StatelessWidget {
   final int selectedIndex;
@@ -13,20 +15,32 @@ class ExploreBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: AppTheme.dividerColor, width: 1),
+          top: BorderSide(
+            color: themeService.isDarkMode
+                ? AppTheme.darkDividerColor
+                : AppTheme.dividerColor,
+            width: 1,
+          ),
         ),
-        color: AppTheme.backgroundColor,
+        color: themeService.isDarkMode
+            ? AppTheme.darkBackgroundColor
+            : AppTheme.backgroundColor,
       ),
       child: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onIndexChanged,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        selectedItemColor: AppTheme.accentColor,
-        unselectedItemColor: AppTheme.textSecondaryColor,
+        selectedItemColor: themeService.isDarkMode
+            ? AppTheme.darkAccentColor
+            : AppTheme.accentColor,
+        unselectedItemColor: themeService.isDarkMode
+            ? AppTheme.darkTextSecondaryColor
+            : AppTheme.textSecondaryColor,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),

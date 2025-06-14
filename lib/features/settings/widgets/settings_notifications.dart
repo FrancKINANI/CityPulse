@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:citypulse/config/app_theme.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:provider/provider.dart';
 
 class SettingsNotifications extends StatelessWidget {
   final bool pushEnabled;
@@ -24,22 +27,28 @@ class SettingsNotifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Container(
-      color: Colors.white,
+      color: themeService.isDarkMode
+          ? AppTheme.darkBackgroundColor
+          : AppTheme.backgroundColor,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Notifications',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF141E16),
+              color: themeService.isDarkMode
+                  ? AppTheme.darkTextPrimaryColor
+                  : AppTheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 16),
           _buildNotificationOption(
+            themeService,
             'Notifications push',
             'Recevoir des notifications sur votre appareil',
             pushEnabled,
@@ -47,6 +56,7 @@ class SettingsNotifications extends StatelessWidget {
           ),
           const Divider(),
           _buildNotificationOption(
+            themeService,
             'Notifications email',
             'Recevoir des notifications par email',
             emailEnabled,
@@ -54,6 +64,7 @@ class SettingsNotifications extends StatelessWidget {
           ),
           const Divider(),
           _buildNotificationOption(
+            themeService,
             'Mises à jour des tours',
             'Être notifié des changements dans vos tours',
             tourUpdatesEnabled,
@@ -61,6 +72,7 @@ class SettingsNotifications extends StatelessWidget {
           ),
           const Divider(),
           _buildNotificationOption(
+            themeService,
             'Rappels d\'événements',
             'Recevoir des rappels pour vos événements',
             eventRemindersEnabled,
@@ -72,6 +84,7 @@ class SettingsNotifications extends StatelessWidget {
   }
 
   Widget _buildNotificationOption(
+    ThemeService themeService,
     String title,
     String subtitle,
     bool value,
@@ -87,10 +100,12 @@ class SettingsNotifications extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF141E16),
+                    color: themeService.isDarkMode
+                        ? AppTheme.darkTextPrimaryColor
+                        : AppTheme.textPrimaryColor,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -98,7 +113,9 @@ class SettingsNotifications extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 14,
-                    color: const Color(0xFF141E16).withOpacity(0.6),
+                    color: themeService.isDarkMode
+                        ? AppTheme.darkTextSecondaryColor
+                        : AppTheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -107,7 +124,7 @@ class SettingsNotifications extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: const Color(0xFF2E7D32),
+            activeColor: AppTheme.secondaryColor,
           ),
         ],
       ),

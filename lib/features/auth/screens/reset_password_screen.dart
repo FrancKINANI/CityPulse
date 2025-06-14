@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'auth_form_field.dart';
-import 'auth_button.dart';
-import 'auth_header.dart';
-import 'auth_footer.dart';
+import 'package:provider/provider.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
+import 'package:citypulse/features/auth/widgets/auth_button.dart';
+import 'package:citypulse/features/auth/widgets/auth_header.dart';
+import 'package:citypulse/features/auth/widgets/auth_footer.dart';
 
 /// Écran de réinitialisation de mot de passe refactorisé utilisant des composants modulaires.
 class ResetPasswordScreen extends StatefulWidget {
@@ -36,7 +38,7 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
       // Simuler l'envoi d'un email de réinitialisation
       // À remplacer par l'appel réel au service d'authentification
       await Future.delayed(const Duration(seconds: 2));
-      
+
       setState(() {
         _resetSent = true;
         _isLoading = false;
@@ -51,6 +53,7 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeService = Provider.of<ThemeService>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -64,12 +67,14 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AuthHeader(
+                    AuthHeader(
                       title: "Reset Password",
-                      subtitle: "Enter your email and we'll send you instructions to reset your password",
+                      subtitle:
+                          "Enter your email and we'll send you instructions to reset your password",
+                      themeService: themeService,
                     ),
-                    
-                    if (!_resetSent) ...[  
+
+                    if (!_resetSent) ...[
                       AuthFormField(
                         controller: _emailController,
                         hintText: "Email",
@@ -84,24 +89,27 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           return null;
                         },
                       ),
-                      
-                      if (_errorMessage != null) ...[  
+
+                      if (_errorMessage != null) ...[
                         const SizedBox(height: 16),
                         Text(
                           _errorMessage!,
-                          style: const TextStyle(color: Colors.red, fontSize: 14),
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 14,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ],
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       AuthButton(
                         text: 'Send Reset Link',
                         onPressed: _handleResetPassword,
                         isLoading: _isLoading,
                       ),
-                    ] else ...[  
+                    ] else ...[
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
@@ -136,9 +144,9 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ],
                         ),
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       AuthButton(
                         text: 'Back to Sign In',
                         onPressed: () {
@@ -147,9 +155,9 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         backgroundColor: const Color(0xFF283F33),
                       ),
                     ],
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     if (!_resetSent)
                       AuthFooter(
                         text: "Remember your password? ",
@@ -157,6 +165,7 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         onLinkPressed: () {
                           Navigator.pushReplacementNamed(context, '/signin');
                         },
+                        themeService: themeService,
                       ),
                   ],
                 ),

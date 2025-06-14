@@ -1,29 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/config/app_theme.dart';
+
+/// Widget AuthHeader
+/// En-tête pour les écrans d'authentification.
+///
+/// Props :
+///   - String title : titre principal
+///   - String? subtitle : sous-titre optionnel
 
 class AuthHeader extends StatelessWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
+  final ThemeService themeService;
 
   const AuthHeader({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
+    required this.themeService,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(height: 48),
         Text(
           title,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: TextStyle(
+            color: themeService.isDarkMode
+                ? AppTheme.darkTextPrimaryColor
+                : AppTheme.textPrimaryColor,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
-        Text(
-          subtitle,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+        if (subtitle != null) ...[
+          const SizedBox(height: 16),
+          Text(
+            subtitle!,
+            style: TextStyle(
+              color: themeService.isDarkMode
+                  ? AppTheme.darkTextSecondaryColor
+                  : AppTheme.textSecondaryColor,
+              fontSize: 16,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+        const SizedBox(height: 48),
       ],
     );
   }

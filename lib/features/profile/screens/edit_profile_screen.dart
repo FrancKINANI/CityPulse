@@ -33,8 +33,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Edit Profile'),
+        title: Text(
+          'Edit Profile',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        iconTheme: Theme.of(context).appBarTheme.iconTheme,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -47,11 +53,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               Center(
                 child: CircleAvatar(
                   radius: 60,
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   child: Icon(
                     Icons.person,
                     size: 80,
-                    color: AppTheme.backgroundColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
               ),
@@ -60,9 +66,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               // Name field
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
+                style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+                decoration: InputDecoration(
                   labelText: 'Name',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).dividerColor!),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).dividerColor!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -76,9 +92,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               // Email field
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(
+                style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+                decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).dividerColor!),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).dividerColor!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -94,6 +120,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
               // Save button
               ElevatedButton(
+                style: Theme.of(context).elevatedButtonTheme.style,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // TODO: Implement profile update logic

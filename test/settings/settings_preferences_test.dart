@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/settings/settings_preferences.dart';
+import 'package:citypulse/features/settings/screens/settings_preferences.dart';
 
 void main() {
   group('SettingsPreferences Widget Tests', () {

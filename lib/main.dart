@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'config/firebase_options.dart';
+import 'package:citypulse/config/firebase_options.dart';
 
 // Configuration
-import 'config/routes.dart';
+import 'package:citypulse/config/routes.dart';
 
 // Services
-import 'services/auth_service.dart';
-import 'services/tour_service.dart';
-import 'services/navigation_service.dart';
-import 'services/calendar_service.dart';
-import 'services/notification_service.dart';
-import 'services/theme_service.dart';
+import 'package:citypulse/services/auth_service.dart';
+import 'package:citypulse/services/tour_service.dart';
+import 'package:citypulse/services/navigation_service.dart';
+import 'package:citypulse/services/calendar_service.dart';
+import 'package:citypulse/services/notification_service.dart';
+import 'package:citypulse/services/theme_service.dart';
 
 // Screens
-import 'features/legacy/screens/Welcome.dart';
-import 'features/auth/screens/signin_screen.dart';
-import 'features/explore/screens/explore_screen.dart';
-import 'features/create_tour/screens/create_tour_start_screen.dart';
-import 'features/create_tour/screens/create_tour_screen.dart';
-import 'features/create_tour/screens/add_to_tour_screen.dart';
-import 'features/create_tour/screens/edit_tour_schedule_screen.dart';
-import 'features/profile/screens/edit_profile_screen.dart';
-import 'features/legacy/profile/profile_screen.dart';
-import 'features/create_tour/screens/creating_tour_loading_screen.dart';
-import 'features/legacy/screens/YourTour.dart';
+import 'package:citypulse/features/main_screens/Welcome.dart';
+import 'package:citypulse/features/auth/screens/signin_screen.dart';
+import 'package:citypulse/features/explore/screens/explore_screen.dart';
+import 'package:citypulse/features/tour/screens/create_tour_start_screen.dart';
+import 'package:citypulse/features/tour/screens/create_tour_screen.dart';
+import 'package:citypulse/features/tour/screens/add_to_tour_screen.dart';
+import 'package:citypulse/features/tour/screens/edit_tour_schedule_screen.dart';
+import 'package:citypulse/features/profile/screens/edit_profile_screen.dart';
+import 'package:citypulse/features/profile/screens/profile_screen.dart';
+import 'package:citypulse/features/tour/screens/creating_tour_loading_screen.dart';
+import 'package:citypulse/features/tour/screens/YourTour.dart';
+import 'package:citypulse/features/auth/screens/reset_password_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -76,33 +77,77 @@ class MyApp extends StatelessWidget {
       darkTheme: themeService.getDarkTheme(),
       initialRoute: Routes.welcome,
       routes: {
-        Routes.welcome: (context) => const Welcome(),
-        Routes.signin: (context) => const SignInScreen(),
-        Routes.signup: (context) => const PlaceholderScreen(title: 'Sign Up'),
-        Routes.explore: (context) => const ExploreScreen(),
-        Routes.exploreDetails: (context) => const PlaceholderScreen(title: 'Explore Details'),
-        Routes.createTourStart: (context) => const CreateTourStartScreen(),
-        Routes.createTour: (context) => const CreateTourScreen(),
-        Routes.creatingTourLoading: (context) => const CreatingTourLoadingScreen(),
-        Routes.addToTour: (context) => const AddToTourScreen(),
-        Routes.editTourSchedule: (context) => EditTourScheduleScreen(selectedLocations: []),
-        Routes.yourTours: (context) => const YourTour(),
-        Routes.shareTour: (context) => const PlaceholderScreen(title: 'Share Tour'),
-        Routes.profile: (context) => const ProfileScreen(),
-        Routes.settings: (context) => const PlaceholderScreen(title: 'Settings'),
-        Routes.help: (context) => const PlaceholderScreen(title: 'Help'),
-        Routes.scanQr: (context) => const PlaceholderScreen(title: 'Scan QR'),
-        Routes.searchMap: (context) => const PlaceholderScreen(title: 'Search Map'),
-        Routes.calendar: (context) => const PlaceholderScreen(title: 'Calendar'),
-        Routes.notifications: (context) => const PlaceholderScreen(title: 'Notifications'),
-        Routes.adminDashboard: (context) => const PlaceholderScreen(title: 'Admin Dashboard'),
-        Routes.moderationPanel: (context) => const PlaceholderScreen(title: 'Moderation Panel'),
-        Routes.editProfile: (context) => const EditProfileScreen(),
-        Routes.addPlace: (context) => const PlaceholderScreen(title: 'Add Place'),
-        Routes.reset: (context) => const PlaceholderScreen(title: 'Reset'),
+        Routes.welcome: _welcomeRoute,
+        Routes.signin: _signInRoute,
+        Routes.signup: _signUpRoute,
+        Routes.explore: _exploreRoute,
+        Routes.exploreDetails: _exploreDetailsRoute,
+        Routes.createTourStart: _createTourStartRoute,
+        Routes.createTour: _createTourRoute,
+        Routes.creatingTourLoading: _creatingTourLoadingRoute,
+        Routes.addToTour: _addToTourRoute,
+        Routes.editTourSchedule: _editTourScheduleRoute,
+        Routes.yourTours: _yourToursRoute,
+        Routes.shareTour: _shareTourRoute,
+        Routes.profile: _profileRoute,
+        Routes.settings: _settingsRoute,
+        Routes.help: _helpRoute,
+        Routes.scanQr: _scanQrRoute,
+        Routes.searchMap: _searchMapRoute,
+        Routes.calendar: _calendarRoute,
+        Routes.notifications: _notificationsRoute,
+        Routes.adminDashboard: _adminDashboardRoute,
+        Routes.moderationPanel: _moderationPanelRoute,
+        Routes.editProfile: _editProfileRoute,
+        Routes.addPlace: _addPlaceRoute,
+        Routes.reset: _resetRoute,
       },
     );
   }
+
+  static Widget _welcomeRoute(BuildContext context) => const Welcome();
+  static Widget _signInRoute(BuildContext context) => const SignInScreen();
+  static Widget _signUpRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Sign Up');
+  static Widget _exploreRoute(BuildContext context) => const ExploreScreen();
+  static Widget _exploreDetailsRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Explore Details');
+  static Widget _createTourStartRoute(BuildContext context) =>
+      const CreateTourStartScreen();
+  static Widget _createTourRoute(BuildContext context) =>
+      const CreateTourScreen();
+  static Widget _creatingTourLoadingRoute(BuildContext context) =>
+      const CreatingTourLoadingScreen();
+  static Widget _addToTourRoute(BuildContext context) =>
+      const AddToTourScreen();
+  static Widget _editTourScheduleRoute(BuildContext context) =>
+      EditTourScheduleScreen(selectedLocations: []);
+  static Widget _yourToursRoute(BuildContext context) => const YourTour();
+  static Widget _shareTourRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Share Tour');
+  static Widget _profileRoute(BuildContext context) => const ProfileScreen();
+  static Widget _settingsRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Settings');
+  static Widget _helpRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Help');
+  static Widget _scanQrRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Scan QR');
+  static Widget _searchMapRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Search Map');
+  static Widget _calendarRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Calendar');
+  static Widget _notificationsRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Notifications');
+  static Widget _adminDashboardRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Admin Dashboard');
+  static Widget _moderationPanelRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Moderation Panel');
+  static Widget _editProfileRoute(BuildContext context) =>
+      const EditProfileScreen();
+  static Widget _addPlaceRoute(BuildContext context) =>
+      const PlaceholderScreen(title: 'Add Place');
+  static Widget _resetRoute(BuildContext context) =>
+      const ResetPasswordScreen();
 }
 
 // Simple placeholder screen for yet-to-be-migrated pages.
@@ -114,10 +159,12 @@ class PlaceholderScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: SingleChildScrollView(
-        child: Center(child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text('$title coming soon'),
-        )),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('$title coming soon'),
+          ),
+        ),
       ),
     );
   }

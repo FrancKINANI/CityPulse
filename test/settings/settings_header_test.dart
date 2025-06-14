@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:citypulse/screens/settings/settings_header.dart';
+import 'package:citypulse/features/settings/widgets/settings_header.dart';
 
 void main() {
   group('SettingsHeader Widget Tests', () {

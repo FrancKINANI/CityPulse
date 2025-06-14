@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../config/app_theme.dart';
-import '../../../../services/theme_service.dart';
-import '../widgets/explore_header.dart';
-import '../widgets/explore_filters.dart';
-import '../widgets/explore_hero_section.dart';
+import 'package:citypulse/config/app_theme.dart';
+import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/features/explore/widgets/explore_header.dart';
+import 'package:citypulse/features/explore/widgets/explore_filters.dart';
+import 'package:citypulse/features/explore/widgets/explore_hero_section.dart';
 import 'package:citypulse/features/explore/widgets/explore_featured_places.dart';
-import '../../../../services/navigation_service.dart';
-import '../../../../config/routes.dart';
-import '../widgets/explore_bottom_nav.dart';
+import 'package:citypulse/services/navigation_service.dart';
+import 'package:citypulse/config/routes.dart';
+import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
