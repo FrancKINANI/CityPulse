@@ -129,7 +129,9 @@ class WelcomeState extends State<Welcome> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(24),
-                                        color: Theme.of(context).secondaryColor,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.secondary,
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                         vertical: 12,

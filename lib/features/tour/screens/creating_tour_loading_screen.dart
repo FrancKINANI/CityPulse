@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import 'package:citypulse/services/tour_service.dart';
-import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
 class CreatingTourLoadingScreen extends StatefulWidget {
@@ -15,7 +14,6 @@ class CreatingTourLoadingScreen extends StatefulWidget {
 
 class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
     with TickerProviderStateMixin {
-  final TourService _tourService = TourService();
   late AnimationController _progressController;
   double _progressValue = 0.0;
   String _statusText = 'Analyzing your preferences...';
@@ -211,7 +209,7 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
               children: [
                 LinearProgressIndicator(
                   value: _progressValue,
-                  backgroundColor: Theme.of(context).cardColor,
+                  backgroundColor: Colors.orange.shade100,
                   valueColor: AlwaysStoppedAnimation<Color>(
                     Theme.of(context).colorScheme.primary,
                   ),
@@ -247,31 +245,29 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
                     ),
                   ),
                 ),
-                if (!_isGenerating) // Show the button only after generation is complete
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(
-                          context,
-                        ).colorScheme.secondary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        // Go back to the previous screen (e.g., tour details or tour list)
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Done',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                // if (!_isGenerating) // Show the button only after generation is complete
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 50,
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.orange, // Explicitly setting orange for consistency
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(12),
+                //       ),
+                //     ),
+                //     onPressed: () {
+                //       // Go back to the previous screen (e.g., tour details or tour list)
+                //       Navigator.pop(context);
+                //     },
+                //     child: Text(
+                //       'Done',
+                //       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

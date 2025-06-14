@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class EditTourScheduleScreen extends StatefulWidget {
   final List<Map<String, String>> selectedLocations;
@@ -127,7 +126,7 @@ class _EditTourScheduleScreenState extends State<EditTourScheduleScreen> {
                 height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.orange,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

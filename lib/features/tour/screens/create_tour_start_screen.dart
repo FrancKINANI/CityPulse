@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:citypulse/features/explore/widgets/explore_bottom_nav.dart';
 
-class CreateTourStartScreen extends StatelessWidget {
+class CreateTourStartScreen extends StatefulWidget {
   const CreateTourStartScreen({super.key});
+
+  @override
+  State<CreateTourStartScreen> createState() => _CreateTourStartScreenState();
+}
+
+class _CreateTourStartScreenState extends State<CreateTourStartScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, Routes.explore);
+        break;
+      case 1:
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, Routes.profile);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +178,7 @@ class CreateTourStartScreen extends StatelessWidget {
                                   ?.copyWith(
                                     color: Theme.of(
                                       context,
-                                    ).colorScheme.primary,
+                                    ).colorScheme.onPrimary,
                                   ),
                             ),
                           ),
@@ -167,28 +191,6 @@ class CreateTourStartScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore, color: Theme.of(context).iconTheme.color),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.list_alt,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            label: 'My Tours',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Theme.of(context).iconTheme.color),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: 1,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).unselectedWidgetColor,
       ),
     );
   }
