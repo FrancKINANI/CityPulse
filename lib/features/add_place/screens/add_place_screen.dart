@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-//Install: https://pub.dev/packages/mobkit_dashed_border
-import 'add_place/AddPlaceHeader.dart';
-import 'add_place/AddPlaceFormSection.dart';
-import 'add_place/AddPlaceBusinessHoursSection.dart';
-import 'add_place/AddPlaceMediaSection.dart';
-import 'add_place/AddPlacePreviewSection.dart';
-import 'add_place/AddPlaceActionsSection.dart';
+import 'package:citypulse/lib/config/app_config.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_header.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_form_section.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_business_hours_section.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_media_section.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_preview_section.dart';
+import 'package:citypulse/lib/features/add_place/widgets/add_place_actions_section.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
