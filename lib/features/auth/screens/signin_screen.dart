@@ -152,7 +152,10 @@ class SignInScreenState extends State<SignInScreen> {
                           },
                           child: Text(
                             'Sign Up',
-                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                           ),
                         ),
                       ],

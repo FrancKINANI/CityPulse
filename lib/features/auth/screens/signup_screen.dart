@@ -79,9 +79,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const AuthHeader(
-                      title: "Create your account",
-                    ),
+                    const AuthHeader(title: "Create your account"),
 
                     AuthFormField(
                       controller: _nameController,
@@ -96,7 +94,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                     const SizedBox(height: 16),
 
-                    AuthFormField(  
+                    AuthFormField(
                       controller: _emailController,
                       hintText: "Email",
                       keyboardType: TextInputType.emailAddress,
@@ -167,7 +165,7 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                     const SizedBox(height: 24),
 
-                    const AuthFooter(
+                    AuthFooter(
                       text: "Already have an account? ",
                       linkText: "Sign In",
                       onLinkPressed: () {

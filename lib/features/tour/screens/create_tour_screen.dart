@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:citypulse/config/routes.dart';
 import 'package:citypulse/models/tour.dart';
 import 'package:citypulse/services/tour_service.dart';
@@ -339,7 +338,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: isSelected
                     ? Theme.of(context).colorScheme.secondary
-                    : Theme.of(context).colorScheme.primary,
+                    : Theme.of(context).colorScheme.primary.withOpacity(0.7),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -360,7 +359,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                 }
               },
               child: Text(
-                isSelected ? 'Remove' : 'Add to tour',
+                isSelected ? 'Remove' : 'Add',
                 style: TextStyle(
                   color: isSelected
                       ? Theme.of(context).colorScheme.onSecondary
@@ -467,69 +466,6 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   ),
                 ),
 
-                // Tour locations section
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Tour Locations',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 8),
-                      if (_selectedPlaces.isNotEmpty) ...[
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Selected Places (${_selectedPlaces.length})',
-                                style: Theme.of(context).textTheme.bodyLarge
-                                    ?.copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 8),
-                              Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: _selectedPlaces.map((place) {
-                                  return Chip(
-                                    label: Text(
-                                      place.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelLarge
-                                          ?.copyWith(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onPrimary,
-                                          ),
-                                    ),
-                                    backgroundColor: Theme.of(
-                                      context,
-                                    ).colorScheme.secondary,
-                                    deleteIconColor: Theme.of(
-                                      context,
-                                    ).colorScheme.onSecondary,
-                                    onDeleted: () =>
-                                        _removePlaceFromTour(place),
-                                  );
-                                }).toList(),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
-                    ],
-                  ),
-                ),
-
                 // Search bar
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -611,7 +547,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _handleSubmit,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
+                      backgroundColor: Colors.orange,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: _isLoading

@@ -27,6 +27,15 @@ import 'package:citypulse/features/profile/screens/profile_screen.dart';
 import 'package:citypulse/features/tour/screens/creating_tour_loading_screen.dart';
 import 'package:citypulse/features/tour/screens/YourTour.dart';
 import 'package:citypulse/features/auth/screens/reset_password_screen.dart';
+import 'package:citypulse/features/settings/screens/settings_screen.dart';
+import 'package:citypulse/features/notifications/screens/notifications_screen.dart';
+import 'package:citypulse/features/help/screens/help_screen.dart';
+import 'package:citypulse/features/auth/screens/signup_screen.dart';
+import 'package:citypulse/features/explore/explore_details/explore_details_screen.dart';
+import 'package:citypulse/features/tour/screens/share_tour_screen.dart';
+import 'package:citypulse/features/place_event_calendar/screens/place_event_on_calendar_screen.dart';
+import 'package:citypulse/features/main_screens/ScanQRCode.dart';
+import 'package:citypulse/features/search_on_map/screens/search_on_map_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -107,11 +116,10 @@ class MyApp extends StatelessWidget {
 
   static Widget _welcomeRoute(BuildContext context) => const Welcome();
   static Widget _signInRoute(BuildContext context) => const SignInScreen();
-  static Widget _signUpRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Sign Up');
+  static Widget _signUpRoute(BuildContext context) => const SignUpScreen();
   static Widget _exploreRoute(BuildContext context) => const ExploreScreen();
   static Widget _exploreDetailsRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Explore Details');
+      const ExploreDetails();
   static Widget _createTourStartRoute(BuildContext context) =>
       const CreateTourStartScreen();
   static Widget _createTourRoute(BuildContext context) =>
@@ -123,21 +131,21 @@ class MyApp extends StatelessWidget {
   static Widget _editTourScheduleRoute(BuildContext context) =>
       EditTourScheduleScreen(selectedLocations: []);
   static Widget _yourToursRoute(BuildContext context) => const YourTour();
-  static Widget _shareTourRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Share Tour');
+  static Widget _shareTourRoute(BuildContext context) => const ShareTour();
   static Widget _profileRoute(BuildContext context) => const ProfileScreen();
-  static Widget _settingsRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Settings');
-  static Widget _helpRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Help');
-  static Widget _scanQrRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Scan QR');
-  static Widget _searchMapRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Search Map');
+  static Widget _settingsRoute(BuildContext context) => const SettingsScreen(
+    userName: 'Placeholder User',
+    userEmail: 'placeholder@example.com',
+    userAvatar:
+        'https://example.com/placeholder.jpg', // Replace with a generic placeholder or actual user avatar URL
+  );
+  static Widget _helpRoute(BuildContext context) => const HelpScreen();
+  static Widget _scanQrRoute(BuildContext context) => const ScanQRCode();
+  static Widget _searchMapRoute(BuildContext context) => const SearchOnMap();
   static Widget _calendarRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Calendar');
+      const PlaceEventOnCalendar();
   static Widget _notificationsRoute(BuildContext context) =>
-      const PlaceholderScreen(title: 'Notifications');
+      const Notifications();
   static Widget _adminDashboardRoute(BuildContext context) =>
       const PlaceholderScreen(title: 'Admin Dashboard');
   static Widget _moderationPanelRoute(BuildContext context) =>

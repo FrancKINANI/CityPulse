@@ -4,6 +4,7 @@ class User {
   final String email;
   String? profilePicture;
   String? bio;
+  String? interests;
   List<String> createdTours;
   List<String> savedTours;
 
@@ -13,6 +14,7 @@ class User {
     required this.email,
     this.profilePicture,
     this.bio,
+    this.interests,
     List<String>? createdTours,
     List<String>? savedTours,
   }) : createdTours = createdTours ?? [],
@@ -25,6 +27,7 @@ class User {
       email: json['email'],
       profilePicture: json['profilePicture'],
       bio: json['bio'],
+      interests: json['interests'],
       createdTours: List<String>.from(json['createdTours'] ?? []),
       savedTours: List<String>.from(json['savedTours'] ?? []),
     );
@@ -37,6 +40,7 @@ class User {
       'email': email,
       'profilePicture': profilePicture,
       'bio': bio,
+      'interests': interests,
       'createdTours': createdTours,
       'savedTours': savedTours,
     };
