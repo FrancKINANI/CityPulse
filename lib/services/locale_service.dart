@@ -58,4 +58,20 @@ class LocaleService extends ChangeNotifier {
   LocaleService() {
     _loadLocale();
   }
+
+  Locale getSystemLocale(BuildContext context) {
+    return Localizations.localeOf(context);
+  }
+
+  Future<void> resetToSystemLocale(BuildContext context) async {
+    final systemLocale = getSystemLocale(context);
+    await setLocale(systemLocale);
+  }
+
+  List<Map<String, String>> getSupportedLanguages() {
+    return supportedLocales.map((locale) => {
+      'code': locale.languageCode,
+      'name': getLanguageName(locale),
+    }).toList();
+  }
 }

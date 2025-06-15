@@ -125,6 +125,54 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 8),
+              Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.language, color: Theme.of(context).colorScheme.primary),
+                        const SizedBox(width: 16),
+                        Text(
+                          l10n.settings_language_system,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.settings_language_current,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                localeService.getLanguageName(localeService.locale),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: () async {
+                            await localeService.resetToSystemLocale(context);
+                          },
+                          tooltip: l10n.settings_language_reset,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
               SettingsAbout(
                 version: '1.0.0', // TODO: Get from package info
                 onPrivacyPolicy: () {

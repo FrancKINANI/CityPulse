@@ -32,9 +32,16 @@ class SettingsPreferences extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Préférences', style: Theme.of(context).textTheme.titleMedium),
+          Row(
+            children: [
+              Icon(Icons.language, color: Theme.of(context).colorScheme.primary),
+              const SizedBox(width: 8),
+              Text('Préférences', style: Theme.of(context).textTheme.titleMedium),
+            ],
+          ),
           const SizedBox(height: 16),
           _buildDropdownSetting(
+            Icons.language,
             'Langue',
             'Choisissez votre langue préférée',
             language,
@@ -44,6 +51,7 @@ class SettingsPreferences extends StatelessWidget {
           ),
           const Divider(),
           _buildDropdownSetting(
+            Icons.light_mode,
             'Thème',
             'Choisissez l\'apparence de l\'application',
             theme,
@@ -53,6 +61,7 @@ class SettingsPreferences extends StatelessWidget {
           ),
           const Divider(),
           _buildSwitchSetting(
+            Icons.location_on,
             'Localisation',
             'Autoriser l\'accès à votre position',
             locationEnabled,
@@ -61,6 +70,7 @@ class SettingsPreferences extends StatelessWidget {
           ),
           const Divider(),
           _buildSwitchSetting(
+            Icons.play_circle,
             'Lecture automatique',
             'Lire automatiquement les vidéos',
             autoPlayVideos,
@@ -73,6 +83,7 @@ class SettingsPreferences extends StatelessWidget {
   }
 
   Widget _buildDropdownSetting(
+    IconData icon,
     String title,
     String subtitle,
     String value,
@@ -84,6 +95,8 @@ class SettingsPreferences extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
+          Icon(icon, color: Theme.of(parentContext).colorScheme.primary),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +112,13 @@ class SettingsPreferences extends StatelessWidget {
           ),
           DropdownButton<String>(
             value: value,
-            onChanged: (newValue) {
+            items: options.map((String option) {
+              return DropdownMenuItem<String>(
+                value: option,
+                child: Text(option),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
               if (newValue != null) {
                 onChanged(newValue);
 
@@ -122,15 +141,6 @@ class SettingsPreferences extends StatelessWidget {
                 }
               }
             },
-            items: options.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                  style: Theme.of(parentContext).textTheme.bodyMedium,
-                ),
-              );
-            }).toList(),
           ),
         ],
       ),
@@ -138,6 +148,7 @@ class SettingsPreferences extends StatelessWidget {
   }
 
   Widget _buildSwitchSetting(
+    IconData icon,
     String title,
     String subtitle,
     bool value,
@@ -148,6 +159,8 @@ class SettingsPreferences extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
+          Icon(icon, color: Theme.of(parentContext).colorScheme.primary),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +177,6 @@ class SettingsPreferences extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: Theme.of(parentContext).colorScheme.primary,
           ),
         ],
       ),
