@@ -22,6 +22,9 @@ class ExploreDetails extends StatelessWidget {
                     title: 'Place Name',
                     location: 'Location Name',
                     rating: '4.5',
+                    itemId: '123',
+                    itemType: 'restaurant',
+                    ratingValue: 4.5,
                   ),
                   ExploreDetailsInfo(
                     description: 'A detailed description of the place...',

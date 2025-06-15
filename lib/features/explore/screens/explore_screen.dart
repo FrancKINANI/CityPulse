@@ -71,7 +71,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
       case 1: // Tours
         navigationService.navigateToReplacement(Routes.yourTours);
         break;
-      case 2: // Profile
+      case 2: // Favorites
+        navigationService.navigateToReplacement(Routes.favorites);
+        break;
+      case 3: // Profile
         navigationService.navigateToReplacement(Routes.profile);
         break;
     }

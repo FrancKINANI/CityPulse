@@ -13,11 +13,16 @@ import 'package:citypulse/services/navigation_service.dart';
 import 'package:citypulse/services/calendar_service.dart';
 import 'package:citypulse/services/notification_service.dart';
 import 'package:citypulse/services/theme_service.dart';
+import 'package:citypulse/services/locale_service.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
 
 // Screens
 import 'package:citypulse/features/main_screens/Welcome.dart';
 import 'package:citypulse/features/auth/screens/signin_screen.dart';
 import 'package:citypulse/features/explore/screens/explore_screen.dart';
+import 'package:citypulse/features/favorites/screens/favorites_screen.dart';
+import 'package:citypulse/features/interests/screens/interest_setup_screen.dart';
 import 'package:citypulse/features/tour/screens/create_tour_start_screen.dart';
 import 'package:citypulse/features/tour/screens/create_tour_screen.dart';
 import 'package:citypulse/features/tour/screens/add_to_tour_screen.dart';
@@ -59,6 +64,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => tourService),
         ChangeNotifierProvider(create: (_) => calendarService),
         ChangeNotifierProvider(create: (_) => themeService),
+        ChangeNotifierProvider(create: (_) => LocaleService()),
         Provider.value(value: navigationService),
         Provider.value(value: notificationService),
       ],
@@ -83,10 +89,28 @@ class MyApp extends StatelessWidget {
         ? Routes.explore 
         : Routes.welcome;
 
+    final localeService = Provider.of<LocaleService>(context);
+
     return MaterialApp(
       title: 'CityPulse',
       debugShowCheckedModeBanner: false,
       navigatorKey: navigationService.navigatorKey,
+      locale: localeService.locale,
+      supportedLocales: localeService.supportedLocales,
+      localizationsDelegates: [
+        ...localeService.localizationsDelegates,
+        S.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale != null) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode) {
+              return supportedLocale;
+            }
+          }
+        }
+        return supportedLocales.first;
+      },
       themeMode: themeService.themeMode,
       theme: themeService.getLightTheme(),
       darkTheme: themeService.getDarkTheme(),
@@ -95,6 +119,8 @@ class MyApp extends StatelessWidget {
         Routes.welcome: _welcomeRoute,
         Routes.signin: _signInRoute,
         Routes.signup: _signUpRoute,
+        Routes.favorites: (context) => const FavoritesScreen(),
+        Routes.interestSetup: (context) => const InterestSetupScreen(),
         Routes.explore: (context) {
           if (authService.currentUser == null) {
             Navigator.pushReplacementNamed(context, Routes.signin);

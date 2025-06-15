@@ -8,6 +8,8 @@ class Routes {
   // Main App Routes
   static const String explore = '/explore';
   static const String exploreDetails = '/explore-details';
+  static const String favorites = '/favorites';
+  static const String interestSetup = '/interest-setup';
   static const String createTourStart = '/create-tour-start';
   static const String createTour = '/create-tour';
   static const String creatingTourLoading = '/creating-tour-loading';

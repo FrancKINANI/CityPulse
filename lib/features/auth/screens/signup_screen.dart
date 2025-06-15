@@ -8,6 +8,7 @@ import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
 import 'package:citypulse/features/auth/widgets/auth_footer.dart';
+import 'package:citypulse/config/routes.dart';
 
 /// Écran d'inscription refactorisé utilisant des composants modulaires.
 class SignUpScreen extends StatefulWidget {
@@ -100,7 +101,16 @@ class SignUpScreenState extends State<SignUpScreen> {
 
       if (success) {
         if (!mounted) return;
-        Navigator.pushReplacementNamed(context, '/explore');
+        
+        // Sauvegarder les informations de l'utilisateur
+        final authService = Provider.of<AuthService>(context, listen: false);
+        await authService.updateUserDetails(
+          name: _nameController.text.trim(),
+          email: _emailController.text.trim(),
+        );
+        
+        // Rediriger vers la page de configuration des intérêts
+        Navigator.pushNamed(context, Routes.interestSetup);
       } else {
         // Try to get the last error from Firebase Auth
         final auth = firebase_auth.FirebaseAuth.instance;
@@ -299,16 +309,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ],
-                    ),
-
-                    const SizedBox(height: 24),
-
-                    AuthFooter(
-                      text: "Already have an account?",
-                      linkText: "Sign In",
-                      onLinkPressed: () {
-                        Navigator.pushReplacementNamed(context, '/signin');
-                      },
                     ),
                   ],
                 ),
