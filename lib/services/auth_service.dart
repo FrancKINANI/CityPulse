@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user.dart';
 
 class AuthService extends ChangeNotifier {
   final firebase_auth.FirebaseAuth _auth = firebase_auth.FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   User? _currentUser;
 
   User? get currentUser => _currentUser;
@@ -49,8 +51,46 @@ class AuthService extends ChangeNotifier {
       );
       await _loadUserData(userCredential.user!);
       return true;
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print('Sign in error: ${e.message}');
+      return false;
     } catch (e) {
       print('Sign in error: $e');
+      return false;
+    }
+  }
+
+  Future<bool> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final firebase_auth.AuthCredential credential =
+          firebase_auth.GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken,
+            idToken: googleAuth.idToken,
+          );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      await _loadUserData(userCredential.user!);
+
+      if (userCredential.additionalUserInfo?.isNewUser == true) {
+        await _firestore.collection('users').doc(userCredential.user!.uid).set({
+          'name': userCredential.user!.displayName ?? '',
+          'email': userCredential.user!.email ?? '',
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+      return true;
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print('Google Sign-In error: ${e.message}');
+      return false;
+    } catch (e) {
+      print('Google Sign-In error: $e');
       return false;
     }
   }
@@ -71,6 +111,9 @@ class AuthService extends ChangeNotifier {
 
       await _loadUserData(userCredential.user!);
       return true;
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print('Sign up error: ${e.message}');
+      return false;
     } catch (e) {
       print('Sign up error: $e');
       return false;
@@ -91,6 +134,9 @@ class AuthService extends ChangeNotifier {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       return true;
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print('Password reset error: ${e.message}');
+      return false;
     } catch (e) {
       print('Password reset error: $e');
       return false;
@@ -113,6 +159,9 @@ class AuthService extends ChangeNotifier {
       }
 
       return true;
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      print('Profile update error: ${e.message}');
+      return false;
     } catch (e) {
       print('Profile update error: $e');
       return false;

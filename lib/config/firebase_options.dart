@@ -32,12 +32,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'YOUR-WEB-API-KEY',
-    authDomain: 'citypulse.firebaseapp.com',
-    projectId: 'citypulse',
-    storageBucket: 'citypulse.appspot.com',
-    messagingSenderId: 'YOUR-SENDER-ID',
-    appId: 'YOUR-APP-ID',
+    apiKey: "AIzaSyArwBHwJ0c0HWenAYql1J8XcBAV0OriXs0",
+    authDomain: "citypulse-e589a.firebaseapp.com",
+    projectId: "citypulse-e589a",
+    storageBucket: "citypulse-e589a.firebasestorage.app",
+    messagingSenderId: "313355093720",
+    appId: "1:313355093720:web:73e367c5ffd8d4c2cab9ad",
+    measurementId: "G-1D7XJYKLGV"
   );
 
   static const FirebaseOptions android = FirebaseOptions(

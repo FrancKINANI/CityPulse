@@ -76,6 +76,12 @@ class MyApp extends StatelessWidget {
       listen: false,
     );
     final themeService = Provider.of<ThemeService>(context);
+    final authService = Provider.of<AuthService>(context);
+
+    // Redirection vers la page d'authentification si l'utilisateur n'est pas connecté
+    final initialRoute = authService.currentUser != null 
+        ? Routes.explore 
+        : Routes.welcome;
 
     return MaterialApp(
       title: 'CityPulse',
@@ -84,12 +90,18 @@ class MyApp extends StatelessWidget {
       themeMode: themeService.themeMode,
       theme: themeService.getLightTheme(),
       darkTheme: themeService.getDarkTheme(),
-      initialRoute: Routes.welcome,
+      initialRoute: initialRoute,
       routes: {
         Routes.welcome: _welcomeRoute,
         Routes.signin: _signInRoute,
         Routes.signup: _signUpRoute,
-        Routes.explore: _exploreRoute,
+        Routes.explore: (context) {
+          if (authService.currentUser == null) {
+            Navigator.pushReplacementNamed(context, Routes.signin);
+            return const PlaceholderScreen(title: 'Please Sign In');
+          }
+          return _exploreRoute(context);
+        },
         Routes.exploreDetails: _exploreDetailsRoute,
         Routes.createTourStart: _createTourStartRoute,
         Routes.createTour: _createTourRoute,

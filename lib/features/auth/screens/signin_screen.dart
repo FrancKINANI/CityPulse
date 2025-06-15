@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
 import 'package:citypulse/features/auth/widgets/auth_button.dart';
+import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:citypulse/features/auth/widgets/auth_footer.dart';
 
 /// Écran de connexion refactorisé utilisant des composants modulaires.
 class SignInScreen extends StatefulWidget {
@@ -17,12 +20,44 @@ class SignInScreenState extends State<SignInScreen> {
   final _passwordController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
+  bool _isPasswordVisible = false;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final success = await Provider.of<AuthService>(
+        context,
+        listen: false,
+      ).signInWithGoogle();
+
+      if (success) {
+        if (!mounted) return;
+        Navigator.pushReplacementNamed(context, '/explore');
+      } else {
+        setState(() {
+          _errorMessage = 'Failed to sign in with Google. Please try again.';
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'An error occurred. Please try again.';
+        _isLoading = false;
+      });
+    }
   }
 
   Future<void> _handleSignIn() async {
@@ -71,6 +106,22 @@ class SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    Text(
+                      'Sign In',
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Welcome back to CityPulse',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(height: 32),
 
                     AuthFormField(
@@ -93,7 +144,7 @@ class SignInScreenState extends State<SignInScreen> {
                     AuthFormField(
                       controller: _passwordController,
                       hintText: "Password",
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
@@ -103,6 +154,19 @@ class SignInScreenState extends State<SignInScreen> {
                         }
                         return null;
                       },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      ),
                     ),
 
                     if (_errorMessage != null) ...[
@@ -120,8 +184,17 @@ class SignInScreenState extends State<SignInScreen> {
                     const SizedBox(height: 24),
 
                     AuthButton(
-                      text: 'Sign In',
+                      text: _isLoading ? '' : 'Sign In',
                       onPressed: _handleSignIn,
+                      isLoading: _isLoading,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    GoogleSignInButton(
+                      onPressed: _handleGoogleSignIn,
                       isLoading: _isLoading,
                     ),
 
@@ -136,6 +209,18 @@ class SignInScreenState extends State<SignInScreen> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
+
+                    const SizedBox(height: 24),
+
+                    AuthFooter(
+                      text: "Don't have an account?",
+                      linkText: "Sign Up",
+                      onLinkPressed: () {
+                        Navigator.pushNamed(context, '/signup');
+                      },
+                    ),
+
+                    const SizedBox(height: 24),
 
                     const SizedBox(height: 24),
 
@@ -154,7 +239,8 @@ class SignInScreenState extends State<SignInScreen> {
                             'Sign Up',
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
                                 ),
                           ),
                         ),

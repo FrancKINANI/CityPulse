@@ -27,13 +27,18 @@ class AuthFooter extends StatelessWidget {
       children: [
         Text(
           text,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+          ),
         ),
         TextButton(
           onPressed: onLinkPressed,
           child: Text(
             linkText,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
         ),
       ],

@@ -24,6 +24,7 @@ class AuthFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
+  final Widget? suffixIcon;
 
   const AuthFormField({
     super.key,
@@ -36,6 +37,7 @@ class AuthFormField extends StatelessWidget {
     this.focusNode,
     this.onChanged,
     this.onSubmitted,
+    this.suffixIcon,
   });
 
   @override
@@ -54,11 +56,13 @@ class AuthFormField extends StatelessWidget {
           color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+            color: Theme.of(context).colorScheme.outline,
+            width: 1,
           ),
         ),
+        suffixIcon: suffixIcon,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(

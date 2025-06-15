@@ -122,7 +122,7 @@ class WelcomeState extends State<Welcome> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                       context,
-                                      Routes.explore,
+                                      Routes.signin,
                                     );
                                   },
                                   child: IntrinsicHeight(

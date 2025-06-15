@@ -33,7 +33,7 @@ class AuthButton extends StatelessWidget {
           : Text(
               text,
               style: TextStyle(
-                color: textColor ?? Theme.of(context).colorScheme.onPrimary,
+                color: textColor ?? Theme.of(context).colorScheme.onSecondary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

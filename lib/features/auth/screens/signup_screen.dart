@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/shared_widgets/auth_form_field.dart';
 import 'package:citypulse/features/shared_widgets/auth_button.dart';
+import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
 import 'package:citypulse/features/auth/widgets/auth_footer.dart';
 
@@ -18,6 +21,8 @@ class SignUpScreenState extends State<SignUpScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
@@ -29,6 +34,52 @@ class SignUpScreenState extends State<SignUpScreen> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  String _getFirebaseErrorMessage(firebase_auth.FirebaseAuthException e) {
+    switch (e.code) {
+      case 'email-already-in-use':
+        return 'This email is already registered.';
+      case 'invalid-email':
+        return 'Please enter a valid email address.';
+      case 'operation-not-allowed':
+        return 'Email/password accounts are not enabled.';
+      case 'weak-password':
+        return 'The password provided is too weak.';
+      default:
+        return 'An error occurred. Please try again.';
+    }
+  }
+
+  Future<void> _handleGoogleSignUp() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final success = await Provider.of<AuthService>(
+        context,
+        listen: false,
+      ).signInWithGoogle();
+
+      if (success) {
+        if (!mounted) return;
+        Navigator.pushReplacementNamed(context, '/explore');
+      } else {
+        setState(() {
+          _errorMessage = 'Failed to sign up with Google. Please try again.';
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'An error occurred. Please try again.';
+        _isLoading = false;
+      });
+    }
   }
 
   Future<void> _handleSignUp() async {
@@ -51,11 +102,20 @@ class SignUpScreenState extends State<SignUpScreen> {
         if (!mounted) return;
         Navigator.pushReplacementNamed(context, '/explore');
       } else {
-        setState(() {
-          _errorMessage = 'Failed to create account. Please try again.';
-          _isLoading = false;
-        });
+        // Try to get the last error from Firebase Auth
+        final auth = firebase_auth.FirebaseAuth.instance;
+        if (auth.currentUser == null) {
+          setState(() {
+            _errorMessage = 'Failed to create account. Please try again.';
+            _isLoading = false;
+          });
+        }
       }
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      setState(() {
+        _errorMessage = _getFirebaseErrorMessage(e);
+        _isLoading = false;
+      });
     } catch (e) {
       setState(() {
         _errorMessage = 'An error occurred. Please try again.';
@@ -114,7 +174,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     AuthFormField(
                       controller: _passwordController,
                       hintText: "Password",
-                      obscureText: true,
+                      obscureText: !_isPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter a password';
@@ -124,6 +184,19 @@ class SignUpScreenState extends State<SignUpScreen> {
                         }
                         return null;
                       },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      ),
                     ),
 
                     const SizedBox(height: 16),
@@ -131,7 +204,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     AuthFormField(
                       controller: _confirmPasswordController,
                       hintText: "Confirm Password",
-                      obscureText: true,
+                      obscureText: !_isConfirmPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please confirm your password';
@@ -141,6 +214,19 @@ class SignUpScreenState extends State<SignUpScreen> {
                         }
                         return null;
                       },
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isConfirmPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                          });
+                        },
+                      ),
                     ),
 
                     if (_errorMessage != null) ...[
@@ -158,15 +244,67 @@ class SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 24),
 
                     AuthButton(
-                      text: 'Create Account',
+                      text: _isLoading ? '' : 'Create Account',
                       onPressed: _handleSignUp,
                       isLoading: _isLoading,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    GoogleSignInButton(
+                      onPressed: _handleGoogleSignUp,
+                      isLoading: _isLoading,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 4,
+                      children: [
+                        Text(
+                          "By signing up, you agree to our",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/terms');
+                          },
+                          child: Text(
+                            'Terms of Service',
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                        Text(
+                          'and',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/privacy');
+                          },
+                          child: Text(
+                            'Privacy Policy',
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                      ],
                     ),
 
                     const SizedBox(height: 24),
 
                     AuthFooter(
-                      text: "Already have an account? ",
+                      text: "Already have an account?",
                       linkText: "Sign In",
                       onLinkPressed: () {
                         Navigator.pushReplacementNamed(context, '/signin');
