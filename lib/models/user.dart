@@ -1,8 +1,8 @@
 class User {
   final String id;
-  final String name;
-  final String email;
-  String? profilePicture;
+  String name;
+  String email;
+  String? photoUrl; // Renamed from profilePicture to match the service
   String? bio;
   String? interests;
   List<String> createdTours;
@@ -12,7 +12,7 @@ class User {
     required this.id,
     required this.name,
     required this.email,
-    this.profilePicture,
+    this.photoUrl,
     this.bio,
     this.interests,
     List<String>? createdTours,
@@ -22,12 +22,12 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'],
-      name: json['name'],
-      email: json['email'],
-      profilePicture: json['profilePicture'],
-      bio: json['bio'],
-      interests: json['interests'],
+      id: json['id'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      photoUrl: json['photoUrl'] as String?,
+      bio: json['bio'] as String?,
+      interests: json['interests'] as String?,
       createdTours: List<String>.from(json['createdTours'] ?? []),
       savedTours: List<String>.from(json['savedTours'] ?? []),
     );
@@ -38,7 +38,7 @@ class User {
       'id': id,
       'name': name,
       'email': email,
-      'profilePicture': profilePicture,
+      'photoUrl': photoUrl,
       'bio': bio,
       'interests': interests,
       'createdTours': createdTours,

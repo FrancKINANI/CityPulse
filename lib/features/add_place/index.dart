@@ -4,4 +4,3 @@ export 'package:citypulse/features/add_place/widgets/AddPlaceFormSection.dart';
 export 'package:citypulse/features/add_place/widgets/AddPlaceMediaSection.dart';
 export 'package:citypulse/features/add_place/widgets/AddPlacePreviewSection.dart';
 export 'package:citypulse/features/add_place/widgets/AddPlaceActionsSection.dart';
-export 'package:citypulse/features/add_place/widgets/AddPlaceBusinessHoursSection.dart';

@@ -16,6 +16,41 @@ class ThemeService extends ChangeNotifier {
 
   bool get isDarkMode => _themeMode == ThemeMode.dark;
 
+  // Ajout des getters pour les thèmes
+  ThemeData getLightTheme() {
+    return ThemeData(
+      primaryColor: AppTheme.primaryColor,
+      scaffoldBackgroundColor: AppTheme.backgroundColor,
+      colorScheme: const ColorScheme.light(
+        primary: AppTheme.primaryColor,
+        secondary: AppTheme.secondaryColor,
+        surface: AppTheme.backgroundColor,
+      ),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: AppTheme.textPrimaryColor),
+        bodyMedium: TextStyle(color: AppTheme.textSecondaryColor),
+      ),
+      dividerColor: AppTheme.dividerColor,
+    );
+  }
+
+  ThemeData getDarkTheme() {
+    return ThemeData(
+      primaryColor: AppTheme.darkPrimaryColor,
+      scaffoldBackgroundColor: AppTheme.darkBackgroundColor,
+      colorScheme: const ColorScheme.dark(
+        primary: AppTheme.darkPrimaryColor,
+        secondary: AppTheme.darkSecondaryColor,
+        surface: AppTheme.darkBackgroundColor,
+      ),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: AppTheme.darkTextPrimaryColor),
+        bodyMedium: TextStyle(color: AppTheme.darkTextSecondaryColor),
+      ),
+      dividerColor: AppTheme.darkDividerColor,
+    );
+  }
+
   Future<void> _loadThemeMode() async {
     final prefs = await SharedPreferences.getInstance();
     final savedThemeMode = prefs.getString(_themeKey);
@@ -48,34 +83,21 @@ class ThemeService extends ChangeNotifier {
         return ThemeMode.dark;
       case 'light':
         return ThemeMode.light;
+      case 'system':
       default:
         return ThemeMode.system;
     }
   }
 
-  String _getStringFromThemeMode(ThemeMode themeMode) {
-    switch (themeMode) {
+  String _getStringFromThemeMode(ThemeMode mode) {
+    switch (mode) {
       case ThemeMode.dark:
         return 'dark';
       case ThemeMode.light:
         return 'light';
+      case ThemeMode.system:
       default:
         return 'system';
     }
-  }
-
-  ThemeData get currentTheme {
-    return _themeMode == ThemeMode.dark
-        ? AppTheme.getDarkTheme()
-        : AppTheme.getLightTheme();
-  }
-
-  // Thèmes pour l'application
-  ThemeData getLightTheme() {
-    return AppTheme.getLightTheme();
-  }
-
-  ThemeData getDarkTheme() {
-    return AppTheme.getDarkTheme();
   }
 }

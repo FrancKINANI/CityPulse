@@ -5,9 +5,7 @@ import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/shared_widgets/auth_form_field.dart';
 import 'package:citypulse/features/shared_widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
-import 'package:citypulse/features/auth/widgets/auth_footer.dart';
 import 'package:citypulse/config/routes.dart';
 
 /// Écran d'inscription refactorisé utilisant des composants modulaires.
@@ -199,7 +197,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           _isPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                         ),
                         onPressed: () {
                           setState(() {
@@ -229,7 +227,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           _isConfirmPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                         ),
                         onPressed: () {
                           setState(() {

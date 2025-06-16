@@ -36,10 +36,58 @@ class AuthService extends ChangeNotifier {
           id: firebaseUser.uid,
           name: data['name'] ?? '',
           email: firebaseUser.email ?? '',
+          photoUrl: data['photoUrl'],
+          bio: data['bio'],
+          interests: data['interests'],
+          createdTours: List<String>.from(data['createdTours'] ?? []),
+          savedTours: List<String>.from(data['savedTours'] ?? []),
         );
+      } else {
+        // Create a new user document if it doesn't exist
+        _currentUser = User(
+          id: firebaseUser.uid,
+          name: firebaseUser.displayName ?? '',
+          email: firebaseUser.email ?? '',
+          photoUrl: firebaseUser.photoURL,
+        );
+
+        // Save the new user to Firestore
+        await _firestore
+            .collection('users')
+            .doc(firebaseUser.uid)
+            .set(_currentUser!.toJson());
       }
+      notifyListeners();
     } catch (e) {
       print('Error loading user data: $e');
+    }
+  }
+
+  Future<void> updateUserDetails({
+    String? name,
+    String? email,
+    String? photoUrl,
+  }) async {
+    try {
+      if (_currentUser == null) return;
+      final user = _currentUser!;
+
+      // Update Firestore
+      await _firestore.collection('users').doc(user.id).update({
+        if (name != null) 'name': name,
+        if (email != null) 'email': email,
+        if (photoUrl != null) 'photoUrl': photoUrl,
+      });
+
+      // Update local user
+      if (name != null) user.name = name;
+      if (email != null) user.email = email;
+      if (photoUrl != null) user.photoUrl = photoUrl;
+
+      notifyListeners();
+    } catch (e) {
+      print('Error updating user details: $e');
+      rethrow;
     }
   }
 

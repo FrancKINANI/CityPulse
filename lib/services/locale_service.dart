@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:citypulse/l10n/app_localizations.dart';
 
 class LocaleService extends ChangeNotifier {
   static const String _localeKey = 'app_locale';
+  bool _isInitialized = false;
+  bool get isInitialized => _isInitialized;
 
-  Locale _locale = const Locale('fr', 'FR'); // Français par défaut
+  Locale? _locale;
 
-  Locale get locale => _locale;
+  Locale get locale =>
+      _locale ??
+      const Locale('fr', 'FR'); // Français par défaut si pas de locale définie
 
   List<Locale> get supportedLocales => const [
     Locale('fr', 'FR'),
@@ -15,10 +20,28 @@ class LocaleService extends ChangeNotifier {
   ];
 
   List<LocalizationsDelegate<dynamic>> get localizationsDelegates => const [
+    AppLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
   ];
+
+  Locale? Function(Locale?, Iterable<Locale>)? get localeResolutionCallback =>
+      (Locale? locale, Iterable<Locale> supportedLocales) {
+        if (locale == null) {
+          return this.locale;
+        }
+        
+        // Check if the locale is supported
+        for (final supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode) {
+            return supportedLocale;
+          }
+        }
+        
+        // If not supported, return default locale
+        return this.locale;
+      };
 
   Future<void> _loadLocale() async {
     final prefs = await SharedPreferences.getInstance();
@@ -39,7 +62,10 @@ class LocaleService extends ChangeNotifier {
 
     _locale = newLocale;
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_localeKey, '${newLocale.languageCode}_${newLocale.countryCode}');
+    await prefs.setString(
+      _localeKey,
+      '${newLocale.languageCode}_${newLocale.countryCode}',
+    );
 
     notifyListeners();
   }
@@ -59,6 +85,12 @@ class LocaleService extends ChangeNotifier {
     _loadLocale();
   }
 
+  Future<void> initLocale() async {
+    await _loadLocale();
+    _isInitialized = true;
+    notifyListeners();
+  }
+
   Locale getSystemLocale(BuildContext context) {
     return Localizations.localeOf(context);
   }
@@ -69,9 +101,13 @@ class LocaleService extends ChangeNotifier {
   }
 
   List<Map<String, String>> getSupportedLanguages() {
-    return supportedLocales.map((locale) => {
-      'code': locale.languageCode,
-      'name': getLanguageName(locale),
-    }).toList();
+    return supportedLocales
+        .map(
+          (locale) => {
+            'code': locale.languageCode,
+            'name': getLanguageName(locale),
+          },
+        )
+        .toList();
   }
 }

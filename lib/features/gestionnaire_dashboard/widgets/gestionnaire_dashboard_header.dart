@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/app_config.dart';
 
 class GestionnaireDashboardHeader extends StatelessWidget {
   final String userName;

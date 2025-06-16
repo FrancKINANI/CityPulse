@@ -13,7 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
-  int selectedNavIndex = 2; // 2 is for Profile section
+  int selectedNavIndex = 3; // 3 is for Profile section
 
   void _handleNavIndexChanged(int index) {
     setState(() {
@@ -31,7 +31,10 @@ class ProfileScreenState extends State<ProfileScreen> {
       case 1: // Tours
         navigationService.navigateToReplacement(Routes.yourTours);
         break;
-      case 2: // Profile
+      case 2: // Favorites
+        navigationService.navigateToReplacement(Routes.favorites);
+        break;
+      case 3: // Profile
         // Already on profile screen
         break;
     }

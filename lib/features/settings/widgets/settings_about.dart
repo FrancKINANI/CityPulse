@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SettingsAbout extends StatelessWidget {
-  final String appVersion;
+  final String version;
   final VoidCallback onPrivacyPolicy;
   final VoidCallback onTermsOfService;
   final VoidCallback onLicenses;
@@ -9,7 +9,7 @@ class SettingsAbout extends StatelessWidget {
 
   const SettingsAbout({
     super.key,
-    required this.appVersion,
+    required this.version,
     required this.onPrivacyPolicy,
     required this.onTermsOfService,
     required this.onLicenses,
@@ -26,7 +26,7 @@ class SettingsAbout extends StatelessWidget {
         children: [
           Text('À propos', style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 16),
-          buildInfoRow(context, 'Version', appVersion),
+          buildInfoRow(context, 'Version', version),
           const Divider(),
           buildActionRow(
             context,

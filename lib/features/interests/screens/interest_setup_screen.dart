@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:citypulse/services/interest_service.dart';
 import 'package:provider/provider.dart';
-import 'package:citypulse/models/user_interest.dart';
 import 'package:citypulse/config/app_theme.dart';
+import 'package:citypulse/config/routes.dart';
 
 class InterestSetupScreen extends StatefulWidget {
   const InterestSetupScreen({super.key});
@@ -15,7 +15,8 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
   final InterestService _interestService = InterestService();
   final List<String> _selectedInterests = [];
   final List<String> _customInterests = [];
-  final TextEditingController _customInterestController = TextEditingController();
+  final TextEditingController _customInterestController =
+      TextEditingController();
 
   final List<String> _categories = [
     'Restaurants',
@@ -35,7 +36,7 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
     'Festivals',
     'Concerts',
     'Théâtres',
-    'Cinémas'
+    'Cinémas',
   ];
 
   @override
@@ -81,8 +82,9 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
     try {
       final userId = Provider.of<String>(context, listen: false);
       await _interestService.saveInterests(userId, _selectedInterests);
-      
-      Navigator.of(context).pop(); // Retour à l'écran précédent
+
+      // Redirection vers l'Explore
+      Navigator.pushReplacementNamed(context, Routes.explore);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -100,10 +102,7 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Configuration des Intérêts',
-          style: AppTheme.headingStyle,
-        ),
+        title: Text('Configuration des Intérêts', style: AppTheme.headingStyle),
         centerTitle: true,
         backgroundColor: AppTheme.primaryColor,
         foregroundColor: AppTheme.textPrimaryColor,
@@ -113,10 +112,7 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Sélectionnez vos intérêts',
-              style: AppTheme.headline2,
-            ),
+            Text('Sélectionnez vos intérêts', style: AppTheme.headline2),
             const SizedBox(height: AppTheme.defaultSpacing),
             Expanded(
               child: GridView.builder(
@@ -168,7 +164,9 @@ class _InterestSetupScreenState extends State<InterestSetupScreen> {
             ElevatedButton(
               onPressed: _saveInterests,
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: AppTheme.defaultSpacing * 2),
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppTheme.defaultSpacing * 2,
+                ),
                 backgroundColor: AppTheme.secondaryColor,
                 foregroundColor: AppTheme.textPrimaryColor,
                 shape: RoundedRectangleBorder(
@@ -217,7 +215,9 @@ class InterestCategoryChip extends StatelessWidget {
           child: Text(
             category,
             style: TextStyle(
-              color: isSelected ? AppTheme.textPrimaryColor : AppTheme.textSecondaryColor,
+              color: isSelected
+                  ? AppTheme.textPrimaryColor
+                  : AppTheme.textSecondaryColor,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),

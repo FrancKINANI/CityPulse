@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:citypulse/models/favorite_item.dart';
 import 'package:citypulse/services/favorite_service.dart';
 import 'package:citypulse/config/app_theme.dart';

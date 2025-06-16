@@ -4,7 +4,6 @@ import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
 import 'package:citypulse/features/auth/widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:citypulse/features/auth/widgets/auth_footer.dart';
 
 /// Écran de connexion refactorisé utilisant des composants modulaires.
@@ -109,7 +108,7 @@ class SignInScreenState extends State<SignInScreen> {
                     Text(
                       'Sign In',
                       style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -118,7 +117,7 @@ class SignInScreenState extends State<SignInScreen> {
                     Text(
                       'Welcome back to CityPulse',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -159,7 +158,7 @@ class SignInScreenState extends State<SignInScreen> {
                           _isPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
                         ),
                         onPressed: () {
                           setState(() {

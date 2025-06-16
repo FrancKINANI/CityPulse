@@ -32,7 +32,7 @@ class AuthFormField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-        color: Theme.of(context).colorScheme.onBackground,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
       decoration: InputDecoration(
         filled: true,

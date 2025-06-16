@@ -46,7 +46,7 @@ class GestionnaireDashboardStats extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _buildStatCard(
+                child: _buildStatCard(context,
                   icon: Icons.place,
                   title: 'Lieux',
                   value: totalPlaces,
@@ -55,7 +55,7 @@ class GestionnaireDashboardStats extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: _buildStatCard(
+                child: _buildStatCard(context,
                   icon: Icons.map,
                   title: 'Tours',
                   value: totalTours,
@@ -68,20 +68,20 @@ class GestionnaireDashboardStats extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _buildStatCard(
+                child: _buildStatCard(context,
                   icon: Icons.people,
-                  title: 'Utilisateurs',
+                  title: 'Total Users',
                   value: totalUsers,
-                  color: theme.colorScheme.tertiary,
+                  color: AppConfig.backgroundColor,
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: _buildStatCard(
-                  icon: Icons.comment,
-                  title: 'Avis en attente',
+                child: _buildStatCard(context,
+                  icon: Icons.rate_review,
+                  title: 'Pending Reviews',
                   value: pendingReviews,
-                  color: theme.colorScheme.error,
+                  color: Colors.orange,
                 ),
               ),
             ],
@@ -91,7 +91,7 @@ class GestionnaireDashboardStats extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard({
+  Widget _buildStatCard(BuildContext context, {
     required IconData icon,
     required String title,
     required int value,
@@ -113,7 +113,7 @@ class GestionnaireDashboardStats extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             title,
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: color,
               fontWeight: FontWeight.w600,
             ),
@@ -121,7 +121,7 @@ class GestionnaireDashboardStats extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value.toString(),
-            style: theme.textTheme.headlineSmall?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: color,
               fontWeight: FontWeight.bold,
             ),

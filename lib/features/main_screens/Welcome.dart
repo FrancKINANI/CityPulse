@@ -1,182 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/config/routes.dart';
+import 'package:citypulse/features/explore/screens/explore_screen.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
+
   @override
-  WelcomeState createState() => WelcomeState();
+  State<Welcome> createState() => _WelcomeState();
 }
 
-class WelcomeState extends State<Welcome> {
+class _WelcomeState extends State<Welcome> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToExplore();
+  }
+
+  Future<void> _navigateToExplore() async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const ExploreScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Container(
-          constraints: const BoxConstraints.expand(),
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IntrinsicHeight(
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 368),
-                            width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                    top: 24,
-                                    bottom: 12,
-                                    left: 16,
-                                    right: 16,
-                                  ),
-                                  width: double.infinity,
-                                  child: Text(
-                                    "CityPulse",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineLarge
-                                        ?.copyWith(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 4,
-                                  ),
-                                  width: double.infinity,
-                                  child: Text(
-                                    "Explore the city's heartbeat",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(fontSize: 14),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                IntrinsicHeight(
-                                  child: Container(
-                                    color: Theme.of(
-                                      context,
-                                    ).scaffoldBackgroundColor,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    width: double.infinity,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              12,
-                                            ),
-                                          ),
-                                          margin: const EdgeInsets.symmetric(
-                                            horizontal: 16,
-                                          ),
-                                          height: 239,
-                                          width: double.infinity,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                              12,
-                                            ),
-                                            child: Image.network(
-                                              "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2bd3af36-efc8-4c1f-843e-9b4953b93e77",
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        IntrinsicHeight(
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      Routes.signin,
-                                    );
-                                  },
-                                  child: IntrinsicHeight(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(24),
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.secondary,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 12,
-                                      ),
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 12,
-                                      ),
-                                      width: double.infinity,
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "Get Started",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge
-                                                ?.copyWith(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  color: Theme.of(
-                                    context,
-                                  ).scaffoldBackgroundColor,
-                                  height: 20,
-                                  width: double.infinity,
-                                  child: SizedBox(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              'Bienvenue sur CityPulse',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 32),
+            // Optionally keep the button or remove it since auto navigation is implemented
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.of(context).pushReplacement(
+            //       MaterialPageRoute(
+            //         builder: (context) => const ExploreScreen(),
+            //       ),
+            //     );
+            //   },
+            //   child: const Text('Explorer'),
+            // ),
+          ],
         ),
       ),
     );

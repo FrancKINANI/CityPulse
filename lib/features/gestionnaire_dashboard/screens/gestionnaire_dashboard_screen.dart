@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-export 'gestionnaire_dashboard/gestionnaire_dashboard_screen.dart';
 
-// Ce fichier est déprécié. Utilisez gestionnaire_dashboard/gestionnaire_dashboard_screen.dart à la place.
-@Deprecated(
-  'Utilisez gestionnaire_dashboard/gestionnaire_dashboard_screen.dart à la place',
-)
 class GestionnaireDashboard extends StatefulWidget {
-  const GestionnaireDashboard({super.key});
+  const GestionnaireDashboard({super.key, required String userName, required String userRole, required String userAvatar});
   @override
   GestionnaireDashboardState createState() => GestionnaireDashboardState();
 }

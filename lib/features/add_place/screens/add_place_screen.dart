@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/lib/config/app_config.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_header.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_form_section.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_business_hours_section.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_media_section.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_preview_section.dart';
-import 'package:citypulse/lib/features/add_place/widgets/add_place_actions_section.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlaceHeader.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlaceFormSection.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlaceBusinessHoursSection.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlaceMediaSection.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlacePreviewSection.dart';
+import 'package:citypulse/features/add_place/widgets/AddPlaceActionsSection.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
