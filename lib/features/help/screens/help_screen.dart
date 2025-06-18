@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/help_faq_section.dart';
 import '../widgets/help_contact_section.dart';
-import '../widgets/help_navigation_bar.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
@@ -18,17 +17,11 @@ class HelpScreen extends StatelessWidget {
               margin: const EdgeInsets.only(right: 16),
               width: 24,
               height: 24,
-              child: const Icon(
-                Icons.help_outline,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.help_outline, color: Colors.white),
             ),
             const Text(
               "Help",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -53,8 +46,22 @@ class HelpScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Navigation Bar at bottom
-            HelpNavigationBar(),
+            // Footer with additional links
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Text(
+                    "For more assistance, visit our website or contact support.",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

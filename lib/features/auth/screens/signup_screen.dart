@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:citypulse/services/auth_service.dart';
-import 'package:citypulse/features/shared_widgets/auth_form_field.dart';
-import 'package:citypulse/features/shared_widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/google_signin_button.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
 import 'package:citypulse/config/routes.dart';
+import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
+import 'package:citypulse/features/auth/widgets/auth_button.dart';
 
 /// Écran d'inscription refactorisé utilisant des composants modulaires.
 class SignUpScreen extends StatefulWidget {
@@ -99,14 +99,14 @@ class SignUpScreenState extends State<SignUpScreen> {
 
       if (success) {
         if (!mounted) return;
-        
+
         // Sauvegarder les informations de l'utilisateur
         final authService = Provider.of<AuthService>(context, listen: false);
         await authService.updateUserDetails(
           name: _nameController.text.trim(),
           email: _emailController.text.trim(),
         );
-        
+
         // Rediriger vers la page de configuration des intérêts
         Navigator.pushNamed(context, Routes.interestSetup);
       } else {
@@ -197,7 +197,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                           _isPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withAlpha(204),
                         ),
                         onPressed: () {
                           setState(() {
@@ -227,11 +229,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                           _isConfirmPasswordVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.8),
                         ),
                         onPressed: () {
                           setState(() {
-                            _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                            _isConfirmPasswordVisible =
+                                !_isConfirmPasswordVisible;
                           });
                         },
                       ),
@@ -284,7 +289,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                             'Terms of Service',
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.secondary,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
@@ -301,7 +308,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                             'Privacy Policy',
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(
-                                  color: Theme.of(context).colorScheme.secondary,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),

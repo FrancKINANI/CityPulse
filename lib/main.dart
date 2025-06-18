@@ -29,12 +29,14 @@ import 'package:citypulse/features/add_place/screens/add_place_screen.dart';
 import 'package:citypulse/features/tour/screens/add_to_tour_screen.dart';
 import 'package:citypulse/features/tour/screens/edit_tour_schedule_screen.dart';
 import 'package:citypulse/features/gestionnaire_dashboard/screens/gestionnaire_dashboard_screen.dart';
+import 'package:citypulse/services/auth_service.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeService()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
         Provider(create: (_) => NavigationService()),
       ],
       child: const MyApp(),
