@@ -249,7 +249,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
       child: ChoiceChip(
         label: Text(category),
         selected: isSelected,
-        selectedColor: Theme.of(context).colorScheme.primary,
+        selectedColor: Theme.of(context).colorScheme.secondary,
         onSelected: (selected) {
           setState(() {
             _selectedCategory = category;
@@ -260,7 +260,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
         },
         labelStyle: TextStyle(
           color: isSelected
-              ? Theme.of(context).colorScheme.onPrimary
+              ? Theme.of(context).colorScheme.onSecondary
               : Theme.of(context).textTheme.bodyMedium?.color,
         ),
         backgroundColor: Theme.of(context).cardColor,
@@ -268,7 +268,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
             color: isSelected
-                ? Theme.of(context).colorScheme.primary
+                ? Theme.of(context).colorScheme.secondary
                 : Theme.of(context).dividerColor,
             width: 1,
           ),
@@ -386,8 +386,9 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          'Create Tour',
+          'Tour creation',
           style: Theme.of(context).appBarTheme.titleTextStyle,
+          textAlign: TextAlign.center,
         ),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
@@ -398,10 +399,10 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
             child: Column(
               children: [
                 // Tour progress indicator
-                TourProgressBar(
-                  currentStep: _currentStep,
-                  totalSteps: _totalSteps,
-                ),
+                // TourProgressBar(
+                //   currentStep: _currentStep,
+                //   totalSteps: _totalSteps,
+                // ),
 
                 // Tour description input
                 Padding(
@@ -412,12 +413,15 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Tour Description',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          'Description',
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _titleController,
+                          cursorColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter a title for your tour';
@@ -430,7 +434,28 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                             fillColor: Theme.of(context).cardColor,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide.none,
+                              borderSide: BorderSide(
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
                             ),
                             hintStyle: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(color: Theme.of(context).hintColor),
@@ -443,6 +468,7 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                         const SizedBox(height: 16),
                         TextFormField(
                           controller: _descriptionController,
+                          cursorColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                           decoration: InputDecoration(
                             hintText:
                                 'Enter a detailed description of your tour...',
@@ -450,7 +476,28 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                             fillColor: Theme.of(context).cardColor,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide.none,
+                              borderSide: BorderSide(
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white,
+                              ),
                             ),
                             hintStyle: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(color: Theme.of(context).hintColor),
@@ -478,7 +525,6 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                       fillColor: Theme.of(context).cardColor,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
                       ),
                       hintStyle: Theme.of(context).textTheme.bodyMedium
                           ?.copyWith(color: Theme.of(context).hintColor),
@@ -547,25 +593,27 @@ class _CreateTourScreenState extends State<CreateTourScreen> {
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _handleSubmit,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      foregroundColor: Theme.of(
+                        context,
+                      ).colorScheme.onSecondary,
                     ),
                     child: _isLoading
                         ? SizedBox(
                             width: 24,
                             height: 24,
                             child: CircularProgressIndicator(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               strokeWidth: 2,
                             ),
                           )
                         : Text(
-                            'Create Tour',
+                            'Done',
                             style: Theme.of(context).textTheme.labelLarge
                                 ?.copyWith(
                                   color: Theme.of(
                                     context,
-                                  ).colorScheme.onPrimary,
+                                  ).colorScheme.onSecondary,
                                 ),
                           ),
                   ),

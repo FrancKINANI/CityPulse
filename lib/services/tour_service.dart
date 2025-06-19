@@ -1,81 +1,100 @@
 import 'package:flutter/material.dart';
-import '../models/tour.dart';
-import '../models/event.dart';
+import '../models/firebase/tours/tour_model.dart';
+import '../models/firebase/events/event_model.dart';
+import 'firestore_service.dart';
 
 class TourService extends ChangeNotifier {
-  final List<Tour> _tours = [];
-  final List<Event> _events = [];
+  final FirestoreService _firestoreService;
 
-  List<Tour> get tours => _tours;
-  List<Event> get events => _events;
+  TourService(this._firestoreService);
 
-  Future<List<Tour>> fetchTours() async {
+  Future<List<TourModel>> fetchTours() async {
     try {
-      // TODO: Implement actual API call to fetch tours
-      // This is just a placeholder
-      return _tours;
+      final docs = await _firestoreService.getToursCollection().get();
+      return docs.docs
+          .map((doc) => TourModel.fromJson(doc.data()!))
+          .toList();
     } catch (e) {
-      return [];
+      throw Exception('Erreur lors de la récupération des tours: $e');
     }
   }
 
-  Future<Tour?> createTour(Map<String, dynamic> tourData) async {
+  Future<TourModel> createTour(TourModel tour) async {
     try {
-      // TODO: Implement tour creation logic
-      return null;
+      final docRef = await _firestoreService.getToursCollection().add(tour.toJson());
+      tour = tour.copyWith(id: docRef.id);
+      await docRef.set(tour.toJson());
+      return tour;
     } catch (e) {
-      return null;
+      throw Exception('Erreur lors de la création du tour: $e');
     }
   }
 
-  Future<bool> updateTour(String tourId, Map<String, dynamic> updates) async {
+  Future<bool> updateTour(TourModel tour) async {
     try {
-      // TODO: Implement tour update logic
+      await _firestoreService
+          .getToursCollection()
+          .doc(tour.id)
+          .update(tour.toJson());
       return true;
     } catch (e) {
-      return false;
+      throw Exception('Erreur lors de la mise à jour du tour: $e');
     }
   }
 
   Future<bool> deleteTour(String tourId) async {
     try {
-      // TODO: Implement tour deletion logic
+      await _firestoreService
+          .getToursCollection()
+          .doc(tourId)
+          .delete();
       return true;
     } catch (e) {
-      return false;
+      throw Exception('Erreur lors de la suppression du tour: $e');
     }
   }
 
-  Future<List<Tour>> searchTours(String query) async {
+  Future<List<TourModel>> searchTours(String query) async {
     try {
-      // TODO: Implement tour search logic
-      return _tours
-          .where(
-            (tour) =>
-                tour.title.toLowerCase().contains(query.toLowerCase()) ||
-                tour.description.toLowerCase().contains(query.toLowerCase()),
-          )
+      final docs = await _firestoreService
+          .getToursCollection()
+          .where('name', isGreaterThanOrEqualTo: query)
+          .where('name', isLessThanOrEqualTo: query + '\uf8ff')
+          .get();
+      
+      return docs.docs
+          .map((doc) => TourModel.fromJson(doc.data()!))
           .toList();
     } catch (e) {
-      return [];
+      throw Exception('Erreur lors de la recherche des tours: $e');
     }
   }
 
-  Future<Event?> createEvent(Map<String, dynamic> eventData) async {
+  Future<EventModel> createEvent(EventModel event) async {
     try {
-      // TODO: Implement event creation logic
-      return null;
+      final docRef = await _firestoreService
+          .getEventsCollection()
+          .add(event.toJson());
+      event = event.copyWith(id: docRef.id);
+      await docRef.set(event.toJson());
+      return event;
     } catch (e) {
-      return null;
+      throw Exception('Erreur lors de la création de l\'événement: $e');
     }
   }
 
-  Future<List<Event>> fetchEvents(String tourId) async {
+  Future<List<EventModel>> fetchEvents(String tourId) async {
     try {
-      // TODO: Implement fetching events for a specific tour
-      return _events.where((event) => event.tourId == tourId).toList();
+      final docs = await _firestoreService
+          .getEventsCollection()
+          .where('tourId', isEqualTo: tourId)
+          .get();
+      
+      return docs.docs
+          .map((doc) => EventModel.fromJson(doc.data()!))
+          .toList();
     } catch (e) {
-      return [];
+      throw Exception('Erreur lors de la récupération des événements: $e');
     }
   }
 }

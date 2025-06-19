@@ -19,3 +19,16 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+plugins {
+  id("com.google.gms.google-services") version "4.4.2" apply false
+}
+
+dependencies {
+  implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+  implementation("com.google.firebase:firebase-analytics")
+  implementation("com.google.firebase:firebase-auth")
+  implementation("com.google.firebase:firebase-firestore")
+  implementation("com.google.firebase:firebase-storage")
+  implementation("com.google.firebase:firebase-messaging")
+}

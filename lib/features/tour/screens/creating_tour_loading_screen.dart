@@ -139,7 +139,7 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
     // Select random places from our dummy data (in a real app, this would use a recommendation algorithm)
     final selectedPlaces = List<Map<String, dynamic>>.from(_popularPlaces);
     selectedPlaces.shuffle(math.Random());
-    final tourPlaces = selectedPlaces.take(3).toList(); // Take 3 random places
+    final tourPlaces = selectedPlaces.take(4).toList(); // Take 3 random places
 
     // Create a new tour with the selected places
     final now = DateTime.now();
@@ -208,9 +208,10 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
               children: [
                 LinearProgressIndicator(
                   value: _progressValue,
-                  backgroundColor: Colors.orange.shade100,
+                  backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
+                  
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).colorScheme.primary,
+                    Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -250,7 +251,7 @@ class _CreatingTourLoadingScreenState extends State<CreatingTourLoadingScreen>
                 //   height: 50,
                 //   child: ElevatedButton(
                 //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.orange, // Explicitly setting orange for consistency
+                //       backgroundColor: Theme.of(context).colorScheme.secondary, // Use theme color
                 //       shape: RoundedRectangleBorder(
                 //         borderRadius: BorderRadius.circular(12),
                 //       ),

@@ -231,7 +231,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     child: Text(
                                       "Log Out",
                                       style: TextStyle(
-                                        color: Theme.of(context).colorScheme.onPrimary,
+                                        color: Theme.of(context).colorScheme.onSecondary,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),

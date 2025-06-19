@@ -4,36 +4,32 @@ class AppTheme {
   // ======== COULEURS PRINCIPALES ========
   // Mode clair - Couleurs principales
   static const Color primaryColor = Colors.white;
-  static const Color primaryLightColor = Color(
-    0xFFFFF3E0,
-  ); // Très léger orange/crème
-  static const Color secondaryColor = Color(0xFFFFA726); // Orange 600
-  static const Color accentColor = Color(0xFFFFCC80); // Ambre 200
+  static const Color primaryLightColor = Color.fromARGB(255, 212, 241, 246);
+  static const Color secondaryColor = Color(0xFF64B5F6); // Light Blue 400
+  static const Color accentColor = Color(0xFFBBDEFB); // Light Blue 100
   static const Color backgroundColor = Colors.white;
-  static const Color cardColor = Colors.white;
-  static const Color cardColorSelected = Color(
-    0xFFFFF3E0,
-  ); // Très léger orange/crème
+  static const Color cardColor = Color.fromARGB(255, 78, 78, 78);
+  static const Color cardColorSelected = Color.fromARGB(255, 124, 215, 251);
   static const Color textPrimaryColor = Color(0xFF333333);
   static const Color textSecondaryColor = Color(0xFF757575);
   static const Color textColor =
       Colors.black; // Mis à jour pour le texte sur fond clair
   static const Color textLightColor = Color(0xFFB0BEC5); // Gris-bleu très clair
-  static const Color dividerColor = Color(0xFFEEEEEE);
+  static const Color dividerColor = Color.fromARGB(255, 67, 67, 67);
 
   // Couleurs fonctionnelles
   static const Color errorColor = Color(0xFFE53935);
   static const Color successColor = Color(
-    0xFFFFA726,
-  ); // Orange 600 (previously green)
-  static const Color warningColor = Color(0xFFFFC107);
+    0xFF4CAF50,
+  ); // Green 500
+  static const Color warningColor = Color(0xFFFF5722); // Deep Orange 500
 
   // Mode sombre - Couleurs principales
   static const Color darkPrimaryColor = Color(0xFF121212);
-  static const Color darkSecondaryColor = Color(0xFFFFA726); // Orange 600
-  static const Color darkAccentColor = Color(0xFFFFCC80); // Ambre 200
+  static const Color darkSecondaryColor = Color(0xFF64B5F6); // Light Blue 400
+  static const Color darkAccentColor = Color(0xFFBBDEFB); // Light Blue 100
   static const Color darkBackgroundColor = Color(0xFF121212);
-  static const Color darkCardColor = Color(0xFF1E1E1E);
+  static const Color darkCardColor = Color.fromARGB(255, 255, 255, 255);
   static const Color darkTextPrimaryColor =
       Colors.white; // Changed to white for dark mode
   static const Color darkTextSecondaryColor = Color(0xFFBDBDBD);

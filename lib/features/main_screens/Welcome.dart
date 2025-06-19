@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:citypulse/features/explore/screens/explore_screen.dart';
+import 'package:citypulse/features/auth/screens/signin_screen.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -21,7 +21,7 @@ class _WelcomeState extends State<Welcome> {
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const ExploreScreen(),
+        builder: (context) => const SigninScreen(),
       ),
     );
   }
@@ -38,7 +38,7 @@ class _WelcomeState extends State<Welcome> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 32),
-            // Optionally keep the button or remove it since auto navigation is implemented
+            // Bouton optionnel - la navigation automatique vers l'écran de connexion est déjà implémentée
             // ElevatedButton(
             //   onPressed: () {
             //     Navigator.of(context).pushReplacement(

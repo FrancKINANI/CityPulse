@@ -7,8 +7,15 @@ CityPulse est une application Flutter multiplateforme dédiée à la découverte
 ### Authentification et gestion des rôles
 - Navigation post-authentification selon le rôle : visiteur, utilisateur, propriétaire, administrateur.
 - Interfaces dédiées pour chaque rôle.
-- Authentification via Firebase Auth (email/mot de passe, extensible à Google/Apple).
+- Authentification via Firebase Auth (email/mot de passe).
 - Interface d'authentification stylisée avec support dark/light mode et thème orange.
+- Système de gestion des profils utilisateurs avec Firebase Firestore.
+- Système d'intérêts personnalisés pour chaque utilisateur.
+- Gestion des préférences utilisateur (thème, langue, notifications).
+- Création automatique du profil utilisateur lors de l'inscription.
+- Synchronisation des préférences et des intérêts.
+- Support multi-langue intégré.
+- Gestion des erreurs détaillée.
 
 ### Fonctionnalités visiteur (non connecté)
 - Recherche de lieux avec filtres avancés.

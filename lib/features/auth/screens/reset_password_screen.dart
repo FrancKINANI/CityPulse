@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:citypulse/services/auth_service.dart';
 import 'package:citypulse/features/auth/widgets/auth_form_field.dart';
 import 'package:citypulse/features/auth/widgets/auth_button.dart';
 import 'package:citypulse/features/auth/widgets/auth_header.dart';
@@ -33,9 +35,8 @@ class ResetPasswordScreenState extends State<ResetPasswordScreen> {
     });
 
     try {
-      // Simuler l'envoi d'un email de réinitialisation
-      // À remplacer par l'appel réel au service d'authentification
-      await Future.delayed(const Duration(seconds: 2));
+      final authService = Provider.of<AuthService>(context, listen: false);
+      await authService.resetPassword(_emailController.text);
 
       setState(() {
         _resetSent = true;

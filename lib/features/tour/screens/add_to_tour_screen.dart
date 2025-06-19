@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:citypulse/config/app_theme.dart'; // Supprimé car nous utilisons Theme.of(context)
-// import 'package:citypulse/services/theme_service.dart'; // Supprimé
 
 class AddToTourScreen extends StatefulWidget {
   const AddToTourScreen({super.key});
@@ -47,7 +45,6 @@ class _AddToTourScreenState extends State<AddToTourScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final themeService = Provider.of<ThemeService>(context); // Supprimé
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
