@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'event_model.freezed.dart';
 part 'event_model.g.dart';
@@ -12,8 +13,8 @@ class EventModel with _$EventModel {
     required String description,
     required String placeId,
     required String ownerId,
-    required Timestamp startDate,
-    required Timestamp endDate,
+    @TimestampConverter() required Timestamp startDate,
+    @TimestampConverter() required Timestamp endDate,
     required String type,
     required double price,
     required int capacity,

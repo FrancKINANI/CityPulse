@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
@@ -12,7 +13,7 @@ class NotificationModel with _$NotificationModel {
     required String type,
     required String content,
     required bool read,
-    required Timestamp createdAt,
+    @TimestampConverter() required Timestamp createdAt,
     required NotificationMetadata metadata,
   }) = _NotificationModel;
 

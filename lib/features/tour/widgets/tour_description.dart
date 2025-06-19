@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:citypulse/models/firebase/tours/tour_model.dart';
+import 'package:citypulse/services/tour_service.dart';
+import 'package:provider/provider.dart';
 
 class TourDescription extends StatelessWidget {
   final TextEditingController controller;

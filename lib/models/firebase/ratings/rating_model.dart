@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'rating_model.freezed.dart';
 part 'rating_model.g.dart';
@@ -12,7 +13,7 @@ class RatingModel with _$RatingModel {
     required String placeId,
     required double rating,
     String? review,
-    required Timestamp createdAt,
+    @TimestampConverter() required Timestamp createdAt,
   }) = _RatingModel;
 
   factory RatingModel.fromJson(Map<String, dynamic> json) => 

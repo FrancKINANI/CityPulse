@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'comment_model.freezed.dart';
 part 'comment_model.g.dart';
@@ -13,7 +14,7 @@ class CommentModel with _$CommentModel {
     String? parentId,
     required String content,
     required double rating,
-    required Timestamp createdAt,
+    @TimestampConverter() required Timestamp createdAt,
     required String status,
     required CommentMetadata metadata,
   }) = _CommentModel;

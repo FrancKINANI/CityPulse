@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import '../models/firebase/places/place_model.dart';
 import '../models/firebase/categories/category_model.dart';
 import 'firestore_service.dart';

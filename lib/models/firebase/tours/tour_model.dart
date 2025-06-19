@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:citypulse/models/firebase/events/event_model.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'tour_model.freezed.dart';
 part 'tour_model.g.dart';
@@ -18,8 +19,8 @@ class TourModel with _$TourModel {
     required Rating rating,
     required List<String> images,
     required String status,
-    required Timestamp createdAt,
-    required Timestamp updatedAt,
+    @TimestampConverter() required Timestamp createdAt,
+    @TimestampConverter() required Timestamp updatedAt,
   }) = _TourModel;
 
   factory TourModel.fromJson(Map<String, dynamic> json) => 

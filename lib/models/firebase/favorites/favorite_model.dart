@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'favorite_model.freezed.dart';
 part 'favorite_model.g.dart';
@@ -9,7 +10,7 @@ class FavoriteModel with _$FavoriteModel {
   const factory FavoriteModel({
     required String userId,
     required String placeId,
-    required Timestamp addedAt,
+    @TimestampConverter() required Timestamp addedAt,
     String? notes,
   }) = _FavoriteModel;
 

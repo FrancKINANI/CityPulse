@@ -59,7 +59,7 @@ class TourService extends ChangeNotifier {
       final docs = await _firestoreService
           .getToursCollection()
           .where('name', isGreaterThanOrEqualTo: query)
-          .where('name', isLessThanOrEqualTo: query + '\uf8ff')
+          .where('name', isLessThanOrEqualTo: '$query\uf8ff')
           .get();
       
       return docs.docs

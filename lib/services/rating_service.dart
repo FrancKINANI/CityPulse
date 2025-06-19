@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import '../models/firebase/ratings/rating_model.dart';
 import 'firestore_service.dart';
 

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:citypulse/models/firebase/converters/timestamp_converter.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
@@ -12,8 +13,8 @@ class UserModel with _$UserModel {
     String? username,
     String? photoUrl,
     required String role,
-    required Timestamp createdAt,
-    required Timestamp lastLogin,
+    @TimestampConverter() required Timestamp createdAt,
+    @TimestampConverter() required Timestamp lastLogin,
     required Preferences preferences,
     required Stats stats,
   }) = _UserModel;
